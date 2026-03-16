@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MainApp.cpp">
+      <Filter>01.MainApp</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99.Utility\99_00.Pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>00.Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer_Manager.cpp">
+      <Filter>02.Timer_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bmp_Manager.cpp">
+      <Filter>03.Bmp_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBmp.cpp">
+      <Filter>03.Bmp_Manager\MyBmp</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Manager.cpp">
+      <Filter>04.Level_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object_Manager.cpp">
+      <Filter>05.Object_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>04.Level_Manager\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Menu.cpp">
+      <Filter>04.Level_Manager\Levels\04_01.Level_Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Choice.cpp">
+      <Filter>04.Level_Manager\Levels\04_03.Level_Choice</Filter>
+    </ClCompile>
+    <ClCompile Include="Level_Login.cpp">
+      <Filter>04.Level_Manager\Levels\04_02.Level_Login</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="01.MainApp">
+      <UniqueIdentifier>{591d997c-02d0-489f-9c6d-57f41932093a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Utility">
+      <UniqueIdentifier>{10a2e126-e2c2-468a-a58d-13fadb5edda2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Utility\99_01.Define">
+      <UniqueIdentifier>{ce976c80-dcde-47af-90ad-d716151f96c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Utility\99_00.Pch">
+      <UniqueIdentifier>{0e12e75f-8344-47aa-acab-b461378db399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.Client">
+      <UniqueIdentifier>{5cc04ada-c129-4a40-b7f7-0588838a8098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Timer_Manager">
+      <UniqueIdentifier>{74f777b3-2e38-4a7a-a18f-9583e11ab999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Bmp_Manager">
+      <UniqueIdentifier>{9e79e224-dc62-419e-9820-d11e4d75f9cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Bmp_Manager\MyBmp">
+      <UniqueIdentifier>{581e52aa-4c0d-4cfd-a541-76d70529686e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level_Manager">
+      <UniqueIdentifier>{ca87ec17-06eb-4096-85eb-8b8a69f48694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager">
+      <UniqueIdentifier>{b0e10bb6-7c30-4e77-9c52-8a3e8fe0d96e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level_Manager\Levels">
+      <UniqueIdentifier>{729e24fd-911e-429e-8984-cabace84f367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects">
+      <UniqueIdentifier>{fda531c4-7263-4bec-942b-05aeaa02ddf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level_Manager\Levels\04_01.Level_Menu">
+      <UniqueIdentifier>{e76b8966-eb04-4622-a928-11e18ae4144e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level_Manager\Levels\04_03.Level_Choice">
+      <UniqueIdentifier>{154ba5b5-9c7b-4510-8550-6cdf318a26ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Level_Manager\Levels\04_02.Level_Login">
+      <UniqueIdentifier>{492aba86-6ae7-49b2-b8d6-89f895062bc8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainApp.h">
+      <Filter>01.MainApp</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>99.Utility\99_00.Pch</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>99.Utility\99_01.Define</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer_Manager.h">
+      <Filter>02.Timer_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Bmp_Manager.h">
+      <Filter>03.Bmp_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBmp.h">
+      <Filter>03.Bmp_Manager\MyBmp</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Manager.h">
+      <Filter>04.Level_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object_Manager.h">
+      <Filter>05.Object_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>04.Level_Manager\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Menu.h">
+      <Filter>04.Level_Manager\Levels\04_01.Level_Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Choice.h">
+      <Filter>04.Level_Manager\Levels\04_03.Level_Choice</Filter>
+    </ClInclude>
+    <ClInclude Include="Level_Login.h">
+      <Filter>04.Level_Manager\Levels\04_02.Level_Login</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
