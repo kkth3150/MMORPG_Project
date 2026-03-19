@@ -1,4 +1,11 @@
 C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Bmp_Manager.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Bmp_Manager.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\UI_Button.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\UI_Button.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Network_Manager.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Network_Manager.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Input_Manager.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Input_Manager.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Collision_Manager.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Collision_Manager.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\GameObject.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\UI.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\UI.obj
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\UI_Manager.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\UI_Manager.obj
 C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Level.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Level.obj
 C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Level_Choice.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Level_Choice.obj
 C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\Level_Login.cpp;C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\x64\Release\Level_Login.obj
