@@ -3,16 +3,88 @@
   "WorkspaceRootPath": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\ResourceLink.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\ResourceLink.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI_Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI_Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\GameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\UI.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\define.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Menu.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Input_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Input_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Object_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Object_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Collision_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Network_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Collision_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Network_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -25,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Menu.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -47,10 +115,6 @@
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Choice.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Object_Manager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Login.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Level_Login.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -61,10 +125,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\MainApp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|solutionrelative:MMO_Client\\Object_Manager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEFED060-1EBF-49D3-9700-C98A35C75C0A}|MMO_Client\\MMO_Client.vcxproj|C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\pch.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -111,25 +171,76 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Level_Menu.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp",
-              "RelativeDocumentMoniker": "MMO_Client\\Level_Menu.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp*",
-              "RelativeToolTip": "MMO_Client\\Level_Menu.cpp*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:13:18.092Z",
+              "Title": "ResourceLink.txt",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\ResourceLink.txt",
+              "RelativeDocumentMoniker": "MMO_Client\\ResourceLink.txt",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\ResourceLink.txt",
+              "RelativeToolTip": "MMO_Client\\ResourceLink.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-03-18T06:11:25.405Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
+              "Title": "UI.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\UI.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.cpp",
+              "RelativeToolTip": "MMO_Client\\UI.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T09:26:18.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GameObject.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\GameObject.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.cpp",
+              "RelativeToolTip": "MMO_Client\\GameObject.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T09:00:57.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Level_Menu.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Level_Menu.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.cpp",
+              "RelativeToolTip": "MMO_Client\\Level_Menu.cpp",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAlwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T07:13:18.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UI_Button.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\UI_Button.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.cpp",
+              "RelativeToolTip": "MMO_Client\\UI_Button.cpp",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAkwF8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T10:27:46.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "define.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\define.h",
               "RelativeDocumentMoniker": "MMO_Client\\define.h",
               "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\define.h",
               "RelativeToolTip": "MMO_Client\\define.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-03-16T05:07:23.703Z",
               "EditorCaption": ""
@@ -137,84 +248,83 @@
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Level_Menu.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h",
-              "RelativeDocumentMoniker": "MMO_Client\\Level_Menu.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h",
-              "RelativeToolTip": "MMO_Client\\Level_Menu.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Title": "UI.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.h",
+              "RelativeDocumentMoniker": "MMO_Client\\UI.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI.h",
+              "RelativeToolTip": "MMO_Client\\UI.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:13:14.33Z",
+              "WhenOpened": "2026-03-17T09:20:40.161Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainApp.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.cpp",
-              "RelativeDocumentMoniker": "MMO_Client\\MainApp.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.cpp",
-              "RelativeToolTip": "MMO_Client\\MainApp.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAADYAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UI_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\UI_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\UI_Manager.cpp",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T04:58:12.065Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Object_Manager.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp",
-              "RelativeDocumentMoniker": "MMO_Client\\Object_Manager.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp",
-              "RelativeToolTip": "MMO_Client\\Object_Manager.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:24:22.981Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Level.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.h",
-              "RelativeDocumentMoniker": "MMO_Client\\Level.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.h",
-              "RelativeToolTip": "MMO_Client\\Level.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:11:13.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Level.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.cpp",
-              "RelativeDocumentMoniker": "MMO_Client\\Level.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.cpp",
-              "RelativeToolTip": "MMO_Client\\Level.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:12:21.295Z",
+              "WhenOpened": "2026-03-17T08:50:40.295Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Level_Manager.cpp",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.cpp",
-              "RelativeDocumentMoniker": "MMO_Client\\Level_Manager.cpp",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.cpp",
-              "RelativeToolTip": "MMO_Client\\Level_Manager.cpp",
-              "ViewState": "AgIAABsAAAAAAAAAAAAlwDgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:07:57.427Z",
+              "Title": "UI_Button.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.h",
+              "RelativeDocumentMoniker": "MMO_Client\\UI_Button.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Button.h",
+              "RelativeToolTip": "MMO_Client\\UI_Button.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T10:26:27.648Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "GameObject.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.h",
+              "RelativeDocumentMoniker": "MMO_Client\\GameObject.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\GameObject.h",
+              "RelativeToolTip": "MMO_Client\\GameObject.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T08:54:52.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UI_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.h",
+              "RelativeDocumentMoniker": "MMO_Client\\UI_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\UI_Manager.h",
+              "RelativeToolTip": "MMO_Client\\UI_Manager.h",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAlwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T08:50:30.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Object_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Object_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h",
+              "RelativeToolTip": "MMO_Client\\Object_Manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-16T07:06:52.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "Level_Manager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.h",
               "RelativeDocumentMoniker": "MMO_Client\\Level_Manager.h",
@@ -222,12 +332,155 @@
               "RelativeToolTip": "MMO_Client\\Level_Manager.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:06:18.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T07:06:18.147Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
+              "Title": "Input_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Input_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\Input_Manager.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAIA0wFUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T10:08:49.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Input_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Input_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Input_Manager.h",
+              "RelativeToolTip": "MMO_Client\\Input_Manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T09:48:55.346Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Level_Menu.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Level_Menu.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Menu.h",
+              "RelativeToolTip": "MMO_Client\\Level_Menu.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-16T07:13:14.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Object_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Object_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\Object_Manager.cpp",
+              "ViewState": "AgIAACwAAAAAAAAAAAA0wD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T07:24:22.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Collision_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Collision_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.h",
+              "RelativeToolTip": "MMO_Client\\Collision_Manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T09:48:39.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Network_Manager.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Network_Manager.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.h",
+              "RelativeToolTip": "MMO_Client\\Network_Manager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-17T09:49:20.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Collision_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Collision_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Collision_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\Collision_Manager.cpp",
+              "ViewState": "AgIAACAAAAAAAAAAAAA0wG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T10:05:09.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Network_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Network_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Network_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\Network_Manager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-17T10:08:39.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Level.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Level.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.cpp",
+              "RelativeToolTip": "MMO_Client\\Level.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T07:12:21.295Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Level.h",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.h",
+              "RelativeDocumentMoniker": "MMO_Client\\Level.h",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level.h",
+              "RelativeToolTip": "MMO_Client\\Level.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-03-16T07:11:13.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MainApp.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\MainApp.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.cpp",
+              "RelativeToolTip": "MMO_Client\\MainApp.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T04:58:12.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Level_Manager.cpp",
+              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.cpp",
+              "RelativeDocumentMoniker": "MMO_Client\\Level_Manager.cpp",
+              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Manager.cpp",
+              "RelativeToolTip": "MMO_Client\\Level_Manager.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAlwDgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T07:07:57.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
               "Title": "Level_Choice.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Choice.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\Level_Choice.cpp",
@@ -235,12 +488,11 @@
               "RelativeToolTip": "MMO_Client\\Level_Choice.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:16:39.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T07:16:39.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 27,
               "Title": "Level_Choice.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Choice.h",
               "RelativeDocumentMoniker": "MMO_Client\\Level_Choice.h",
@@ -248,12 +500,11 @@
               "RelativeToolTip": "MMO_Client\\Level_Choice.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:16:14.966Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T07:16:14.966Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 25,
               "Title": "Level_Login.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Login.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\Level_Login.cpp",
@@ -261,12 +512,11 @@
               "RelativeToolTip": "MMO_Client\\Level_Login.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T07:16:38.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T07:16:38.654Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 28,
               "Title": "Level_Login.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Level_Login.h",
               "RelativeDocumentMoniker": "MMO_Client\\Level_Login.h",
@@ -274,12 +524,11 @@
               "RelativeToolTip": "MMO_Client\\Level_Login.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:16:34.877Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T07:16:34.877Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "Timer_Manager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Timer_Manager.h",
               "RelativeDocumentMoniker": "MMO_Client\\Timer_Manager.h",
@@ -287,12 +536,11 @@
               "RelativeToolTip": "MMO_Client\\Timer_Manager.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T05:17:27.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T05:17:27.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "pch.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\pch.h",
               "RelativeDocumentMoniker": "MMO_Client\\pch.h",
@@ -300,12 +548,11 @@
               "RelativeToolTip": "MMO_Client\\pch.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T04:30:51.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T04:30:51.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 38,
               "Title": "pch.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\pch.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\pch.cpp",
@@ -313,12 +560,11 @@
               "RelativeToolTip": "MMO_Client\\pch.cpp",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T04:30:52.601Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T04:30:52.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 30,
               "Title": "MainApp.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MainApp.h",
               "RelativeDocumentMoniker": "MMO_Client\\MainApp.h",
@@ -326,12 +572,11 @@
               "RelativeToolTip": "MMO_Client\\MainApp.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T04:27:23.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T04:27:23.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Game.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\Game.cpp",
@@ -339,12 +584,11 @@
               "RelativeToolTip": "MMO_Client\\Game.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T04:26:08.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T04:26:08.18Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 29,
               "Title": "Timer_Manager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Timer_Manager.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\Timer_Manager.cpp",
@@ -352,25 +596,11 @@
               "RelativeToolTip": "MMO_Client\\Timer_Manager.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T05:17:28.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T05:17:28.48Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Object_Manager.h",
-              "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h",
-              "RelativeDocumentMoniker": "MMO_Client\\Object_Manager.h",
-              "ToolTip": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Object_Manager.h",
-              "RelativeToolTip": "MMO_Client\\Object_Manager.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T07:06:52.614Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "MyBmp.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MyBmp.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\MyBmp.cpp",
@@ -378,12 +608,11 @@
               "RelativeToolTip": "MMO_Client\\MyBmp.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T06:22:53.525Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T06:22:53.525Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 37,
               "Title": "Bmp_Manager.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Bmp_Manager.h",
               "RelativeDocumentMoniker": "MMO_Client\\Bmp_Manager.h",
@@ -391,12 +620,11 @@
               "RelativeToolTip": "MMO_Client\\Bmp_Manager.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T06:19:37.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T06:19:37.939Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 36,
               "Title": "Bmp_Manager.cpp",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\Bmp_Manager.cpp",
               "RelativeDocumentMoniker": "MMO_Client\\Bmp_Manager.cpp",
@@ -404,12 +632,11 @@
               "RelativeToolTip": "MMO_Client\\Bmp_Manager.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T06:19:40.968Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T06:19:40.968Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "MyBmp.h",
               "DocumentMoniker": "C:\\Users\\kkth3\\OneDrive\\\uBB38\uC11C\\GitHub\\MMORPG_Project\\MMO_Client\\MMO_Client\\MyBmp.h",
               "RelativeDocumentMoniker": "MMO_Client\\MyBmp.h",
@@ -417,8 +644,7 @@
               "RelativeToolTip": "MMO_Client\\MyBmp.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-03-16T06:22:18.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-16T06:22:18.217Z"
             }
           ]
         }

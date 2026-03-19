@@ -132,6 +132,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bmp_Manager.cpp" />
+    <ClCompile Include="UI_Button.cpp" />
+    <ClCompile Include="Network_Manager.cpp" />
+    <ClCompile Include="Input_Manager.cpp" />
+    <ClCompile Include="Collision_Manager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UI_Manager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level_Choice.cpp" />
     <ClCompile Include="Level_Login.cpp" />
@@ -151,6 +158,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bmp_Manager.h" />
+    <ClInclude Include="UI_Button.h" />
+    <ClInclude Include="Network_Manager.h" />
+    <ClInclude Include="Input_Manager.h" />
+    <ClInclude Include="Collision_Manager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Manager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level_Choice.h" />
     <ClInclude Include="Level_Login.h" />
@@ -162,6 +176,9 @@
     <ClInclude Include="Object_Manager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Timer_Manager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ResourceLink.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
