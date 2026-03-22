@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "Camera.h"
 
 CGameObject::CGameObject() : m_fSpeed(0.f), m_eDir(DIR_END), m_bDead(false), m_fAngle(0.f), m_pFrameKey(L"")
 {
-	ZeroMemory(&m_tInfo, sizeof(INFO));
+	ZeroMemory(&m_tIsoInfo, sizeof(ISO_INFO));
 	ZeroMemory(&m_tRect, sizeof(RECT));
 	ZeroMemory(&m_tFrame, sizeof(FRAME));
 }
@@ -14,10 +15,13 @@ CGameObject::~CGameObject()
 
 void CGameObject::Update_Rect()
 {
-	m_tRect.left = LONG(m_tInfo.fX - (m_tInfo.fCX * 0.5f));
-	m_tRect.top = LONG(m_tInfo.fY - (m_tInfo.fCY * 0.5f));
-	m_tRect.right = LONG(m_tInfo.fX + (m_tInfo.fCX * 0.5f));
-	m_tRect.bottom = LONG(m_tInfo.fY + (m_tInfo.fCY * 0.5f));
+	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+
+	m_tRect.left = tScreen.x - (LONG)(m_tIsoInfo.fCX * 0.5f);
+	m_tRect.top = tScreen.y - (LONG)(m_tIsoInfo.fCY * 0.5f);
+	m_tRect.right = tScreen.x + (LONG)(m_tIsoInfo.fCX * 0.5f);
+	m_tRect.bottom = tScreen.y + (LONG)(m_tIsoInfo.fCY * 0.5f);
 }
 
 void CGameObject::Move_Frame()
