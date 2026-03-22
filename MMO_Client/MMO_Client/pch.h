@@ -15,3 +15,4 @@
 
 
 #pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "Msimg32.lib")

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "UI_Manager.h"
-#include "Bmp_Manager.h"
+#include "Img_Manager.h"
 
 CUI_Manager* CUI_Manager::m_pInstance = nullptr;
 
@@ -24,7 +24,7 @@ void CUI_Manager::Add_UI(UI_ID eID, CUI* pUI)
 
 int CUI_Manager::Update(float dt)
 {
-	for (size_t i = 0; i < OBJ_END; ++i)
+	for (size_t i = 0; i < UI_END; ++i)
 	{
 		for (auto iter = m_UIList[i].begin();
 			iter != m_UIList[i].end(); )
@@ -47,7 +47,7 @@ int CUI_Manager::Update(float dt)
 
 void CUI_Manager::Late_Update(float dt)
 {
-	for (size_t i = 0; i < OBJ_END; ++i)
+	for (size_t i = 0; i < UI_END; ++i)
 	{
 		for (auto& iter : m_UIList[i])
 		{
@@ -63,7 +63,7 @@ void CUI_Manager::Late_Update(float dt)
 
 void CUI_Manager::Render(HDC hDC)
 {
-	for (size_t i = 0; i < OBJ_END; ++i)
+	for (size_t i = 0; i < UI_END; ++i)
 	{
 		for (auto& iter : m_UIList[i])
 		{
@@ -75,7 +75,7 @@ void CUI_Manager::Render(HDC hDC)
 void CUI_Manager::Release(void)
 {
 
-	for (size_t i = 0; i < OBJ_END; ++i)
+	for (size_t i = 0; i < UI_END; ++i)
 	{
 		for_each(m_UIList[i].begin(), m_UIList[i].end(), Safe_Delete<CUI*>);
 		m_UIList[i].clear();

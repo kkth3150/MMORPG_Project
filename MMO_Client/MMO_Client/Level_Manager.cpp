@@ -31,8 +31,11 @@ void CLevel_Manager::Level_Change(LEVEL_ID eID)
 		case LEVEL_CHOICE:
 			m_pLevel = new CLevel_Choice;
 			break;
-		}
 
+		case LEVEL_TEST:
+			m_pLevel = new CLevel_Test;
+			break;
+		}
 
 		m_pLevel->Initialize();
 		m_ePreLevel = m_eCurLevel;

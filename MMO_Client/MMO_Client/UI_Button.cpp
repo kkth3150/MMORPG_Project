@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "UI_Button.h"
-#include "Bmp_Manager.h"
+#include "Img_Manager.h"
 #include "Input_Manager.h"
 
 CUI_Button::CUI_Button() : m_iDrawID(0), m_bEffect(false)
@@ -50,7 +50,6 @@ int CUI_Button::Update(float dt)
 		{
 			 m_bClick= true;
 			 return UI_EVENT;
-
 		}
 	}
 	else {
@@ -70,7 +69,7 @@ void CUI_Button::Late_Update(float dt)
 
 void CUI_Button::Render(HDC hDC)
 {
-	HDC	hMemDC = CBmp_Manager::Get_Instance()->Find_Img(m_pFrameKey);
+	HDC	hMemDC = CImg_Manager::Get_Instance()->Find_Bmp(m_pFrameKey);
 
 	GdiTransparentBlt(
 		hDC,

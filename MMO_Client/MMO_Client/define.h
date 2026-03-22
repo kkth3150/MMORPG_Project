@@ -10,14 +10,29 @@
 #define UI_NOEVENT 0
 
 #define VK_MAX	0xff
+#define TILE_WIDTH   160
+#define TILE_HEIGHT  79
+#define TILE_HALF_W  (TILE_WIDTH  / 2.f)   // 90.f
+#define TILE_HALF_H  (TILE_HEIGHT / 2.f)   // 29.5f
 
-enum LEVEL_ID {LEVEL_MENU, LEVEL_LOGIN, LEVEL_CHOICE, LEVEL_END};
+#define ISO_RATIO    (TILE_HALF_W / TILE_HALF_H)  // 90/29.5
+
+// 맵 크기
+#define MAP_TILE_X      20
+#define MAP_TILE_Z      20
+
+
+enum LEVEL_ID {LEVEL_MENU, LEVEL_LOGIN, LEVEL_CHOICE, LEVEL_TEST,LEVEL_END};
 enum OBJ_ID {OBJ_PLAYER,OBJ_END};
 enum UI_ID {UI_BUTTON, UI_END};
-enum DIRECTION {DIR_LEFT, DIR_UP, DIR_RIGHT, DIR_DOWN, DIR_END};
-
+enum DIRECTION { DIR_B, DIR_LB, DIR_L, DIR_LT, DIR_T, DIR_RT, DIR_R, DIR_RB, DIR_END };
 enum MOUSE_BUTTON {MBUTTON_L,MBUTTON_R,MBUTTON_WHEEL,MBUTTON_END};
-
+enum TILE_TYPE
+{
+	TILE_NORMAL, // 이동 가능
+	TILE_BLOCK,       // 이동 불가
+	TILE_TYPE_END
+};
 enum ButtonID { BUTTON_LOGIN, BUTTON_EXIT, BUTTON_END };
 extern HWND g_hWnd;
 
@@ -38,10 +53,37 @@ typedef struct tagInfo
 	float	fY;		// 중점 Y
 	float	fCX;	// 가로 사이즈
 	float	fCY;	// 세로 사이즈
+	float   fHeight;
 
 }INFO;
 
+typedef struct tagIosInfo
+{
+	// 아이소메트릭 논리 월드좌표 (이동/충돌/서버 동기화용)
+	float fWorldX;  // 논리 X
+	float fWorldZ;  // 논리 Z (앞뒤)
+	float fHeight;  // 높이 (점프 등)
 
+	// 스프라이트 크기
+	float fCX;
+	float fCY;
+} ISO_INFO;
+
+
+typedef struct tagCollider
+{
+	float fOffsetX;  // 중심에서 오프셋 X
+	float fOffsetZ;  // 중심에서 오프셋 Z
+	float fRadiusX;  // 충돌 반경 X (논리좌표)
+	float fRadiusZ;  // 충돌 반경 Z (논리좌표)
+} COLLIDER;
+
+typedef struct tagTile
+{
+	int         iTileX;    // 타일 논리 X
+	int         iTileZ;    // 타일 논리 Z
+	TILE_TYPE   eType;     // 이동가능 여부 (길찾기용)
+} TILE;
 
 template<typename T>
 void Safe_Delete(T& Temp)

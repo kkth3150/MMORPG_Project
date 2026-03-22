@@ -102,3 +102,10 @@ bool CInput_Manager::Mouse_Up(MOUSE_BUTTON _eButton)
 
     return false;
 }
+
+void CInput_Manager::Update()
+{
+    // 매 프레임 마우스 커서 위치 갱신
+    GetCursorPos(&m_tMousePos);
+    ScreenToClient(g_hWnd, &m_tMousePos); // 윈도우 클라이언트 기준으로 변환
+}

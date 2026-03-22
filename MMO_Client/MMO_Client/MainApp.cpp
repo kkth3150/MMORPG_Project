@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "MainApp.h"
-#include "Bmp_Manager.h"
+#include "Img_Manager.h"
 #include "Level_Manager.h"
+#include "Input_Manager.h"
 
 CMainApp::CMainApp()
 {
@@ -16,16 +17,18 @@ CMainApp::~CMainApp()
 
 void CMainApp::Initialize(void)
 {
+
     m_hDC = GetDC(g_hWnd);
-    CBmp_Manager::Get_Instance()->Insert_Bmp(L"../Resource/BackBuffer/BackBuffer.bmp", L"BackBuffer");
-    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_MENU);
+    CImg_Manager::Get_Instance()->Insert_Bmp(L"../Resource/BackBuffer/BackBuffer.bmp", L"BackBuffer");
+    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
 }
 
 void CMainApp::Update(float dt)
 {
+
     m_fTimeAcc += dt;
     m_iFrameCount++;
-
+    CInput_Manager::Get_Instance()->Update();
     CLevel_Manager::Get_Instance()->Update(dt);
 }
 
@@ -51,7 +54,7 @@ void CMainApp::Render(void)
         SetWindowText(g_hWnd, buffer);
     }
 #pragma region 이중 버퍼
-    HDC	hBackDC = CBmp_Manager::Get_Instance()->Find_Img(L"BackBuffer");
+    HDC	hBackDC = CImg_Manager::Get_Instance()->Find_Bmp(L"BackBuffer");
     CLevel_Manager::Get_Instance()->Render(hBackDC);
     BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
 

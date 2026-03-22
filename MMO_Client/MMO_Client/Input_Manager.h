@@ -16,6 +16,9 @@ public:
     bool        Mouse_Down(MOUSE_BUTTON _eButton);
     bool        Mouse_Up(MOUSE_BUTTON _eButton);
 
+    POINT Get_MousePos() { return m_tMousePos; }
+    void  Update();
+
 public:
     static CInput_Manager* Get_Instance()
     {
@@ -40,4 +43,5 @@ private:
 
     bool m_bKeyState[VK_MAX];
     bool m_bMouseState[MBUTTON_END]; // 0: L, 1: R, 2: M
+    POINT   m_tMousePos = {};  // Ãß°¡
 };
