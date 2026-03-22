@@ -34,7 +34,7 @@ void CTile::Render(HDC hDC)
 
     GdiTransparentBlt(hDC,
         tScreen.x - TILE_WIDTH / 2,
-        tScreen.y - TILE_HEIGHT / 2,
+        tScreen.y,                    // - TILE_HEIGHT/2 Á¦°Å
         TILE_WIDTH,
         TILE_HEIGHT,
         hBmpDC,

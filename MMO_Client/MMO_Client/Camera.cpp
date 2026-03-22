@@ -30,7 +30,7 @@ void CCamera::ScreenToIsoWorld(int iScreenX, int iScreenY,
     float& fOutWorldX, float& fOutWorldZ)
 {
     float fMapX = iScreenX + m_fX;
-    float fMapY = iScreenY + m_fY;
+    float fMapY = iScreenY + m_fY + TILE_HALF_H;  // 상단꼭짓점 기준 역변환
 
     fOutWorldX = (fMapX / TILE_HALF_W + fMapY / TILE_HALF_H) / 2.f;
     fOutWorldZ = (fMapY / TILE_HALF_H - fMapX / TILE_HALF_W) / 2.f;
@@ -40,7 +40,8 @@ POINT CCamera::IsoWorldToScreen(float fWorldX, float fWorldZ)
 {
     POINT pt;
     pt.x = (LONG)((fWorldX - fWorldZ) * TILE_HALF_W - m_fX);
-    pt.y = (LONG)((fWorldX + fWorldZ) * TILE_HALF_H - m_fY);
+    // Y를 TILE_HALF_H만큼 올려서 상단 꼭짓점 기준으로
+    pt.y = (LONG)((fWorldX + fWorldZ) * TILE_HALF_H - m_fY - TILE_HALF_H);
     return pt;
 }
 

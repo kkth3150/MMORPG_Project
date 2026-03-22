@@ -16,3 +16,7 @@
 
 #pragma comment(lib, "winmm.lib")
 #pragma comment(lib, "Msimg32.lib")
+
+#ifdef _DEBUG
+#define GAME_DEBUG
+#endif
