@@ -46,7 +46,13 @@ void CPlayer::Render(HDC hDC)
 	case PLAYER_DEAD:	RenderDEAD(hDC);	break;
 	default: break;
 	}
+
+#ifdef GAME_DEBUG
+	Debug_Render(hDC);
+#endif
 }
+
+
 
 void CPlayer::Release(void)
 {
@@ -60,10 +66,7 @@ void CPlayer::Render_Sprite(HDC hDC, HDC PngDC)
 	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
 		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
 
-	// 발 위치가 논리좌표의 중심이므로
-	// 스프라이트를 위로 올려서 발이 중심에 오게 함
-	// fHeight만큼 픽셀로 변환해서 위로 올림
-	int iFootOffsetY = (int)(m_tIsoInfo.fHeight);
+	int iFootOffsetY = -(int)(m_tIsoInfo.fHeight);
 
 	BLENDFUNCTION blend = {};
 	blend.BlendOp = AC_SRC_OVER;
@@ -72,7 +75,7 @@ void CPlayer::Render_Sprite(HDC hDC, HDC PngDC)
 
 	AlphaBlend(hDC,
 		tScreen.x - (int)(m_tIsoInfo.fCX / 2),
-		tScreen.y - (int)(m_tIsoInfo.fCY) + iFootOffsetY, // 발 기준으로 위로 올림
+		tScreen.y - (int)(m_tIsoInfo.fCY) + iFootOffsetY + (int)TILE_HALF_H,
 		(int)m_tIsoInfo.fCX,
 		(int)m_tIsoInfo.fCY,
 		PngDC,
@@ -187,6 +190,13 @@ void CPlayer::Key_Input(float dt)
 			tMouse.x, tMouse.y,
 			m_fDestWorldX, m_fDestWorldZ);
 
+#ifdef GAME_DEBUG
+		m_iDebugTileX = (int)floorf(m_fDestWorldX);
+		m_iDebugTileZ = (int)floorf(m_fDestWorldZ);
+		m_fDebugLocalX = m_fDestWorldX - (float)m_iDebugTileX;
+		m_fDebugLocalZ = m_fDestWorldZ - (float)m_iDebugTileZ;
+#endif
+
 		m_bMoving = true;
 
 		if (m_eCurState != PLAYER_WALK)
@@ -245,3 +255,73 @@ void CPlayer::Decide_Direction(float fNX, float fNZ)
 	if (eNewDir != m_eDir)
 		Direction_Change(eNewDir);
 }
+
+#ifdef GAME_DEBUG
+void CPlayer::Debug_Render(HDC hDC)
+{
+	POINT tTileScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		(float)m_iDebugTileX, (float)m_iDebugTileZ);
+
+	// 파란 점 - 타일 중점
+	HPEN hBluePen = CreatePen(PS_SOLID, 4, RGB(0, 0, 255));
+	HPEN hOldPen = (HPEN)SelectObject(hDC, hBluePen);
+	MoveToEx(hDC, tTileScreen.x - 5, tTileScreen.y, NULL);
+	LineTo(hDC, tTileScreen.x + 5, tTileScreen.y);
+	MoveToEx(hDC, tTileScreen.x, tTileScreen.y - 5, NULL);
+	LineTo(hDC, tTileScreen.x, tTileScreen.y + 5);
+	SelectObject(hDC, hOldPen);
+	DeleteObject(hBluePen);
+
+	// 빨간 마름모 - 타일 경계
+	HPEN   hRedPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+	hOldPen = (HPEN)SelectObject(hDC, hRedPen);
+	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+
+	POINT tDiamond[5] =
+	{
+		{ tTileScreen.x,                  tTileScreen.y                    }, // 상단
+		{ tTileScreen.x + TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 }, // 우측
+		{ tTileScreen.x,                  tTileScreen.y + TILE_HEIGHT      }, // 하단
+		{ tTileScreen.x - TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 }, // 좌측
+		{ tTileScreen.x,                  tTileScreen.y                    }, // 상단
+	};
+	Polyline(hDC, tDiamond, 5);
+
+	SelectObject(hDC, hOldPen);
+	SelectObject(hDC, hOldBr);
+	DeleteObject(hRedPen);
+
+	// 초록 십자 - 클릭 정확한 지점
+	POINT tClickScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		m_fDestWorldX, m_fDestWorldZ);
+
+	HPEN hGreenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
+	hOldPen = (HPEN)SelectObject(hDC, hGreenPen);
+	MoveToEx(hDC, tClickScreen.x - 10, tClickScreen.y, NULL);
+	LineTo(hDC, tClickScreen.x + 10, tClickScreen.y);
+	MoveToEx(hDC, tClickScreen.x, tClickScreen.y - 10, NULL);
+	LineTo(hDC, tClickScreen.x, tClickScreen.y + 10);
+	SelectObject(hDC, hOldPen);
+	DeleteObject(hGreenPen);
+
+	// 텍스트
+	TCHAR szBuf[256];
+	swprintf_s(szBuf, 256,
+		L"클릭타일:[%d,%d] 내부위치:[%.2f,%.2f] 논리좌표:[%.2f,%.2f] 타일중점스크린:[%d,%d]",
+		m_iDebugTileX, m_iDebugTileZ,
+		m_fDebugLocalX, m_fDebugLocalZ,
+		m_fDestWorldX, m_fDestWorldZ,
+		tTileScreen.x, tTileScreen.y);  // 타일 중점 스크린좌표도 표시
+
+	TCHAR szPlayer[128];
+	swprintf_s(szPlayer, 128,
+		L"플레이어:[%.2f,%.2f]",
+		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+
+	SetBkMode(hDC, TRANSPARENT);
+	SetTextColor(hDC, RGB(255, 255, 0));
+	TextOut(hDC, 10, 10, szBuf, lstrlen(szBuf));
+	TextOut(hDC, 10, 30, szPlayer, lstrlen(szPlayer));
+}
+#endif

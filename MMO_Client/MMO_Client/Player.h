@@ -45,5 +45,14 @@ private:
 	float           m_fDestWorldX = 0.f;   // 格利瘤 稠府 X
 	float           m_fDestWorldZ = 0.f;   // 格利瘤 稠府 Z
 	bool            m_bMoving = false;
+
+private:
+#ifdef GAME_DEBUG
+	int   m_iDebugTileX = 0;
+	int   m_iDebugTileZ = 0;
+	float m_fDebugLocalX = 0.f;
+	float m_fDebugLocalZ = 0.f;
+	void  Debug_Render(HDC hDC);
+#endif
 };
 

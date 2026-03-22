@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Map_Manager.h"
 #include "Camera.h"
+#include "Input_Manager.h"
 
 CLevel_Test::CLevel_Test()
 {
@@ -17,6 +18,8 @@ CLevel_Test::~CLevel_Test()
 
 void CLevel_Test::Initialize()
 {
+	ShowCursor(FALSE);
+
 	CImg_Manager::Get_Instance()->Insert_Bmp(L"../Resource/background/TestMap.bmp", L"BACKGROUND");
 	CMap_Manager::Get_Instance()->Create_Map(30, 30);
 
@@ -43,6 +46,7 @@ void CLevel_Test::Render(HDC hDC)
 	BitBlt(hDC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 	CMap_Manager::Get_Instance()->Render(hDC);
 	CObject_Manager::Get_Instance()->Render(hDC);
+	CInput_Manager::Get_Instance()->Render_Cursor(hDC);
 
 }
 

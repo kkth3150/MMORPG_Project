@@ -34,6 +34,13 @@ enum TILE_TYPE
 	TILE_TYPE_END
 };
 enum ButtonID { BUTTON_LOGIN, BUTTON_EXIT, BUTTON_END };
+enum CURSOR_MODE
+{
+	CURSOR_NORMAL,
+	CURSOR_ATTACK,      // 공격 가능 커서 (몬스터 위)
+	CURSOR_TALK,        // 대화 커서 (NPC 위)
+	CURSOR_END
+};
 extern HWND g_hWnd;
 
 typedef struct tagFrame

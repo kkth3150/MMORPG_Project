@@ -18,6 +18,9 @@ public:
 
     POINT Get_MousePos() { return m_tMousePos; }
     void  Update();
+    void  Set_CursorMode(CURSOR_MODE eMode) { m_eCursorMode = eMode; }
+    CURSOR_MODE Get_CursorMode() { return m_eCursorMode; }
+    void Render_Cursor(HDC hDC);
 
 public:
     static CInput_Manager* Get_Instance()
@@ -41,7 +44,19 @@ public:
 private:
     static CInput_Manager* m_pInstance;
 
-    bool m_bKeyState[VK_MAX];
-    bool m_bMouseState[MBUTTON_END]; // 0: L, 1: R, 2: M
-    POINT   m_tMousePos = {};  // Ãß°¡
+    static const int CURSOR_SPRITE_W = 32;
+    static const int CURSOR_SPRITE_H = 32;
+
+    bool            m_bKeyState[VK_MAX];
+    bool            m_bMouseState[MBUTTON_END]; // 0: L, 1: R, 2: M
+    POINT           m_tMousePos = {};  // Ãß°¡
+    CURSOR_MODE     m_eCursorMode = CURSOR_NORMAL;
+
+    struct HOTSPOT { int iX; int iY; };
+    HOTSPOT m_tHotSpot[CURSOR_END] =
+    {
+        { 0, 4 },  // CURSOR_NORMAL ÇÖ½ºÆÌ
+        {  0,  0 },  // CURSOR_ATTACK ÇÖ½ºÆÌ
+        { 16, 16 },  // CURSOR_TALK   ÇÖ½ºÆÌ
+    };
 };
