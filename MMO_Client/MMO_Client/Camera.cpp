@@ -55,11 +55,19 @@ POINT CCamera::TileToScreen(int iTileX, int iTileZ)
 bool CCamera::Is_InViewport(float fWorldX, float fWorldZ, float fCX, float fCY)
 {
     POINT tScreen = IsoWorldToScreen(fWorldX, fWorldZ);
+    // tScreen.y = 상단 꼭짓점 기준
 
-    if (tScreen.x + fCX / 2 < 0)     return false;
-    if (tScreen.x - fCX / 2 > WINCX) return false;
-    if (tScreen.y + fCY / 2 < 0)     return false;
-    if (tScreen.y - fCY / 2 > WINCY) return false;
-
+    if (tScreen.x + fCX / 2 < 0)      return false;
+    if (tScreen.x - fCX / 2 > WINCX)  return false;
+    if (tScreen.y + fCY < 0)         return false; // 상단꼭짓점 + 전체높이
+    if (tScreen.y > WINCY)     return false; // 상단꼭짓점이 화면 아래
     return true;
+}
+
+POINT IsoWorldToWorldPixel(float fWorldX, float fWorldZ)
+{
+    POINT pt;
+    pt.x = (LONG)((fWorldX - fWorldZ) * TILE_HALF_W);
+    pt.y = (LONG)((fWorldX + fWorldZ) * TILE_HALF_H);
+    return pt;
 }

@@ -17,15 +17,17 @@ void CPlayer::Initialize()
 {
 	Motion_Change(PLAYER_IDLE);
 	Direction_Change(DIR_B);
+	Set_Collider(0.2f, 0.2f);
 	m_fSpeed = 1.f;
-	Set_Collider(0.4f, 0.4f);
 	m_tIsoInfo.fWorldX = 5.f;
 	m_tIsoInfo.fWorldZ = 5.f;
+
 }
 
 int CPlayer::Update(float dt)
 {
 	Key_Input(dt);
+	Update_ClickEffect(dt);
 	__super::Update_Rect();
 	__super::Move_Frame();
 	return OBJ_NOEVENT;
@@ -47,16 +49,16 @@ void CPlayer::Render(HDC hDC)
 	default: break;
 	}
 
+	Render_ClickEffect(hDC);
 #ifdef GAME_DEBUG
 	Debug_Render(hDC);
 #endif
 }
 
-
-
 void CPlayer::Release(void)
 {
 }
+
 
 
 void CPlayer::Render_Sprite(HDC hDC, HDC PngDC)
@@ -103,7 +105,6 @@ void CPlayer::RenderIDLE(HDC hDC)
 	}
 	Render_Sprite(hDC, PngDC);
 }
-
 void CPlayer::RenderWALK(HDC hDC)
 {
 	HDC PngDC = nullptr;
@@ -121,17 +122,14 @@ void CPlayer::RenderWALK(HDC hDC)
 	}
 	Render_Sprite(hDC, PngDC);
 }
-
 void CPlayer::RenderATTACK(HDC hDC)
 {
 	// 추후 구현
 }
-
 void CPlayer::RenderHIT(HDC hDC)
 {
 	// 추후 구현
 }
-
 void CPlayer::RenderDEAD(HDC hDC)
 {
 	// 추후 구현
@@ -190,6 +188,12 @@ void CPlayer::Key_Input(float dt)
 			tMouse.x, tMouse.y,
 			m_fDestWorldX, m_fDestWorldZ);
 
+		m_tClickEffect.fWorldX = m_fDestWorldX;
+		m_tClickEffect.fWorldZ = m_fDestWorldZ;
+		m_tClickEffect.fScale = 1.f;
+		m_tClickEffect.bActive = true;
+		m_tClickEffect.color = RGB(0,255,0);
+
 #ifdef GAME_DEBUG
 		m_iDebugTileX = (int)floorf(m_fDestWorldX);
 		m_iDebugTileZ = (int)floorf(m_fDestWorldZ);
@@ -206,7 +210,6 @@ void CPlayer::Key_Input(float dt)
 	if (m_bMoving)
 		Move_To_Dest(dt);  // dt 전달
 }
-
 void CPlayer::Move_To_Dest(float dt)
 {
 	float fDX = m_fDestWorldX - m_tIsoInfo.fWorldX;
@@ -231,7 +234,6 @@ void CPlayer::Move_To_Dest(float dt)
 
 	Decide_Direction(fNX, fNZ);
 }
-
 void CPlayer::Decide_Direction(float fNX, float fNZ)
 {
 	// 이동 벡터의 각도로 8방향 결정
@@ -259,69 +261,141 @@ void CPlayer::Decide_Direction(float fNX, float fNZ)
 #ifdef GAME_DEBUG
 void CPlayer::Debug_Render(HDC hDC)
 {
+	Debug_DrawClickedTile(hDC);
+	Debug_DrawClickPoint(hDC);
+	Debug_DrawCollider(hDC);
+	Debug_DrawText(hDC);
+}
+
+void CPlayer::Debug_DrawClickedTile(HDC hDC)
+{
 	POINT tTileScreen = CCamera::Get_Instance()->IsoWorldToScreen(
 		(float)m_iDebugTileX, (float)m_iDebugTileZ);
 
-	// 파란 점 - 타일 중점
-	HPEN hBluePen = CreatePen(PS_SOLID, 4, RGB(0, 0, 255));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hBluePen);
-	MoveToEx(hDC, tTileScreen.x - 5, tTileScreen.y, NULL);
-	LineTo(hDC, tTileScreen.x + 5, tTileScreen.y);
-	MoveToEx(hDC, tTileScreen.x, tTileScreen.y - 5, NULL);
-	LineTo(hDC, tTileScreen.x, tTileScreen.y + 5);
-	SelectObject(hDC, hOldPen);
-	DeleteObject(hBluePen);
-
-	// 빨간 마름모 - 타일 경계
 	HPEN   hRedPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-	hOldPen = (HPEN)SelectObject(hDC, hRedPen);
+	HPEN   hOldPen = (HPEN)SelectObject(hDC, hRedPen);
 	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
 
 	POINT tDiamond[5] =
 	{
-		{ tTileScreen.x,                  tTileScreen.y                    }, // 상단
-		{ tTileScreen.x + TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 }, // 우측
-		{ tTileScreen.x,                  tTileScreen.y + TILE_HEIGHT      }, // 하단
-		{ tTileScreen.x - TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 }, // 좌측
-		{ tTileScreen.x,                  tTileScreen.y                    }, // 상단
+		{ tTileScreen.x,                  tTileScreen.y                    },
+		{ tTileScreen.x + TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 },
+		{ tTileScreen.x,                  tTileScreen.y + TILE_HEIGHT      },
+		{ tTileScreen.x - TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 },
+		{ tTileScreen.x,                  tTileScreen.y                    },
 	};
 	Polyline(hDC, tDiamond, 5);
 
 	SelectObject(hDC, hOldPen);
 	SelectObject(hDC, hOldBr);
 	DeleteObject(hRedPen);
+}
 
-	// 초록 십자 - 클릭 정확한 지점
+void CPlayer::Debug_DrawClickPoint(HDC hDC)
+{
 	POINT tClickScreen = CCamera::Get_Instance()->IsoWorldToScreen(
 		m_fDestWorldX, m_fDestWorldZ);
 
 	HPEN hGreenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-	hOldPen = (HPEN)SelectObject(hDC, hGreenPen);
+	HPEN hOldPen = (HPEN)SelectObject(hDC, hGreenPen);
+
 	MoveToEx(hDC, tClickScreen.x - 10, tClickScreen.y, NULL);
 	LineTo(hDC, tClickScreen.x + 10, tClickScreen.y);
 	MoveToEx(hDC, tClickScreen.x, tClickScreen.y - 10, NULL);
 	LineTo(hDC, tClickScreen.x, tClickScreen.y + 10);
+
 	SelectObject(hDC, hOldPen);
 	DeleteObject(hGreenPen);
+}
 
-	// 텍스트
+void CPlayer::Debug_DrawCollider(HDC hDC)
+{
+	float fCX = Get_ColliderX();
+	float fCZ = Get_ColliderZ();
+	float fRX = m_tCollider.fRadiusX;
+	float fRZ = m_tCollider.fRadiusZ;
+
+	// AABB 네 모서리를 화면으로 변환 → 아이소메트릭에서 자동으로 마름모가 됨
+	POINT tTL = CCamera::Get_Instance()->IsoWorldToScreen(fCX - fRX, fCZ - fRZ);
+	POINT tTR = CCamera::Get_Instance()->IsoWorldToScreen(fCX + fRX, fCZ - fRZ);
+	POINT tBR = CCamera::Get_Instance()->IsoWorldToScreen(fCX + fRX, fCZ + fRZ);
+	POINT tBL = CCamera::Get_Instance()->IsoWorldToScreen(fCX - fRX, fCZ + fRZ);
+
+	HPEN   hCyanPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 255));
+	HPEN   hOldPen = (HPEN)SelectObject(hDC, hCyanPen);
+	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+
+	POINT tCollider[5] = { tTL, tTR, tBR, tBL, tTL };
+	Polyline(hDC, tCollider, 5);
+
+	SelectObject(hDC, hOldPen);
+	SelectObject(hDC, hOldBr);
+	DeleteObject(hCyanPen);
+}
+
+void CPlayer::Debug_DrawText(HDC hDC)
+{
+	POINT tTileScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		(float)m_iDebugTileX, (float)m_iDebugTileZ);
+
 	TCHAR szBuf[256];
 	swprintf_s(szBuf, 256,
-		L"클릭타일:[%d,%d] 내부위치:[%.2f,%.2f] 논리좌표:[%.2f,%.2f] 타일중점스크린:[%d,%d]",
+		L"클릭타일:[%d,%d] 내부위치:[%.2f,%.2f] 논리좌표:[%.2f,%.2f]",
 		m_iDebugTileX, m_iDebugTileZ,
 		m_fDebugLocalX, m_fDebugLocalZ,
-		m_fDestWorldX, m_fDestWorldZ,
-		tTileScreen.x, tTileScreen.y);  // 타일 중점 스크린좌표도 표시
+		m_fDestWorldX, m_fDestWorldZ);
 
 	TCHAR szPlayer[128];
 	swprintf_s(szPlayer, 128,
-		L"플레이어:[%.2f,%.2f]",
-		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+		L"플레이어 월드:[%.2f, %.2f]  방향:%d  콜라이더 중심:[%.2f, %.2f]",
+		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ, (int)m_eDir,
+		Get_ColliderX(), Get_ColliderZ());
 
 	SetBkMode(hDC, TRANSPARENT);
 	SetTextColor(hDC, RGB(255, 255, 0));
 	TextOut(hDC, 10, 10, szBuf, lstrlen(szBuf));
 	TextOut(hDC, 10, 30, szPlayer, lstrlen(szPlayer));
 }
-#endif
+#endif 
+
+void CPlayer::Update_ClickEffect(float dt)
+{
+	if (!m_tClickEffect.bActive) return;
+
+	m_tClickEffect.fScale -= dt * 2.f;  // 속도 조절
+	if (m_tClickEffect.fScale <= 0.f)
+	{
+		m_tClickEffect.fScale = 0.f;
+		m_tClickEffect.bActive = false;
+	}
+}
+void CPlayer::Render_ClickEffect(HDC hDC)
+{
+	if (!m_tClickEffect.bActive) return;
+
+	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		m_tClickEffect.fWorldX, m_tClickEffect.fWorldZ);
+
+	// 타일 반경 기준으로 타원 크기 결정
+	int iRX = (int)(TILE_HALF_W * 0.4f * m_tClickEffect.fScale);
+	int iRY = (int)(TILE_HALF_H * 0.4f * m_tClickEffect.fScale);
+
+	if (iRX <= 1 || iRY <= 1) return;
+
+	HPEN hPen = CreatePen(PS_SOLID, 2, m_tClickEffect.color);
+	HPEN   hOldPen = (HPEN)SelectObject(hDC, hPen);
+	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+
+	Ellipse(hDC,
+		tScreen.x - iRX,
+		tScreen.y - iRY,
+		tScreen.x + iRX,
+		tScreen.y + iRY);
+
+	SelectObject(hDC, hOldPen);
+	SelectObject(hDC, hOldBr);
+	DeleteObject(hPen);
+}
