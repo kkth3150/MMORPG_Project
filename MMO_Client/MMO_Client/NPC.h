@@ -65,7 +65,8 @@ protected:
     TCHAR m_szName[64] = {};
 
 
-    bool        m_bInteractable = true;  // 상호작용 가능 여부
+    bool        m_bInteractable = false;  // 상호작용 가능 여부
+    bool        m_bClick = false;
     float       m_fInteractRange = 2.f;  // 상호작용 가능 거리
 
     // 말풍선

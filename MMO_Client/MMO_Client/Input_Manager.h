@@ -21,7 +21,7 @@ public:
     void  Set_CursorMode(CURSOR_MODE eMode) { m_eCursorMode = eMode; }
     CURSOR_MODE Get_CursorMode() { return m_eCursorMode; }
     void Render_Cursor(ID2D1RenderTarget* pRT);
-
+    bool Mouse_Down_Snap(MOUSE_BUTTON _eButton) { return m_bMouseDown[_eButton]; }
 public:
     static CInput_Manager* Get_Instance()
     {
@@ -49,6 +49,9 @@ private:
 
     bool            m_bKeyState[VK_MAX];
     bool            m_bMouseState[MBUTTON_END]; // 0: L, 1: R, 2: M
+    bool            m_bMouseDown[MBUTTON_END] = {};
+
+
     POINT           m_tMousePos = {};  // Ãß°¡
     CURSOR_MODE     m_eCursorMode = CURSOR_NORMAL;
 

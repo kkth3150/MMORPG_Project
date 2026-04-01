@@ -22,14 +22,14 @@ void CCollision_Manager::Collision_Rect(std::list<CGameObject*> _Dst,
 void CCollision_Manager::Collision_RectEx(std::list<CGameObject*> _Dst,
     std::list<CGameObject*> _Src)
 {
-    for (auto& pObj : _Dst) pObj->Set_Colliding(false);
-    for (auto& pObj : _Src) pObj->Set_Colliding(false);
-
     float fX = 0.f, fY = 0.f;
+
     for (auto& Dst : _Dst)
     {
         for (auto& Src : _Src)
         {
+            bool bPrevColliding = Src->Is_Colliding(); //이전 프레임 충돌 상태 저장
+
             if (Check_Rect(Dst, Src, &fX, &fY))
             {
                 Dst->Set_Colliding(true);
@@ -39,8 +39,13 @@ void CCollision_Manager::Collision_RectEx(std::list<CGameObject*> _Dst,
             }
             else
             {
-                if (Dst->Is_Colliding()) Dst->On_CollisionEnd();
-                if (Src->Is_Colliding()) Src->On_CollisionEnd();
+                if (bPrevColliding)
+                {
+                    Dst->Set_Colliding(false);
+                    Src->Set_Colliding(false);
+                    Dst->On_CollisionEnd();
+                    Src->On_CollisionEnd();
+                }
             }
         }
     }

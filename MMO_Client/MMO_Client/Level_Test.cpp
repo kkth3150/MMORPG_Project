@@ -3,6 +3,7 @@
 #include "Img_Manager.h"
 #include "Object_Manager.h"
 #include "Player.h"
+#include "NPC_Shop.h"
 #include "Map_Manager.h"
 #include "Camera.h"
 #include "Input_Manager.h"
@@ -25,7 +26,7 @@ void CLevel_Test::Initialize()
 	CMap_Manager::Get_Instance()->Create_Map(30, 30);
 
 	Ready_Player();
-	
+	Ready_NPC();
 
 }
 
@@ -44,11 +45,11 @@ void CLevel_Test::Late_Update(float dt)
 void CLevel_Test::Render(ID2D1RenderTarget* pRT)
 {
 
-	ID2D1Bitmap* pBg = CImg_Manager::Get_Instance()->Find_Png(L"BACKGROUND");
-	if (pBg)
-	{
-		pRT->DrawBitmap(pBg, D2D1::RectF(0.f, 0.f, (float)WINCX, (float)WINCY));
-	}
+	//ID2D1Bitmap* pBg = CImg_Manager::Get_Instance()->Find_Png(L"BACKGROUND");
+	//if (pBg)
+	//{
+	//	pRT->DrawBitmap(pBg, D2D1::RectF(0.f, 0.f, (float)WINCX, (float)WINCY));
+	//}
 	CMap_Manager::Get_Instance()->Render(pRT);
 	CObject_Manager::Get_Instance()->Render(pRT);
 	CInput_Manager::Get_Instance()->Render_Cursor(pRT);
@@ -88,9 +89,6 @@ void CLevel_Test::Ready_Player()
 #pragma endregion PLAYER WALK
 
 
-
-
-
 	CPlayer* pPlayer = new CPlayer;
 	pPlayer->Set_WorldPos(15.f, 15.f); // 30x30 ¸Ê Áß¾Ó
 	pPlayer->Initialize();
@@ -99,4 +97,24 @@ void CLevel_Test::Ready_Player()
 
 	// Ä«¸Þ¶ó Å¸°Ù ¼³Á¤
 	CCamera::Get_Instance()->Set_Target(pPlayer);
+}
+
+void CLevel_Test::Ready_NPC() {
+
+	CImg_Manager::Get_Instance()->Insert_Png(
+		L"../Resource/NPC/Traders/Trader0_Idle.png", L"TRADER0_IDLE");
+	CImg_Manager::Get_Instance()->Insert_Png(
+		L"../Resource/NPC/Traders/Trader0_Talk.png", L"TRADER0_TALK");
+	CImg_Manager::Get_Instance()->Insert_Png(
+		L"../Resource/NPC/Traders/Trader1_Idle.png", L"TRADER1_IDLE");
+	CImg_Manager::Get_Instance()->Insert_Png(
+		L"../Resource/NPC/Traders/Trader1_Talk.png", L"TRADER1_TALK");
+
+	CNPC_Shop* pNpcShop0 = new CNPC_Shop;
+	pNpcShop0->Set_ShopType(SHOP_TRADER_0);
+	pNpcShop0->Set_WorldPos(15.f,15.f);
+	pNpcShop0->Initialize();
+	CObject_Manager::Get_Instance()->Add_Object(OBJ_NPC, pNpcShop0);
+
+
 }
