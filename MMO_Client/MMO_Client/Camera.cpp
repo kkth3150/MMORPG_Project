@@ -57,10 +57,12 @@ bool CCamera::Is_InViewport(float fWorldX, float fWorldZ, float fCX, float fCY)
     POINT tScreen = IsoWorldToScreen(fWorldX, fWorldZ);
     // tScreen.y = 상단 꼭짓점 기준
 
-    if (tScreen.x + fCX / 2 < 0)      return false;
-    if (tScreen.x - fCX / 2 > WINCX)  return false;
-    if (tScreen.y + fCY < 0)         return false; // 상단꼭짓점 + 전체높이
-    if (tScreen.y > WINCY)     return false; // 상단꼭짓점이 화면 아래
+    float fMarginX = fCX + 200.f;  // 좌우 여유
+    float fMarginY = fCY + 200.f;  // 상하 여유
+    if (tScreen.x + fMarginX < 0)       return false;
+    if (tScreen.x - fMarginX > WINCX)   return false;
+    if (tScreen.y + fMarginY < 0)        return false;
+    if (tScreen.y - fMarginY > WINCY)    return false;
     return true;
 }
 

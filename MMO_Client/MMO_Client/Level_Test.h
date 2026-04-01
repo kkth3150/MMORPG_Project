@@ -18,6 +18,7 @@ public:
 private:
 
 	void Ready_Player();
+	void Ready_NPC();
 
 };
 

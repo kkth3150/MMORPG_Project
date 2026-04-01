@@ -19,8 +19,8 @@ void CPlayer::Initialize()
 	Direction_Change(DIR_B);
 	Set_Collider(0.2f, 0.2f);
 	m_fSpeed = 1.f;
-	m_tIsoInfo.fWorldX = 5.f;
-	m_tIsoInfo.fWorldZ = 5.f;
+	m_tIsoInfo.fWorldX = 10.f;
+	m_tIsoInfo.fWorldZ = 10.f;
 
 }
 

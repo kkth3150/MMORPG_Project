@@ -113,7 +113,16 @@ void CInput_Manager::Update()
 {
     // 매 프레임 마우스 커서 위치 갱신
     GetCursorPos(&m_tMousePos);
-    ScreenToClient(g_hWnd, &m_tMousePos); // 윈도우 클라이언트 기준으로 변환
+    ScreenToClient(g_hWnd, &m_tMousePos);
+
+    //마우스 Down 스냅샷 갱신
+    int vkList[MBUTTON_END] = { VK_LBUTTON, VK_RBUTTON, VK_MBUTTON };
+    for (int i = 0; i < MBUTTON_END; ++i)
+    {
+        bool bPressed = (GetAsyncKeyState(vkList[i]) & 0x8000) != 0;
+        m_bMouseDown[i] = bPressed && !m_bMouseState[i];
+        m_bMouseState[i] = bPressed;
+    }
 }
 
 void CInput_Manager::Render_Cursor(ID2D1RenderTarget* pRT)

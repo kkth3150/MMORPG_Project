@@ -17,13 +17,18 @@ int CNPC::Update(float dt)
 {
     if (m_bInteractable)
     {
-        if (CInput_Manager::Get_Instance()->Key_Down(VK_LBUTTON))
-        {
-            POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
-            if (Is_MouseCollide(tMouse))
+         POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+         if (Is_MouseCollide(tMouse)) {
+             CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_TALK);
+            if (CInput_Manager::Get_Instance()->Mouse_Down_Snap(MBUTTON_L))
                 On_Click();
-        }
+           
+         }
+         else {
+             CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_NORMAL);
+         }
     }
+
 
     if (m_bShowBubble)
     {
@@ -31,14 +36,18 @@ int CNPC::Update(float dt)
         if (m_fBubbleTimer <= 0.f)
             m_bShowBubble = false;
     }
+    
+    __super::Update_Rect();
+    __super::Move_Frame();
+    Update_MouseRect();
+
 
     return OBJ_NOEVENT;
 }
 
 void CNPC::Late_Update(float dt)
 {
-    Update_Rect();
-    Update_MouseRect();
+
 
 }
 

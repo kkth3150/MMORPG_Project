@@ -67,9 +67,15 @@ void CObject_Manager::Late_Update(float dt)
 void CObject_Manager::Render(ID2D1RenderTarget* pRT)
 {
 	std::vector<CGameObject*> vecSortList;
-	for (auto& pObj : m_ObjectList[OBJ_PLAYER])
-		vecSortList.push_back(pObj);
 
+	// OBJ_END 전까지 모든 리스트를 다 넣기
+	for (size_t i = 0; i < OBJ_END; ++i)
+	{
+		for (auto& pObj : m_ObjectList[i])
+			vecSortList.push_back(pObj);
+	}
+
+	// Y소팅
 	sort(vecSortList.begin(), vecSortList.end(),
 		[](CGameObject* pA, CGameObject* pB)
 		{
@@ -77,6 +83,7 @@ void CObject_Manager::Render(ID2D1RenderTarget* pRT)
 				< (pB->Get_IsoInfo().fWorldX + pB->Get_IsoInfo().fWorldZ);
 		});
 
+	// 컬링 후 렌더
 	for (auto& pObj : vecSortList)
 	{
 		ISO_INFO tInfo = pObj->Get_IsoInfo();
