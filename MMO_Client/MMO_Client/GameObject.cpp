@@ -36,3 +36,21 @@ void CGameObject::Move_Frame()
 		m_tFrame.dwTime = GetTickCount();
 	}
 }
+
+void CGameObject::Update_MouseRect()
+{
+	// 스프라이트 스크린 위치 기준으로 직교 RECT 계산
+	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+
+	// 스프라이트 좌상단 기준
+	float fSpriteLeft = tScreen.x - m_tIsoInfo.fCX / 2.f;
+	float fSpriteTop = tScreen.y - m_tIsoInfo.fCY
+		- m_tIsoInfo.fHeight + TILE_HALF_H;
+
+	// 오프셋 적용
+	m_tMouseRect.left = (LONG)(fSpriteLeft + m_tMouseCollider.fOffsetX);
+	m_tMouseRect.top = (LONG)(fSpriteTop + m_tMouseCollider.fOffsetY);
+	m_tMouseRect.right = (LONG)(m_tMouseRect.left + m_tMouseCollider.fWidth);
+	m_tMouseRect.bottom = (LONG)(m_tMouseRect.top + m_tMouseCollider.fHeight);
+}

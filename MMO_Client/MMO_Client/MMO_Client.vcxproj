@@ -132,10 +132,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="NPC_Shop.cpp" />
     <ClCompile Include="Img_Manager.cpp" />
     <ClCompile Include="Level_Test.cpp" />
     <ClCompile Include="Map_Manager.cpp" />
     <ClCompile Include="MyPng.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="UI_Button.cpp" />
@@ -164,10 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="NPC_Shop.h" />
     <ClInclude Include="Img_Manager.h" />
     <ClInclude Include="Level_Test.h" />
     <ClInclude Include="Map_Manager.h" />
     <ClInclude Include="MyPng.h" />
+    <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UI_Button.h" />

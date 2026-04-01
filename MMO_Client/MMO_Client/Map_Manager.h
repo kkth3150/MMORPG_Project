@@ -24,7 +24,7 @@ public:
     // 맵 생성 (기본값으로)
     void Create_Map(int iTileCountX, int iTileCountZ);
 
-    void Render(HDC hDC);
+    void Render(ID2D1RenderTarget* pRT);
     void Release();
 
     // 길찾기용

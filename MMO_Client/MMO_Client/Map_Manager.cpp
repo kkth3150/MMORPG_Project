@@ -12,16 +12,14 @@ void CMap_Manager::Create_Map(int iTileCountX, int iTileCountZ)
     m_iTileCountZ = iTileCountZ;
 
     // 타일 이미지 로드
-    CImg_Manager::Get_Instance()->Insert_Bmp(
-        L"../Resource/Tile/Tile_Normal.bmp", L"TILE_NORMAL");
+    CImg_Manager::Get_Instance()->Insert_Png(
+        L"../Resource/Tile/Tile_Normal.png", L"TILE_NORMAL");
+    CImg_Manager::Get_Instance()->Insert_Png(
+        L"../Resource/Tile/Tile_Block.png", L"TILE_BLOCK");
 
-    // 로드 됐는지 확인
-    HDC hTest = CImg_Manager::Get_Instance()->Find_Bmp(L"TILE_NORMAL");
-    if (!hTest)
+    // 로드 확인
+    if (!CImg_Manager::Get_Instance()->Find_Png(L"TILE_NORMAL"))
         MessageBox(g_hWnd, L"타일 이미지 로드 실패", L"오류", MB_OK);
-
-    CImg_Manager::Get_Instance()->Insert_Bmp(
-        L"../Resource/Tile/Tile_Block.bmp", L"TILE_BLOCK");
 
     m_vecTile.reserve(iTileCountX * iTileCountZ);
 
@@ -51,12 +49,10 @@ bool CMap_Manager::Load_Map(const TCHAR* pFilePath)
     fread(&m_iTileCountZ, sizeof(int), 1, pFile);
 
     // 타일 이미지 로드
-    CImg_Manager::Get_Instance()->Insert_Bmp(
-        L"../Resource/Tile/Tile_Normal.bmp", L"TILE_NORMAL");
-
-
-    CImg_Manager::Get_Instance()->Insert_Bmp(
-        L"../Resource/Tile/Tile_Block.bmp", L"TILE_BLOCK");
+    CImg_Manager::Get_Instance()->Insert_Png(
+        L"../Resource/Tile/Tile_Normal.png", L"TILE_NORMAL");
+    CImg_Manager::Get_Instance()->Insert_Png(
+        L"../Resource/Tile/Tile_Block.png", L"TILE_BLOCK");
 
     m_vecTile.reserve(m_iTileCountX * m_iTileCountZ);
 
@@ -100,10 +96,10 @@ bool CMap_Manager::Save_Map(const TCHAR* pFilePath)
     return true;
 }
 
-void CMap_Manager::Render(HDC hDC)
+void CMap_Manager::Render(ID2D1RenderTarget* pRT)
 {
     for (auto& pTile : m_vecTile)
-        pTile->Render(hDC);
+        pTile->Render(pRT);
 }
 
 bool CMap_Manager::Is_Movable(int iTileX, int iTileZ)

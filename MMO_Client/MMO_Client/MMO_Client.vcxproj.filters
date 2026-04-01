@@ -59,7 +59,7 @@
       <Filter>06.UI_Manager\UIs\06_01.UI_Button</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>05.Object_Manager\Objects\05_01.Player</Filter>
+      <Filter>05.Object_Manager\Objects\05_00.Player</Filter>
     </ClCompile>
     <ClCompile Include="Level_Test.cpp">
       <Filter>04.Level_Manager\Levels\04_04.Level_Test</Filter>
@@ -75,6 +75,12 @@
     </ClCompile>
     <ClCompile Include="Map_Manager.cpp">
       <Filter>08.Map_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>05.Object_Manager\Objects\05_01.NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC_Shop.cpp">
+      <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +138,6 @@
     <Filter Include="06.UI_Manager\UIs\06_01.UI_Button">
       <UniqueIdentifier>{cc71e464-d8cc-4df3-ac82-81c557ed542f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Object_Manager\Objects\05_01.Player">
-      <UniqueIdentifier>{4f33e810-dbf1-4dd1-b2a4-dea8053b642f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.Level_Manager\Levels\04_04.Level_Test">
       <UniqueIdentifier>{8c42aad4-67a2-4603-a698-ceb45fa68136}</UniqueIdentifier>
     </Filter>
@@ -161,6 +164,15 @@
     </Filter>
     <Filter Include="08.Map_Manager\Rooms\05_99.Tiles">
       <UniqueIdentifier>{77d4ba1c-26fa-41ba-970e-39d2bbd0ae54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_01.NPC">
+      <UniqueIdentifier>{c2271352-54bf-4379-8974-86db36bc59d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_00.Player">
+      <UniqueIdentifier>{4f33e810-dbf1-4dd1-b2a4-dea8053b642f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop">
+      <UniqueIdentifier>{2011d358-6d6c-4e2c-afad-30a237fd4d5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +234,7 @@
       <Filter>06.UI_Manager\UIs\06_01.UI_Button</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>05.Object_Manager\Objects\05_01.Player</Filter>
+      <Filter>05.Object_Manager\Objects\05_00.Player</Filter>
     </ClInclude>
     <ClInclude Include="Level_Test.h">
       <Filter>04.Level_Manager\Levels\04_04.Level_Test</Filter>
@@ -238,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="Map_Manager.h">
       <Filter>08.Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>05.Object_Manager\Objects\05_01.NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC_Shop.h">
+      <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

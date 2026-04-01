@@ -9,7 +9,7 @@ public:
     ~CTile() {}
 
 public:
-    void Render(HDC hDC);
+    void Render(ID2D1RenderTarget* pRT);
 
 public:
     void      Set_TileIndex(int iX, int iZ) { m_iTileX = iX; m_iTileZ = iZ; }

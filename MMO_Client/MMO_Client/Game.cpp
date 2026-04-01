@@ -9,6 +9,9 @@ HINSTANCE hInst;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow)
 {
+
+	CoInitialize(nullptr);//D2D Com초기화
+
 	MSG msg = {};
 	WNDCLASS WndClass = {};
 	WndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -90,6 +93,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 	EXIT:
 	timeEndPeriod(1);
+
+	CoUninitialize();//D2D COM 해제
 	return (int)msg.wParam;
 }
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)

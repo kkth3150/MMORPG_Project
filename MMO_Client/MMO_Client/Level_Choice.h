@@ -9,12 +9,12 @@ public:
 
 public:
 
-	virtual void Initialize()				override;
-	virtual int Update(float dt)			override;
-	virtual void Late_Update(float dt)		override;
-	virtual void Render(HDC hDC)			override;
-	virtual void Release(void)				override;
-
+	virtual void Initialize()							override;
+	virtual int Update(float dt)						override;
+	virtual void Late_Update(float dt)					override;
+	virtual void Render(ID2D1RenderTarget* pRT)			override;
+	virtual void Release(void)							override;
+		
 
 private:
 

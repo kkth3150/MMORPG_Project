@@ -16,7 +16,12 @@ public:
 
 private:
 
-	HDC				m_hDC;
+	ID2D1Factory* m_pFactory = nullptr;
+	ID2D1HwndRenderTarget* m_pRenderTarget = nullptr;
+	IDWriteFactory* m_pDWriteFactory = nullptr;
+	IDWriteTextFormat* m_pTextFormat = nullptr; // FPS 텍스트용
+
+	//HDC				m_hDC;
 
 	TCHAR			m_szFPS[32];
 

@@ -1,49 +1,87 @@
 #include "pch.h"
 #include "MyPng.h"
 
-CMyPng::CMyPng() {}
-CMyPng::~CMyPng() { Release(); }
-
-void CMyPng::Load_Png(const TCHAR* pFilePath)
+CMyPng::CMyPng()
 {
-    // 1. GDI+로 PNG 로드
-    Gdiplus::Bitmap gdiBitmap(pFilePath);
-    m_iWidth = gdiBitmap.GetWidth();
-    m_iHeight = gdiBitmap.GetHeight();
+}
 
-    // 2. 32bit DIB 섹션 직접 생성 (알파채널 보존)
-    BITMAPINFO bmi = {};
-    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bmi.bmiHeader.biWidth = m_iWidth;
-    bmi.bmiHeader.biHeight = -m_iHeight; // 음수 = 상단부터 저장
-    bmi.bmiHeader.biPlanes = 1;
-    bmi.bmiHeader.biBitCount = 32;
-    bmi.bmiHeader.biCompression = BI_RGB;
+CMyPng::~CMyPng()
+{
+    Release();
+}
 
-    void* pPixels = nullptr;
-    HDC hDC = GetDC(g_hWnd);
-    m_hBitmap = CreateDIBSection(hDC, &bmi, DIB_RGB_COLORS, &pPixels, NULL, 0);
-    ReleaseDC(g_hWnd, hDC);
+void CMyPng::Load_Png(const TCHAR* pFilePath, ID2D1RenderTarget* pRT)
+{
+    IWICImagingFactory* pWIC = nullptr;
+    HRESULT hr = CoCreateInstance(
+        CLSID_WICImagingFactory, nullptr,
+        CLSCTX_INPROC_SERVER,
+        IID_PPV_ARGS(&pWIC)
+    );
+    if (FAILED(hr) || !pWIC)
+    {
+        MessageBox(g_hWnd, L"WIC 팩토리 생성 실패", L"오류", MB_OK);
+        return;
+    }
 
-    // 3. GDI+ Bitmap → DIBSection 픽셀 복사 (알파값 포함)
-    Gdiplus::BitmapData bmpData;
-    Gdiplus::Rect rect(0, 0, m_iWidth, m_iHeight);
-    gdiBitmap.LockBits(&rect, Gdiplus::ImageLockModeRead,
-        PixelFormat32bppARGB, &bmpData);
+    // 2. 파일 디코딩
+    IWICBitmapDecoder* pDecoder = nullptr;
+    hr = pWIC->CreateDecoderFromFilename(
+        pFilePath, nullptr,
+        GENERIC_READ,
+        WICDecodeMetadataCacheOnLoad,
+        &pDecoder
+    );
+    if (FAILED(hr) || !pDecoder)
+    {
+        //어떤 파일이 문제인지 바로 알 수 있음
+        MessageBox(g_hWnd, pFilePath, L"PNG 파일 로드 실패 - 경로 확인", MB_OK);
+        pWIC->Release();
+        return;
+    }
 
-    memcpy(pPixels, bmpData.Scan0, m_iWidth * m_iHeight * 4);
-    gdiBitmap.UnlockBits(&bmpData);
+    // 3. 첫 번째 프레임 추출
+    IWICBitmapFrameDecode* pFrame = nullptr;
+    pDecoder->GetFrame(0, &pFrame);
+    if (!pFrame)
+    {
+        pDecoder->Release();
+        pWIC->Release();
+        return;
+    }
 
-    // 4. MemDC에 선택 (기존 CMyBmp와 동일한 구조)
-    hDC = GetDC(g_hWnd);
-    m_hMemDC = CreateCompatibleDC(hDC);
-    ReleaseDC(g_hWnd, hDC);
-    m_hOldBmp = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);
+    // 4. 포맷 변환
+    IWICFormatConverter* pConverter = nullptr;
+    pWIC->CreateFormatConverter(&pConverter);
+    pConverter->Initialize(
+        pFrame,
+        GUID_WICPixelFormat32bppPBGRA,
+        WICBitmapDitherTypeNone,
+        nullptr, 0.f,
+        WICBitmapPaletteTypeCustom
+    );
+
+    // 5. ID2D1Bitmap 생성
+    hr = pRT->CreateBitmapFromWicBitmap(pConverter, nullptr, &m_pBitmap);
+    if (FAILED(hr) || !m_pBitmap)
+    {
+        MessageBox(g_hWnd, pFilePath, L"D2D Bitmap 생성 실패", MB_OK);
+    }
+    else
+    {
+        auto size = m_pBitmap->GetPixelSize();
+        m_iWidth = size.width;
+        m_iHeight = size.height;
+    }
+
+    // 6. COM 해제
+    pConverter->Release();
+    pFrame->Release();
+    pDecoder->Release();
+    pWIC->Release();
 }
 
 void CMyPng::Release()
 {
-    SelectObject(m_hMemDC, m_hOldBmp);
-    DeleteObject(m_hBitmap);
-    DeleteDC(m_hMemDC);
+    if (m_pBitmap) { m_pBitmap->Release(); m_pBitmap = nullptr; }
 }

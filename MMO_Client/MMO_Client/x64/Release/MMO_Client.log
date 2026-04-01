@@ -1,10 +1,50 @@
-﻿  GameObject.cpp
-C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(39,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  pch.cpp
+  Camera.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Camera.cpp'을(를) 컴파일하는 중)
+  
+  Collision_Manager.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Collision_Manager.cpp'을(를) 컴파일하는 중)
+  
+  Game.cpp
+  GameObject.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 '/GameObject.cpp'을(를) 컴파일하는 중)
   
+  Img_Manager.cpp
+  Input_Manager.cpp
+  Level.cpp
+  Level_Choice.cpp
+  Level_Login.cpp
+  Level_Manager.cpp
+  Level_Menu.cpp
+  Level_Test.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Level_Test.cpp'을(를) 컴파일하는 중)
+  
+  MainApp.cpp
+  Map_Manager.cpp
+  MyBmp.cpp
+  MyPng.cpp
+  Network_Manager.cpp
+  Object_Manager.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Object_Manager.cpp'을(를) 컴파일하는 중)
+  
+  Player.cpp
+C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\MMO_Client\GameObject.h(40,35): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/Player.cpp'을(를) 컴파일하는 중)
+  
+  Tile.cpp
+  컴파일하고 있습니다...
+  Timer_Manager.cpp
+  UI.cpp
+  UI_Button.cpp
+  UI_Manager.cpp
   코드를 생성하고 있습니다.
-  0 of 288 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  169 of 557 functions (30.3%) were compiled, the rest were copied from previous compilation.
+    58 functions were new in current compilation
+    43 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   MMO_Client.vcxproj -> C:\Users\kkth3\OneDrive\문서\GitHub\MMORPG_Project\MMO_Client\x64\Release\MMO_Client.exe

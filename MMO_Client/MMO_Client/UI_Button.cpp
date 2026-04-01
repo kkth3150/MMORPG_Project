@@ -69,20 +69,20 @@ void CUI_Button::Late_Update(float dt)
 
 void CUI_Button::Render(HDC hDC)
 {
-	HDC	hMemDC = CImg_Manager::Get_Instance()->Find_Bmp(m_pFrameKey);
+	//HDC	hMemDC = CImg_Manager::Get_Instance()->Find_Bmp(m_pFrameKey);
 
-	GdiTransparentBlt(
-		hDC,
-		m_tRect.left,
-		m_tRect.top,
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		hMemDC,
-		m_iDrawID * (int)m_tInfo.fCX,
-		0,
-		(int)m_tInfo.fCX,
-		(int)m_tInfo.fCY,
-		RGB(255, 255, 255));
+	//GdiTransparentBlt(
+	//	hDC,
+	//	m_tRect.left,
+	//	m_tRect.top,
+	//	(int)m_tInfo.fCX,
+	//	(int)m_tInfo.fCY,
+	//	hMemDC,
+	//	m_iDrawID * (int)m_tInfo.fCX,
+	//	0,
+	//	(int)m_tInfo.fCX,
+	//	(int)m_tInfo.fCY,
+	//	RGB(255, 255, 255));
 }
 
 void CUI_Button::Release(void)
