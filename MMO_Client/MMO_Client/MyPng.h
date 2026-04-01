@@ -10,18 +10,21 @@ public:
     virtual ~CMyPng();
 
 public:
-    void Load_Png(const TCHAR* pFilePath);
+    void Load_Png(const TCHAR* pFilePath, ID2D1RenderTarget* pRT);
     void Release();
 
-public:
-    HDC     GetMemDC() { return m_hMemDC; }
-    int     GetWidth() { return m_iWidth; }
-    int     GetHeight() { return m_iHeight; }
+    ID2D1Bitmap* Get_Bitmap() { return m_pBitmap; }
+    int Get_Width() { return m_iWidth; }
+    int Get_Height() { return m_iHeight; }
 
 private:
-    HDC     m_hMemDC = nullptr;
-    HBITMAP m_hBitmap = nullptr;
-    HBITMAP m_hOldBmp = nullptr;
-    int     m_iWidth = 0;
-    int     m_iHeight = 0;
+    //HDC     m_hMemDC = nullptr;
+    //HBITMAP m_hBitmap = nullptr;
+    //HBITMAP m_hOldBmp = nullptr;
+
+    ID2D1Bitmap* m_pBitmap = nullptr;
+
+    int m_iWidth = 0;
+    int m_iHeight = 0;
+
 };

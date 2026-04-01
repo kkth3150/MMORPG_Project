@@ -11,7 +11,7 @@
 
 #define VK_MAX	0xff
 #define TILE_WIDTH   160
-#define TILE_HEIGHT  79
+#define TILE_HEIGHT  80
 #define TILE_HALF_W  (TILE_WIDTH  / 2.f)   // 90.f
 #define TILE_HALF_H  (TILE_HEIGHT / 2.f)   // 29.5f
 
@@ -23,7 +23,7 @@
 
 
 enum LEVEL_ID {LEVEL_MENU, LEVEL_LOGIN, LEVEL_CHOICE, LEVEL_TEST,LEVEL_END};
-enum OBJ_ID {OBJ_PLAYER,OBJ_END};
+enum OBJ_ID {OBJ_PLAYER,OBJ_NPC,OBJ_END};
 enum UI_ID {UI_BUTTON, UI_END};
 enum DIRECTION { DIR_B, DIR_LB, DIR_L, DIR_LT, DIR_T, DIR_RT, DIR_R, DIR_RB, DIR_END };
 enum MOUSE_BUTTON {MBUTTON_L,MBUTTON_R,MBUTTON_WHEEL,MBUTTON_END};
@@ -41,6 +41,7 @@ enum CURSOR_MODE
 	CURSOR_TALK,        // 대화 커서 (NPC 위)
 	CURSOR_END
 };
+
 extern HWND g_hWnd;
 
 typedef struct tagFrame
@@ -84,6 +85,14 @@ typedef struct tagCollider
 	float fRadiusX;  // 충돌 반경 X (논리좌표)
 	float fRadiusZ;  // 충돌 반경 Z (논리좌표)
 } COLLIDER;
+
+typedef struct tagMouseCollider
+{
+	float fOffsetX;  // 스프라이트 중심에서 X 오프셋
+	float fOffsetY;  // 스프라이트 중심에서 Y 오프셋
+	float fWidth;    // 클릭 박스 너비
+	float fHeight;   // 클릭 박스 높이
+} MOUSE_COLLIDER;
 
 typedef struct tagTile
 {

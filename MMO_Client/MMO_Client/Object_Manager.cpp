@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Object_Manager.h"
 #include "Camera.h"
+#include "Collision_Manager.h"
 
 CObject_Manager* CObject_Manager::m_pInstance = nullptr;
 
@@ -40,6 +41,10 @@ int CObject_Manager::Update(float dt)
 		}
 	}
 
+	CCollision_Manager::Get_Instance()->Collision_RectEx(
+		m_ObjectList[OBJ_PLAYER],
+		m_ObjectList[OBJ_NPC]
+	);
 	return OBJ_NOEVENT;
 }
 
@@ -59,13 +64,12 @@ void CObject_Manager::Late_Update(float dt)
 
 }
 
-void CObject_Manager::Render(HDC hDC)
+void CObject_Manager::Render(ID2D1RenderTarget* pRT)
 {
 	std::vector<CGameObject*> vecSortList;
-	for (auto& pObj : m_ObjectList[OBJ_PLAYER])  
+	for (auto& pObj : m_ObjectList[OBJ_PLAYER])
 		vecSortList.push_back(pObj);
 
-	// Y소팅
 	sort(vecSortList.begin(), vecSortList.end(),
 		[](CGameObject* pA, CGameObject* pB)
 		{
@@ -73,14 +77,13 @@ void CObject_Manager::Render(HDC hDC)
 				< (pB->Get_IsoInfo().fWorldX + pB->Get_IsoInfo().fWorldZ);
 		});
 
-	// 컬링 체크 후 렌더
 	for (auto& pObj : vecSortList)
 	{
 		ISO_INFO tInfo = pObj->Get_IsoInfo();
 		if (CCamera::Get_Instance()->Is_InViewport(
 			tInfo.fWorldX, tInfo.fWorldZ, tInfo.fCX, tInfo.fCY))
 		{
-			pObj->Render(hDC);
+			pObj->Render(pRT);
 		}
 	}
 }

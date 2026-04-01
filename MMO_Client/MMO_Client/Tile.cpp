@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "Input_Manager.h"
 
-void CTile::Render(HDC hDC)
+void CTile::Render(ID2D1RenderTarget* pRT)
 {
     if (!CCamera::Get_Instance()->Is_InViewport(
         (float)m_iTileX, (float)m_iTileZ,
@@ -14,63 +14,68 @@ void CTile::Render(HDC hDC)
     POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
         (float)m_iTileX, (float)m_iTileZ);
 
-    HDC hBmpDC = nullptr;
+    //HDC → ID2D1Bitmap*
+    ID2D1Bitmap* pBitmap = nullptr;
     switch (m_eType)
     {
-    case TILE_NORMAL: hBmpDC = CImg_Manager::Get_Instance()->Find_Bmp(L"TILE_NORMAL"); break;
-    case TILE_BLOCK:  hBmpDC = CImg_Manager::Get_Instance()->Find_Bmp(L"TILE_BLOCK");  break;
+    case TILE_NORMAL: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"TILE_NORMAL"); break;
+    case TILE_BLOCK:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"TILE_BLOCK");  break;
     default: break;
     }
-    if (!hBmpDC) return;
+    if (!pBitmap) return;
 
-    GdiTransparentBlt(hDC,
-        tScreen.x - TILE_WIDTH / 2,
-        tScreen.y,
-        TILE_WIDTH, TILE_HEIGHT,
-        hBmpDC,
-        0, 0, TILE_WIDTH, TILE_HEIGHT,
-        RGB(0, 255, 255));
+    //GdiTransparentBlt → DrawBitmap (알파 자동 처리)
+    float fLeft = tScreen.x - TILE_WIDTH / 2.f;
+    float fTop = (float)tScreen.y;
+
+    pRT->DrawBitmap(
+        pBitmap,
+        D2D1::RectF(fLeft, fTop, fLeft + TILE_WIDTH, fTop + TILE_HEIGHT),
+        1.0f,
+        D2D1_BITMAP_INTERPOLATION_MODE_LINEAR
+    );
 
 #ifdef GAME_DEBUG
-    // 마우스 호버 타일 좌표 표시
     POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
     float fHoverWorldX = 0.f, fHoverWorldZ = 0.f;
     CCamera::Get_Instance()->ScreenToIsoWorld(
         tMouse.x, tMouse.y, fHoverWorldX, fHoverWorldZ);
-
     int iHoverTileX = (int)floorf(fHoverWorldX);
     int iHoverTileZ = (int)floorf(fHoverWorldZ);
 
     if (iHoverTileX == m_iTileX && iHoverTileZ == m_iTileZ)
     {
-        // 마름모 하이라이트
-        HPEN hYellowPen = CreatePen(PS_SOLID, 2, RGB(255, 255, 0));
-        HPEN hOldPen = (HPEN)SelectObject(hDC, hYellowPen);
-        HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
-        HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+        //마름모 하이라이트 (Polyline → DrawLine)
+        ID2D1SolidColorBrush* pBrush = nullptr;
+        pRT->CreateSolidColorBrush(D2D1::ColorF(1.f, 1.f, 0.f), &pBrush);
 
-        POINT tDiamond[5] =
-        {
-            { tScreen.x,                  tScreen.y                    },
-            { tScreen.x + TILE_WIDTH / 2, tScreen.y + TILE_HEIGHT / 2 },
-            { tScreen.x,                  tScreen.y + TILE_HEIGHT      },
-            { tScreen.x - TILE_WIDTH / 2, tScreen.y + TILE_HEIGHT / 2 },
-            { tScreen.x,                  tScreen.y                    },
-        };
-        Polyline(hDC, tDiamond, 5);
+        float cx = (float)tScreen.x;
+        float cy = (float)tScreen.y;
+        float hw = TILE_WIDTH / 2.f;
+        float hh = TILE_HEIGHT / 2.f;
 
-        SelectObject(hDC, hOldPen);
-        SelectObject(hDC, hOldBr);
-        DeleteObject(hYellowPen);
+        pRT->DrawLine({ cx,      cy }, { cx + hw, cy + hh }, pBrush, 2.f);
+        pRT->DrawLine({ cx + hw, cy + hh }, { cx,      cy + hh * 2 }, pBrush, 2.f);
+        pRT->DrawLine({ cx,      cy + hh * 2 }, { cx - hw, cy + hh }, pBrush, 2.f);
+        pRT->DrawLine({ cx - hw, cy + hh }, { cx,      cy }, pBrush, 2.f);
 
-        // 타일 월드좌표 텍스트 (타일 중앙에)
+        //타일 좌표 텍스트 (TextOut → DrawText)
+        //IDWriteTextFormat은 외부에서 전달받거나 임시 생성
         TCHAR szTile[64];
         swprintf_s(szTile, 64, L"[%d, %d]", m_iTileX, m_iTileZ);
 
-        POINT tCenter = { tScreen.x, tScreen.y + TILE_HEIGHT / 2 };
-        SetBkMode(hDC, TRANSPARENT);
-        SetTextColor(hDC, RGB(255, 255, 0));
-        TextOut(hDC, tCenter.x - 20, tCenter.y - 8, szTile, lstrlen(szTile));
+        ID2D1SolidColorBrush* pTextBrush = nullptr;
+        pRT->CreateSolidColorBrush(D2D1::ColorF(1.f, 1.f, 0.f), &pTextBrush);
+
+        pRT->DrawText(
+            szTile, wcslen(szTile),
+            CImg_Manager::Get_Instance()->Get_DebugFont(), // ← 아래 설명
+            D2D1::RectF(cx - 20.f, cy + hh - 8.f, cx + 60.f, cy + hh + 20.f),
+            pTextBrush
+        );
+
+        pBrush->Release();
+        pTextBrush->Release();
     }
 #endif
 }

@@ -55,9 +55,9 @@ void CLevel_Manager::Late_Update(float dt)
 	m_pLevel->Late_Update(dt);
 }
 
-void CLevel_Manager::Render(HDC hDC)
+void CLevel_Manager::Render(ID2D1RenderTarget* pRT)
 {
-	m_pLevel->Render(hDC);
+	m_pLevel->Render(pRT);
 }
 
 void CLevel_Manager::Release(void)

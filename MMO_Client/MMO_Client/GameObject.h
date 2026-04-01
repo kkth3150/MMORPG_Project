@@ -8,11 +8,11 @@ public:
 	virtual ~CGameObject();
 
 public:
-	virtual void Initialize()PURE;
-	virtual int	 Update(float dt)PURE;
-	virtual void Late_Update(float dt)PURE;
-	virtual void Render(HDC hDC)PURE;
-	virtual void Release(void)PURE;
+	virtual void Initialize()					PURE;
+	virtual int	 Update(float dt)				PURE;
+	virtual void Late_Update(float dt)			PURE;
+	virtual void Render(ID2D1RenderTarget* pRT) PURE;
+	virtual void Release(void)					PURE;
 
 public:
 	void Set_WorldPos(float fWorldX, float fWorldZ)
@@ -60,6 +60,33 @@ public:
 	float Get_ColliderX() { return m_tIsoInfo.fWorldX + m_tCollider.fOffsetX; }
 	float Get_ColliderZ() { return m_tIsoInfo.fWorldZ + m_tCollider.fOffsetZ; }
 
+	virtual void On_Collision(CGameObject* pOther) {}  // 순수가상 아님
+	virtual void On_CollisionEnd() {}                  // 충돌 끝났을 때
+
+	// 충돌 상태 플래그
+	bool Is_Colliding() { return m_bColliding; }
+	void Set_Colliding(bool b) { m_bColliding = b; }
+
+	void Set_MouseCollider(float fOffsetX, float fOffsetY,
+		float fWidth, float fHeight)
+	{
+		m_tMouseCollider.fOffsetX = fOffsetX;
+		m_tMouseCollider.fOffsetY = fOffsetY;
+		m_tMouseCollider.fWidth = fWidth;
+		m_tMouseCollider.fHeight = fHeight;
+	}
+
+	bool Is_MouseCollide(POINT tMouse)
+	{
+		return PtInRect(&m_tMouseRect, tMouse);
+	}
+	void Update_MouseRect();
+
+
+protected:
+	bool m_bColliding = false; // 현재 충돌 중인지
+	MOUSE_COLLIDER  m_tMouseCollider = {}; // 오프셋/크기 설정값
+	RECT            m_tMouseRect = {}; // 실제 스크린 RECT
 
 protected:
 	void		Update_Rect();

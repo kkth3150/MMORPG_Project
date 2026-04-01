@@ -37,21 +37,20 @@ void CPlayer::Late_Update(float dt)
 {
 }
 
-void CPlayer::Render(HDC hDC)
+void CPlayer::Render(ID2D1RenderTarget* pRT)
 {
 	switch (m_eCurState)
 	{
-	case PLAYER_IDLE:	RenderIDLE(hDC);	break;
-	case PLAYER_WALK:	RenderWALK(hDC);	break;
-	case PLAYER_ATTACK:	RenderATTACK(hDC);	break;
-	case PLAYER_HIT:	RenderHIT(hDC);		break;
-	case PLAYER_DEAD:	RenderDEAD(hDC);	break;
+	case PLAYER_IDLE:   RenderIDLE(pRT);   break;
+	case PLAYER_WALK:   RenderWALK(pRT);   break;
+	case PLAYER_ATTACK: RenderATTACK(pRT); break;
+	case PLAYER_HIT:    RenderHIT(pRT);    break;
+	case PLAYER_DEAD:   RenderDEAD(pRT);   break;
 	default: break;
 	}
-
-	Render_ClickEffect(hDC);
+	Render_ClickEffect(pRT);
 #ifdef GAME_DEBUG
-	Debug_Render(hDC);
+	Debug_Render(pRT);
 #endif
 }
 
@@ -60,79 +59,108 @@ void CPlayer::Release(void)
 }
 
 
-
-void CPlayer::Render_Sprite(HDC hDC, HDC PngDC)
+void CPlayer::Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap)
 {
-	if (!PngDC) return;
+	if (!pBitmap) return;
 
 	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
 		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
 
-	int iFootOffsetY = -(int)(m_tIsoInfo.fHeight);
+	float fDrawX = tScreen.x - m_tIsoInfo.fCX / 2.f;
+	float fDrawY = tScreen.y - m_tIsoInfo.fCY
+		- m_tIsoInfo.fHeight + TILE_HALF_H;
 
-	BLENDFUNCTION blend = {};
-	blend.BlendOp = AC_SRC_OVER;
-	blend.SourceConstantAlpha = 255;
-	blend.AlphaFormat = AC_SRC_ALPHA;
+	// 목적지 Rect
+	D2D1_RECT_F destRect = D2D1::RectF(
+		fDrawX,
+		fDrawY,
+		fDrawX + m_tIsoInfo.fCX,
+		fDrawY + m_tIsoInfo.fCY
+	);
 
-	AlphaBlend(hDC,
-		tScreen.x - (int)(m_tIsoInfo.fCX / 2),
-		tScreen.y - (int)(m_tIsoInfo.fCY) + iFootOffsetY + (int)TILE_HALF_H,
-		(int)m_tIsoInfo.fCX,
-		(int)m_tIsoInfo.fCY,
-		PngDC,
-		(int)(m_tIsoInfo.fCX * m_tFrame.iFrameStart),
-		0,
-		(int)m_tIsoInfo.fCX,
-		(int)m_tIsoInfo.fCY,
-		blend
+	// 스프라이트 시트에서 현재 프레임 잘라내기
+	float fSrcX = m_tIsoInfo.fCX * m_tFrame.iFrameStart;
+	D2D1_RECT_F srcRect = D2D1::RectF(
+		fSrcX,
+		0.f,
+		fSrcX + m_tIsoInfo.fCX,
+		m_tIsoInfo.fCY
+	);
+
+	pRT->DrawBitmap(
+		pBitmap,
+		destRect,
+		1.0f,
+		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+		srcRect
 	);
 }
-void CPlayer::RenderIDLE(HDC hDC)
+
+void CPlayer::RenderIDLE(ID2D1RenderTarget* pRT)
 {
-	HDC PngDC = nullptr;
+	ID2D1Bitmap* pBitmap = nullptr;
 	switch (m_eDir)
 	{
-	case DIR_B:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_B");  break;
-	case DIR_LB: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_LB"); break;
-	case DIR_L:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_L");  break;
-	case DIR_LT: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_LT"); break;
-	case DIR_T:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_T");  break;
-	case DIR_RT: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_RT"); break;
-	case DIR_R:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_R");  break;
-	case DIR_RB: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_RB"); break;
+	case DIR_B:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_B");  break;
+	case DIR_LB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_LB"); break;
+	case DIR_L:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_L");  break;
+	case DIR_LT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_LT"); break;
+	case DIR_T:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_T");  break;
+	case DIR_RT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_RT"); break;
+	case DIR_R:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_R");  break;
+	case DIR_RB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_IDLE_RB"); break;
 	default: break;
 	}
-	Render_Sprite(hDC, PngDC);
+	Render_Sprite(pRT, pBitmap);
 }
-void CPlayer::RenderWALK(HDC hDC)
+
+void CPlayer::RenderWALK(ID2D1RenderTarget* pRT)
 {
-	HDC PngDC = nullptr;
+	ID2D1Bitmap* pBitmap = nullptr;
 	switch (m_eDir)
 	{
-	case DIR_B:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_B");  break;
-	case DIR_LB: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_LB"); break;
-	case DIR_L:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_L");  break;
-	case DIR_LT: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_LT"); break;
-	case DIR_T:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_T");  break;
-	case DIR_RT: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_RT"); break;
-	case DIR_R:  PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_R");  break;
-	case DIR_RB: PngDC = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_RB"); break;
+	case DIR_B:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_B");  break;
+	case DIR_LB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_LB"); break;
+	case DIR_L:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_L");  break;
+	case DIR_LT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_LT"); break;
+	case DIR_T:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_T");  break;
+	case DIR_RT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_RT"); break;
+	case DIR_R:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_R");  break;
+	case DIR_RB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_WALK_RB"); break;
 	default: break;
 	}
-	Render_Sprite(hDC, PngDC);
+	Render_Sprite(pRT, pBitmap);
 }
-void CPlayer::RenderATTACK(HDC hDC)
+
+void CPlayer::RenderATTACK(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
+void CPlayer::RenderHIT(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
+void CPlayer::RenderDEAD(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
+
+
+void CPlayer::Render_ClickEffect(ID2D1RenderTarget* pRT)
 {
-	// 추후 구현
-}
-void CPlayer::RenderHIT(HDC hDC)
-{
-	// 추후 구현
-}
-void CPlayer::RenderDEAD(HDC hDC)
-{
-	// 추후 구현
+	if (!m_tClickEffect.bActive) return;
+
+	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+		m_tClickEffect.fWorldX, m_tClickEffect.fWorldZ);
+
+	float fRX = TILE_HALF_W * 0.4f * m_tClickEffect.fScale;
+	float fRY = TILE_HALF_H * 0.4f * m_tClickEffect.fScale;
+	if (fRX <= 1.f || fRY <= 1.f) return;
+
+	D2D1_ELLIPSE ellipse = D2D1::Ellipse(
+		D2D1::Point2F((float)tScreen.x, (float)tScreen.y),
+		fRX, fRY
+	);
+
+	//color에서 알파만 Scale로 덮어쓰기
+	D2D1_COLOR_F col = m_tClickEffect.color;
+	col.a = m_tClickEffect.fScale; // 페이드아웃
+
+	ID2D1SolidColorBrush* pBrush = nullptr;
+	pRT->CreateSolidColorBrush(col, &pBrush);
+	pRT->DrawEllipse(ellipse, pBrush, 2.f);
+	pBrush->Release();
 }
 
 // ===================== 상태/방향 변경 =====================
@@ -192,7 +220,7 @@ void CPlayer::Key_Input(float dt)
 		m_tClickEffect.fWorldZ = m_fDestWorldZ;
 		m_tClickEffect.fScale = 1.f;
 		m_tClickEffect.bActive = true;
-		m_tClickEffect.color = RGB(0,255,0);
+		m_tClickEffect.color = D2D1::ColorF(0.f, 1.f, 0.f, 1.f); // R G B A
 
 #ifdef GAME_DEBUG
 		m_iDebugTileX = (int)floorf(m_fDestWorldX);
@@ -258,88 +286,92 @@ void CPlayer::Decide_Direction(float fNX, float fNZ)
 		Direction_Change(eNewDir);
 }
 
-#ifdef GAME_DEBUG
-void CPlayer::Debug_Render(HDC hDC)
+void CPlayer::Update_ClickEffect(float dt)
 {
-	Debug_DrawClickedTile(hDC);
-	Debug_DrawClickPoint(hDC);
-	Debug_DrawCollider(hDC);
-	Debug_DrawText(hDC);
+	if (!m_tClickEffect.bActive) return;
+
+	m_tClickEffect.fScale -= dt * 2.f;  // 속도 조절
+	if (m_tClickEffect.fScale <= 0.f)
+	{
+		m_tClickEffect.fScale = 0.f;
+		m_tClickEffect.bActive = false;
+	}
 }
 
-void CPlayer::Debug_DrawClickedTile(HDC hDC)
+
+
+
+#ifdef GAME_DEBUG
+void CPlayer::Debug_Render(ID2D1RenderTarget* pRT)
 {
-	POINT tTileScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+	Debug_DrawClickedTile(pRT);
+	Debug_DrawClickPoint(pRT);
+	Debug_DrawCollider(pRT);
+	Debug_DrawText(pRT);
+}
+
+void CPlayer::Debug_DrawClickedTile(ID2D1RenderTarget* pRT)
+{
+	POINT tS = CCamera::Get_Instance()->IsoWorldToScreen(
 		(float)m_iDebugTileX, (float)m_iDebugTileZ);
 
-	HPEN   hRedPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-	HPEN   hOldPen = (HPEN)SelectObject(hDC, hRedPen);
-	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+	ID2D1SolidColorBrush* pBrush = nullptr;
+	pRT->CreateSolidColorBrush(D2D1::ColorF(1.f, 0.f, 0.f), &pBrush);
 
-	POINT tDiamond[5] =
-	{
-		{ tTileScreen.x,                  tTileScreen.y                    },
-		{ tTileScreen.x + TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 },
-		{ tTileScreen.x,                  tTileScreen.y + TILE_HEIGHT      },
-		{ tTileScreen.x - TILE_WIDTH / 2, tTileScreen.y + TILE_HEIGHT / 2 },
-		{ tTileScreen.x,                  tTileScreen.y                    },
-	};
-	Polyline(hDC, tDiamond, 5);
+	float cx = (float)tS.x, cy = (float)tS.y;
+	float hw = TILE_WIDTH / 2.f, hh = TILE_HEIGHT / 2.f;
 
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBr);
-	DeleteObject(hRedPen);
+	pRT->DrawLine({ cx,      cy }, { cx + hw, cy + hh }, pBrush, 2.f);
+	pRT->DrawLine({ cx + hw, cy + hh }, { cx,      cy + hh * 2 }, pBrush, 2.f);
+	pRT->DrawLine({ cx,      cy + hh * 2 }, { cx - hw, cy + hh }, pBrush, 2.f);
+	pRT->DrawLine({ cx - hw, cy + hh }, { cx,      cy }, pBrush, 2.f);
+
+	pBrush->Release();
 }
 
-void CPlayer::Debug_DrawClickPoint(HDC hDC)
+void CPlayer::Debug_DrawClickPoint(ID2D1RenderTarget* pRT)
 {
-	POINT tClickScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+	POINT tS = CCamera::Get_Instance()->IsoWorldToScreen(
 		m_fDestWorldX, m_fDestWorldZ);
 
-	HPEN hGreenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-	HPEN hOldPen = (HPEN)SelectObject(hDC, hGreenPen);
+	ID2D1SolidColorBrush* pBrush = nullptr;
+	pRT->CreateSolidColorBrush(D2D1::ColorF(0.f, 1.f, 0.f), &pBrush);
 
-	MoveToEx(hDC, tClickScreen.x - 10, tClickScreen.y, NULL);
-	LineTo(hDC, tClickScreen.x + 10, tClickScreen.y);
-	MoveToEx(hDC, tClickScreen.x, tClickScreen.y - 10, NULL);
-	LineTo(hDC, tClickScreen.x, tClickScreen.y + 10);
+	float cx = (float)tS.x, cy = (float)tS.y;
+	// 십자선
+	pRT->DrawLine({ cx - 10.f, cy }, { cx + 10.f, cy }, pBrush, 2.f);
+	pRT->DrawLine({ cx,        cy - 10.f }, { cx,        cy + 10.f }, pBrush, 2.f);
 
-	SelectObject(hDC, hOldPen);
-	DeleteObject(hGreenPen);
+	pBrush->Release();
 }
 
-void CPlayer::Debug_DrawCollider(HDC hDC)
+void CPlayer::Debug_DrawCollider(ID2D1RenderTarget* pRT)
 {
 	float fCX = Get_ColliderX();
 	float fCZ = Get_ColliderZ();
 	float fRX = m_tCollider.fRadiusX;
 	float fRZ = m_tCollider.fRadiusZ;
 
-	// AABB 네 모서리를 화면으로 변환 → 아이소메트릭에서 자동으로 마름모가 됨
 	POINT tTL = CCamera::Get_Instance()->IsoWorldToScreen(fCX - fRX, fCZ - fRZ);
 	POINT tTR = CCamera::Get_Instance()->IsoWorldToScreen(fCX + fRX, fCZ - fRZ);
 	POINT tBR = CCamera::Get_Instance()->IsoWorldToScreen(fCX + fRX, fCZ + fRZ);
 	POINT tBL = CCamera::Get_Instance()->IsoWorldToScreen(fCX - fRX, fCZ + fRZ);
 
-	HPEN   hCyanPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 255));
-	HPEN   hOldPen = (HPEN)SelectObject(hDC, hCyanPen);
-	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
+	ID2D1SolidColorBrush* pBrush = nullptr;
+	pRT->CreateSolidColorBrush(D2D1::ColorF(0.f, 1.f, 1.f), &pBrush);
 
-	POINT tCollider[5] = { tTL, tTR, tBR, tBL, tTL };
-	Polyline(hDC, tCollider, 5);
+	auto P = [](POINT p) { return D2D1::Point2F((float)p.x, (float)p.y); };
 
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBr);
-	DeleteObject(hCyanPen);
+	pRT->DrawLine(P(tTL), P(tTR), pBrush, 2.f);
+	pRT->DrawLine(P(tTR), P(tBR), pBrush, 2.f);
+	pRT->DrawLine(P(tBR), P(tBL), pBrush, 2.f);
+	pRT->DrawLine(P(tBL), P(tTL), pBrush, 2.f);
+
+	pBrush->Release();
 }
 
-void CPlayer::Debug_DrawText(HDC hDC)
+void CPlayer::Debug_DrawText(ID2D1RenderTarget* pRT)
 {
-	POINT tTileScreen = CCamera::Get_Instance()->IsoWorldToScreen(
-		(float)m_iDebugTileX, (float)m_iDebugTileZ);
-
 	TCHAR szBuf[256];
 	swprintf_s(szBuf, 256,
 		L"클릭타일:[%d,%d] 내부위치:[%.2f,%.2f] 논리좌표:[%.2f,%.2f]",
@@ -353,49 +385,18 @@ void CPlayer::Debug_DrawText(HDC hDC)
 		m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ, (int)m_eDir,
 		Get_ColliderX(), Get_ColliderZ());
 
-	SetBkMode(hDC, TRANSPARENT);
-	SetTextColor(hDC, RGB(255, 255, 0));
-	TextOut(hDC, 10, 10, szBuf, lstrlen(szBuf));
-	TextOut(hDC, 10, 30, szPlayer, lstrlen(szPlayer));
+	ID2D1SolidColorBrush* pBrush = nullptr;
+	pRT->CreateSolidColorBrush(D2D1::ColorF(1.f, 1.f, 0.f), &pBrush);
+
+	IDWriteTextFormat* pFont = CImg_Manager::Get_Instance()->Get_DebugFont();
+
+	pRT->DrawText(szBuf, wcslen(szBuf),
+		pFont, D2D1::RectF(10.f, 10.f, 800.f, 30.f), pBrush);
+	pRT->DrawText(szPlayer, wcslen(szPlayer),
+		pFont, D2D1::RectF(10.f, 35.f, 800.f, 55.f), pBrush);
+
+	pBrush->Release();
 }
-#endif 
+#endif
 
-void CPlayer::Update_ClickEffect(float dt)
-{
-	if (!m_tClickEffect.bActive) return;
 
-	m_tClickEffect.fScale -= dt * 2.f;  // 속도 조절
-	if (m_tClickEffect.fScale <= 0.f)
-	{
-		m_tClickEffect.fScale = 0.f;
-		m_tClickEffect.bActive = false;
-	}
-}
-void CPlayer::Render_ClickEffect(HDC hDC)
-{
-	if (!m_tClickEffect.bActive) return;
-
-	POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
-		m_tClickEffect.fWorldX, m_tClickEffect.fWorldZ);
-
-	// 타일 반경 기준으로 타원 크기 결정
-	int iRX = (int)(TILE_HALF_W * 0.4f * m_tClickEffect.fScale);
-	int iRY = (int)(TILE_HALF_H * 0.4f * m_tClickEffect.fScale);
-
-	if (iRX <= 1 || iRY <= 1) return;
-
-	HPEN hPen = CreatePen(PS_SOLID, 2, m_tClickEffect.color);
-	HPEN   hOldPen = (HPEN)SelectObject(hDC, hPen);
-	HBRUSH hNull = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH hOldBr = (HBRUSH)SelectObject(hDC, hNull);
-
-	Ellipse(hDC,
-		tScreen.x - iRX,
-		tScreen.y - iRY,
-		tScreen.x + iRX,
-		tScreen.y + iRY);
-
-	SelectObject(hDC, hOldPen);
-	SelectObject(hDC, hOldBr);
-	DeleteObject(hPen);
-}

@@ -23,7 +23,7 @@ void CLevel_Choice::Late_Update(float dt)
 {
 }
 
-void CLevel_Choice::Render(HDC hDC)
+void CLevel_Choice::Render(ID2D1RenderTarget* pRT)
 {
 }
 

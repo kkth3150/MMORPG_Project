@@ -8,9 +8,9 @@ public:
 	virtual ~CLevel();
 
 public:
-	virtual void Initialize()				PURE;
-	virtual int	 Update(float dt)			PURE;
-	virtual void Late_Update(float dt)		PURE;
-	virtual void Render(HDC hDC)			PURE;
-	virtual void Release(void)				PURE;
+	virtual void Initialize()							PURE;
+	virtual int	 Update(float dt)						PURE;
+	virtual void Late_Update(float dt)					PURE;
+	virtual void Render(ID2D1RenderTarget* pRT)			PURE;
+	virtual void Release(void)							PURE;
 };

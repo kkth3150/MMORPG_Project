@@ -22,6 +22,9 @@ void CCollision_Manager::Collision_Rect(std::list<CGameObject*> _Dst,
 void CCollision_Manager::Collision_RectEx(std::list<CGameObject*> _Dst,
     std::list<CGameObject*> _Src)
 {
+    for (auto& pObj : _Dst) pObj->Set_Colliding(false);
+    for (auto& pObj : _Src) pObj->Set_Colliding(false);
+
     float fX = 0.f, fY = 0.f;
     for (auto& Dst : _Dst)
     {
@@ -29,31 +32,15 @@ void CCollision_Manager::Collision_RectEx(std::list<CGameObject*> _Dst,
         {
             if (Check_Rect(Dst, Src, &fX, &fY))
             {
-                ISO_INFO tDstInfo = Dst->Get_IsoInfo();
-                ISO_INFO tSrcInfo = Src->Get_IsoInfo();
-
-                if (fX > fY)    // 상하 충돌 (Z축 기준)
-                {
-                    if (tDstInfo.fWorldZ < tSrcInfo.fWorldZ) // 위쪽 충돌
-                    {
-                        // 추후 구현
-                    }
-                    else // 아래쪽 충돌
-                    {
-                        // 추후 구현
-                    }
-                }
-                else            // 좌우 충돌 (X축 기준)
-                {
-                    if (tDstInfo.fWorldX < tSrcInfo.fWorldX) // 왼쪽 충돌
-                    {
-                        // 추후 구현
-                    }
-                    else // 오른쪽 충돌
-                    {
-                        // 추후 구현
-                    }
-                }
+                Dst->Set_Colliding(true);
+                Src->Set_Colliding(true);
+                Dst->On_Collision(Src);
+                Src->On_Collision(Dst);
+            }
+            else
+            {
+                if (Dst->Is_Colliding()) Dst->On_CollisionEnd();
+                if (Src->Is_Colliding()) Src->On_CollisionEnd();
             }
         }
     }

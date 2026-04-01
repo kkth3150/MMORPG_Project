@@ -20,7 +20,8 @@ void CLevel_Test::Initialize()
 {
 	ShowCursor(FALSE);
 
-	CImg_Manager::Get_Instance()->Insert_Bmp(L"../Resource/background/TestMap.bmp", L"BACKGROUND");
+	CImg_Manager::Get_Instance()->Insert_Png(
+		L"../Resource/background/TestMap.png", L"BACKGROUND");
 	CMap_Manager::Get_Instance()->Create_Map(30, 30);
 
 	Ready_Player();
@@ -40,13 +41,17 @@ void CLevel_Test::Late_Update(float dt)
 	CObject_Manager::Get_Instance()->Late_Update(dt);
 }
 
-void CLevel_Test::Render(HDC hDC)
+void CLevel_Test::Render(ID2D1RenderTarget* pRT)
 {
-	HDC	hMemDC = CImg_Manager::Get_Instance()->Find_Bmp(L"BACKGROUND");
-	BitBlt(hDC, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
-	CMap_Manager::Get_Instance()->Render(hDC);
-	CObject_Manager::Get_Instance()->Render(hDC);
-	CInput_Manager::Get_Instance()->Render_Cursor(hDC);
+
+	ID2D1Bitmap* pBg = CImg_Manager::Get_Instance()->Find_Png(L"BACKGROUND");
+	if (pBg)
+	{
+		pRT->DrawBitmap(pBg, D2D1::RectF(0.f, 0.f, (float)WINCX, (float)WINCY));
+	}
+	CMap_Manager::Get_Instance()->Render(pRT);
+	CObject_Manager::Get_Instance()->Render(pRT);
+	CInput_Manager::Get_Instance()->Render_Cursor(pRT);
 
 }
 

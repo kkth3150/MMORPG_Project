@@ -23,7 +23,7 @@ void CLevel_Login::Late_Update(float dt)
 {
 }
 
-void CLevel_Login::Render(HDC hDC)
+void CLevel_Login::Render(ID2D1RenderTarget* pRT)
 {
 }
 

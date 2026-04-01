@@ -76,6 +76,12 @@
     <ClCompile Include="Map_Manager.cpp">
       <Filter>08.Map_Manager</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>05.Object_Manager\Objects\05_01.NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC_Shop.cpp">
+      <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -244,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="Map_Manager.h">
       <Filter>08.Map_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>05.Object_Manager\Objects\05_01.NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC_Shop.h">
+      <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
