@@ -1,5 +1,8 @@
 #pragma once
-#include "Tile.h"
+#include "Zone.h"
+#include <thread>
+#include <atomic>
+#include <mutex>
 
 class CMap_Manager
 {
@@ -15,33 +18,43 @@ public:
         delete m_pInstance;
         m_pInstance = nullptr;
     }
-
 public:
-    // 파일에서 맵 로드
-    bool Load_Map(const TCHAR* pFilePath);
-    // 맵 저장 (에디터용, 나중에)
-    bool Save_Map(const TCHAR* pFilePath);
-    // 맵 생성 (기본값으로)
-    void Create_Map(int iTileCountX, int iTileCountZ);
+    void    Initialize();
+    void    Update();
+    void    Release();
 
-    void Render(ID2D1RenderTarget* pRT);
-    void Release();
+    void    Change_Zone(ZONE_ID eID);
+    void    Change_Zone_Async(ZONE_ID eID);
 
-    // 길찾기용
-    bool        Is_Movable(int iTileX, int iTileZ);
-    TILE_TYPE   Get_TileType(int iTileX, int iTileZ);
-    void        Set_TileType(int iTileX, int iTileZ, TILE_TYPE eType);
+    bool    Is_Loading()        const { return m_bLoading.load(); }
+    float   Get_LoadProgress()  const { return m_fLoadProgress.load(); }
+    ZONE_ID Get_CurZoneID()     const;
+    CZone* Get_CurZone()       const { return m_pCurZone; }
 
-    int Get_TileCountX() { return m_iTileCountX; }
-    int Get_TileCountZ() { return m_iTileCountZ; }
+    bool        Is_Movable(int x, int z);
+    TILE_TYPE   Get_TileType(int x, int z);
+    void        Render(ID2D1RenderTarget* pRT);
+
+private:
+    CZone* Create_Zone(ZONE_ID eID);
+    void    Load_Zone(ZONE_ID eID);
+    void    Unload_Zone(ZONE_ID eID);
+
+
+private:
+    std::vector<CZone*>     m_vecZone;
+    CZone*                  m_pCurZone = nullptr;
+    CZone*                  m_pPendingZone = nullptr;
+
+    std::atomic<bool>       m_bLoading{ false };
+    std::atomic<float>      m_fLoadProgress{ 0.f };
+    std::mutex              m_ZoneMutex;
 
 private:
     CMap_Manager() {}
     ~CMap_Manager() { Release(); }
 
 private:
-    static CMap_Manager* m_pInstance;
-    std::vector<CTile*>     m_vecTile;
-    int                     m_iTileCountX = 0;
-    int                     m_iTileCountZ = 0;
+    static CMap_Manager*    m_pInstance;
+
 };

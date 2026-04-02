@@ -101,7 +101,8 @@ protected:
 	FRAME		m_tFrame;
 
 	bool		m_bDead;
-
+	bool		m_bLoopAnim = true;
+	float       m_fScale =1.f;
 	float		m_fSpeed;
 	float		m_fAngle;
 	int			m_iHp;

@@ -14,10 +14,10 @@
       <Filter>02.Timer_Manager</Filter>
     </ClCompile>
     <ClCompile Include="Img_Manager.cpp">
-      <Filter>03.Bmp_Manager</Filter>
+      <Filter>03.Img_Manager</Filter>
     </ClCompile>
     <ClCompile Include="MyBmp.cpp">
-      <Filter>03.Bmp_Manager\MyBmp</Filter>
+      <Filter>03.Img_Manager\MyBmp</Filter>
     </ClCompile>
     <ClCompile Include="Level_Manager.cpp">
       <Filter>04.Level_Manager</Filter>
@@ -65,13 +65,13 @@
       <Filter>04.Level_Manager\Levels\04_04.Level_Test</Filter>
     </ClCompile>
     <ClCompile Include="MyPng.cpp">
-      <Filter>03.Bmp_Manager\MyPng</Filter>
+      <Filter>03.Img_Manager\MyPng</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>10.Camera</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>08.Map_Manager\Rooms\05_99.Tiles</Filter>
+      <Filter>08.Map_Manager\Tiles</Filter>
     </ClCompile>
     <ClCompile Include="Map_Manager.cpp">
       <Filter>08.Map_Manager</Filter>
@@ -81,6 +81,15 @@
     </ClCompile>
     <ClCompile Include="NPC_Shop.cpp">
       <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>08.Map_Manager\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone_Test.cpp">
+      <Filter>08.Map_Manager\Zone\08_00.Zone_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone_Town.cpp">
+      <Filter>08.Map_Manager\Zone\08_01.Zone_Town</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,12 +110,6 @@
     </Filter>
     <Filter Include="02.Timer_Manager">
       <UniqueIdentifier>{74f777b3-2e38-4a7a-a18f-9583e11ab999}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Bmp_Manager">
-      <UniqueIdentifier>{9e79e224-dc62-419e-9820-d11e4d75f9cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Bmp_Manager\MyBmp">
-      <UniqueIdentifier>{581e52aa-4c0d-4cfd-a541-76d70529686e}</UniqueIdentifier>
     </Filter>
     <Filter Include="04.Level_Manager">
       <UniqueIdentifier>{ca87ec17-06eb-4096-85eb-8b8a69f48694}</UniqueIdentifier>
@@ -141,9 +144,6 @@
     <Filter Include="04.Level_Manager\Levels\04_04.Level_Test">
       <UniqueIdentifier>{8c42aad4-67a2-4603-a698-ceb45fa68136}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Bmp_Manager\MyPng">
-      <UniqueIdentifier>{7a960bee-cc37-4811-b990-99e3eb34dfbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="09.Collision_Manager">
       <UniqueIdentifier>{7b51fd74-9ef1-4f02-8b78-4ff63498d2b2}</UniqueIdentifier>
     </Filter>
@@ -159,12 +159,6 @@
     <Filter Include="08.Map_Manager">
       <UniqueIdentifier>{e3b81346-87f4-4155-84d7-394ca1516dca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08.Map_Manager\Rooms">
-      <UniqueIdentifier>{4c896c1e-05ec-4a2c-8a80-a3b20ddabb88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.Map_Manager\Rooms\05_99.Tiles">
-      <UniqueIdentifier>{77d4ba1c-26fa-41ba-970e-39d2bbd0ae54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Object_Manager\Objects\05_01.NPC">
       <UniqueIdentifier>{c2271352-54bf-4379-8974-86db36bc59d3}</UniqueIdentifier>
     </Filter>
@@ -173,6 +167,27 @@
     </Filter>
     <Filter Include="05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop">
       <UniqueIdentifier>{2011d358-6d6c-4e2c-afad-30a237fd4d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Map_Manager\Zone">
+      <UniqueIdentifier>{4c896c1e-05ec-4a2c-8a80-a3b20ddabb88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Map_Manager\Tiles">
+      <UniqueIdentifier>{77d4ba1c-26fa-41ba-970e-39d2bbd0ae54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Map_Manager\Zone\08_00.Zone_Test">
+      <UniqueIdentifier>{8a81b394-aa2e-456a-a4d5-eb13a2773b9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Img_Manager">
+      <UniqueIdentifier>{9e79e224-dc62-419e-9820-d11e4d75f9cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Img_Manager\MyBmp">
+      <UniqueIdentifier>{581e52aa-4c0d-4cfd-a541-76d70529686e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Img_Manager\MyPng">
+      <UniqueIdentifier>{7a960bee-cc37-4811-b990-99e3eb34dfbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Map_Manager\Zone\08_01.Zone_Town">
+      <UniqueIdentifier>{904867dc-4992-46ef-874e-ff941efd6d88}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,10 +204,10 @@
       <Filter>02.Timer_Manager</Filter>
     </ClInclude>
     <ClInclude Include="Img_Manager.h">
-      <Filter>03.Bmp_Manager</Filter>
+      <Filter>03.Img_Manager</Filter>
     </ClInclude>
     <ClInclude Include="MyBmp.h">
-      <Filter>03.Bmp_Manager\MyBmp</Filter>
+      <Filter>03.Img_Manager\MyBmp</Filter>
     </ClInclude>
     <ClInclude Include="Level_Manager.h">
       <Filter>04.Level_Manager</Filter>
@@ -240,13 +255,13 @@
       <Filter>04.Level_Manager\Levels\04_04.Level_Test</Filter>
     </ClInclude>
     <ClInclude Include="MyPng.h">
-      <Filter>03.Bmp_Manager\MyPng</Filter>
+      <Filter>03.Img_Manager\MyPng</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>10.Camera</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>08.Map_Manager\Rooms\05_99.Tiles</Filter>
+      <Filter>08.Map_Manager\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="Map_Manager.h">
       <Filter>08.Map_Manager</Filter>
@@ -256,6 +271,15 @@
     </ClInclude>
     <ClInclude Include="NPC_Shop.h">
       <Filter>05.Object_Manager\Objects\05_01.NPC\01.NPC_Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>08.Map_Manager\Zone</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone_Test.h">
+      <Filter>08.Map_Manager\Zone\08_00.Zone_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone_Town.h">
+      <Filter>08.Map_Manager\Zone\08_01.Zone_Town</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

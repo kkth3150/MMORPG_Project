@@ -163,6 +163,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Timer_Manager.cpp" />
+    <ClCompile Include="Zone.cpp" />
+    <ClCompile Include="Zone_Test.cpp" />
+    <ClCompile Include="Zone_Town.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -192,6 +195,9 @@
     <ClInclude Include="Object_Manager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Timer_Manager.h" />
+    <ClInclude Include="Zone.h" />
+    <ClInclude Include="Zone_Test.h" />
+    <ClInclude Include="Zone_Town.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ResourceLink.txt" />

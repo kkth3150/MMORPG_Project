@@ -27,12 +27,6 @@ enum OBJ_ID {OBJ_PLAYER,OBJ_NPC,OBJ_END};
 enum UI_ID {UI_BUTTON, UI_END};
 enum DIRECTION { DIR_B, DIR_LB, DIR_L, DIR_LT, DIR_T, DIR_RT, DIR_R, DIR_RB, DIR_END };
 enum MOUSE_BUTTON {MBUTTON_L,MBUTTON_R,MBUTTON_WHEEL,MBUTTON_END};
-enum TILE_TYPE
-{
-	TILE_NORMAL, // 이동 가능
-	TILE_BLOCK,       // 이동 불가
-	TILE_TYPE_END
-};
 enum ButtonID { BUTTON_LOGIN, BUTTON_EXIT, BUTTON_END };
 enum CURSOR_MODE
 {
@@ -41,6 +35,62 @@ enum CURSOR_MODE
 	CURSOR_TALK,        // 대화 커서 (NPC 위)
 	CURSOR_END
 };
+
+enum NPC_TYPE
+{
+	NPC_SHOP,
+	NPC_QUEST,
+	NPC_GUARD,
+	NPC_END
+};
+
+
+enum ZONE_ID : int
+{
+	ZONE_TEST = 0,
+	ZONE_TOWN = 1,
+	ZONE_MAX
+};
+
+enum TILE_TYPE : int
+{
+	// 이동 가능
+	TILE_GRASS = 0,    // 기본 이동 가능 타일
+	// 추후: TILE_GRASS_2, TILE_ROAD 등 추가
+
+	// 이동 불가
+	TILE_BLOCK = 10,   // 장애물
+	TILE_BORDER_LT = 11,   // 테두리 코너
+	TILE_BORDER_RT = 12,
+	TILE_BORDER_RB = 13,
+	TILE_BORDER_LB = 14,
+	TILE_BORDER_T = 15,   // 테두리 엣지
+	TILE_BORDER_R = 16,
+	TILE_BORDER_B = 17,
+	TILE_BORDER_L = 18,
+	TILE_OUTSIDE = 19,   // 테두리 밖
+
+	TILE_MAX
+};
+
+inline bool Is_MovableTile(TILE_TYPE eType)
+{
+	switch (eType)
+	{
+	case TILE_GRASS: return true;
+	default:         return false;
+	}
+}
+
+
+struct FNpcSpawnInfo
+{
+	int      iNpcID;
+	NPC_TYPE eType;
+	float    fSpawnX;
+	float    fSpawnZ;
+};
+
 
 extern HWND g_hWnd;
 
