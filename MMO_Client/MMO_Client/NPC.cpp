@@ -55,9 +55,14 @@ void CNPC::Render(ID2D1RenderTarget* pRT)
 {
     Render_NameTag(pRT);
     Render_Indicator(pRT);
+    if (m_bShowBubble)
+        Render_Bubble(pRT);
 }
 
 void CNPC::Release() {}
+
+
+
 
 void CNPC::Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap)
 {
@@ -66,12 +71,17 @@ void CNPC::Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap)
     POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
         m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
 
-    float fDrawX = tScreen.x - m_tIsoInfo.fCX / 2.f;
-    float fDrawY = tScreen.y - m_tIsoInfo.fCY - m_tIsoInfo.fHeight + TILE_HALF_H;
+
+    float fWidth = m_tIsoInfo.fCX * m_fScale;
+    float fHeight = m_tIsoInfo.fCY * m_fScale;
+
+    float fDrawX = tScreen.x - fWidth / 2.f;
+    float fDrawY = tScreen.y - fHeight - m_tIsoInfo.fHeight + TILE_HALF_H;
+
     float fSrcX = m_tIsoInfo.fCX * m_tFrame.iFrameStart;
 
     pRT->DrawBitmap(pBitmap,
-        D2D1::RectF(fDrawX, fDrawY, fDrawX + m_tIsoInfo.fCX, fDrawY + m_tIsoInfo.fCY),
+        D2D1::RectF(fDrawX, fDrawY, fDrawX + fWidth, fDrawY + fHeight),
         1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
         D2D1::RectF(fSrcX, 0.f, fSrcX + m_tIsoInfo.fCX, m_tIsoInfo.fCY)
     );
@@ -83,23 +93,67 @@ void CNPC::Render_NameTag(ID2D1RenderTarget* pRT)
 
     POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
         m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+    
+    int len = lstrlen(m_szName);
+    float fWidth = max(60.f, len * 14.f);  // 글자당 대략 14px
+    float fHeight = 20.f;
 
-    float fNameX = tScreen.x - 40.f;
-    float fNameY = tScreen.y - m_tIsoInfo.fCY - m_tIsoInfo.fHeight - 20.f;
+    float fNameX = tScreen.x - fWidth / 2.f;
+    float fNameY = tScreen.y - m_tIsoInfo.fCY - m_tIsoInfo.fHeight + 30.f;
 
     ID2D1SolidColorBrush* pBg = nullptr;
     pRT->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f, 0.5f), &pBg);
     pRT->FillRoundedRectangle(
         D2D1::RoundedRect(
-            D2D1::RectF(fNameX, fNameY, fNameX + 80.f, fNameY + 18.f), 4.f, 4.f),
+            D2D1::RectF(fNameX + 20.f, fNameY - 30., fNameX + fWidth-10.f, fNameY + fHeight-30.f), 4.f, 4.f),
         pBg);
 
     ID2D1SolidColorBrush* pText = nullptr;
     pRT->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &pText);
     pRT->DrawText(m_szName, lstrlen(m_szName),
         CImg_Manager::Get_Instance()->Get_DebugFont(),
-        D2D1::RectF(fNameX, fNameY, fNameX + 80.f, fNameY + 18.f),
+        D2D1::RectF(fNameX+20.f, fNameY-30.f, fNameX + 80.f, fNameY + 18.f),
         pText);
+
+    pBg->Release();
+    pText->Release();
+}
+
+void CNPC::Render_Bubble(ID2D1RenderTarget* pRT)
+{
+    if (!m_bShowBubble) return;
+
+    POINT tScreen = CCamera::Get_Instance()->IsoWorldToScreen(
+        m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ);
+
+    float fX = tScreen.x;
+    float fY = tScreen.y - m_tIsoInfo.fCY - m_tIsoInfo.fHeight - 40.f;
+
+    float fWidth = 140.f;
+    float fHeight = 30.f;
+
+    //배경
+    ID2D1SolidColorBrush* pBg = nullptr;
+    pRT->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f, 0.7f), &pBg);
+
+    pRT->FillRoundedRectangle(
+        D2D1::RoundedRect(
+            D2D1::RectF(fX - fWidth / 2, fY, fX + fWidth / 2, fY + fHeight),
+            6.f, 6.f),
+        pBg
+    );
+
+    // 텍스트
+    ID2D1SolidColorBrush* pText = nullptr;
+    pRT->CreateSolidColorBrush(D2D1::ColorF(1.f, 1.f, 1.f), &pText);
+
+    pRT->DrawText(
+        m_szBubbleText,
+        lstrlen(m_szBubbleText),
+        CImg_Manager::Get_Instance()->Get_DebugFont(),
+        D2D1::RectF(fX - fWidth / 2, fY, fX + fWidth / 2, fY + fHeight),
+        pText
+    );
 
     pBg->Release();
     pText->Release();

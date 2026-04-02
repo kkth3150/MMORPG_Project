@@ -1,13 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-enum NPC_TYPE
-{
-    NPC_SHOP,
-    NPC_QUEST,
-    NPC_GUARD,
-    NPC_END
-};
 
 enum NPC_STATE
 {
@@ -53,6 +46,7 @@ protected:
     // 공통 렌더 헬퍼 - 하위에서 호출
     void Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap);
     void Render_NameTag(ID2D1RenderTarget* pRT);    // 이름표
+    void Render_Bubble(ID2D1RenderTarget* pRT);
     void Render_Indicator(ID2D1RenderTarget* pRT);  // ! 또는 ? 아이콘
 
 private:
@@ -64,10 +58,12 @@ protected:
     NPC_STATE   m_eState = NPC_IDLE;
     TCHAR m_szName[64] = {};
 
+ 
 
     bool        m_bInteractable = false;  // 상호작용 가능 여부
     bool        m_bClick = false;
     float       m_fInteractRange = 2.f;  // 상호작용 가능 거리
+
 
     // 말풍선
     bool        m_bShowBubble = false;

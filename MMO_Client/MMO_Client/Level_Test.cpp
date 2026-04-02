@@ -23,15 +23,15 @@ void CLevel_Test::Initialize()
 
 	CImg_Manager::Get_Instance()->Insert_Png(
 		L"../Resource/background/TestMap.png", L"BACKGROUND");
-	CMap_Manager::Get_Instance()->Create_Map(30, 30);
 
+	CMap_Manager::Get_Instance()->Initialize();
 	Ready_Player();
-	Ready_NPC();
 
 }
 
 int CLevel_Test::Update(float dt)
 {
+	CMap_Manager::Get_Instance()->Update();
 	CCamera::Get_Instance()->Update(dt);
 	CObject_Manager::Get_Instance()->Update(dt);
 	return OBJ_NOEVENT;
@@ -44,16 +44,37 @@ void CLevel_Test::Late_Update(float dt)
 
 void CLevel_Test::Render(ID2D1RenderTarget* pRT)
 {
-
-	//ID2D1Bitmap* pBg = CImg_Manager::Get_Instance()->Find_Png(L"BACKGROUND");
-	//if (pBg)
-	//{
-	//	pRT->DrawBitmap(pBg, D2D1::RectF(0.f, 0.f, (float)WINCX, (float)WINCY));
-	//}
+	if (CMap_Manager::Get_Instance()->Is_Loading())
+	{
+		Render_Loading(pRT);
+		return;
+	}
 	CMap_Manager::Get_Instance()->Render(pRT);
 	CObject_Manager::Get_Instance()->Render(pRT);
 	CInput_Manager::Get_Instance()->Render_Cursor(pRT);
 
+}
+
+void CLevel_Test::Render_Loading(ID2D1RenderTarget* pRT)
+{
+	pRT->Clear(D2D1::ColorF(0.f, 0.f, 0.f));
+
+	float fProgress = CMap_Manager::Get_Instance()->Get_LoadProgress();
+	float barW = 400.f, barH = 20.f;
+	float barX = (WINCX - barW) / 2.f;
+	float barY = WINCY / 2.f;
+
+	ID2D1SolidColorBrush* pBrush = nullptr;
+
+	// 배경 바
+	pRT->CreateSolidColorBrush(D2D1::ColorF(0.3f, 0.3f, 0.3f), &pBrush);
+	pRT->FillRectangle(D2D1::RectF(barX, barY, barX + barW, barY + barH), pBrush);
+	pBrush->Release();
+
+	// 진행 바
+	pRT->CreateSolidColorBrush(D2D1::ColorF(0.2f, 0.8f, 0.2f), &pBrush);
+	pRT->FillRectangle(D2D1::RectF(barX, barY, barX + barW * fProgress, barY + barH), pBrush);
+	pBrush->Release();
 }
 
 void CLevel_Test::Release(void)
@@ -99,22 +120,4 @@ void CLevel_Test::Ready_Player()
 	CCamera::Get_Instance()->Set_Target(pPlayer);
 }
 
-void CLevel_Test::Ready_NPC() {
 
-	CImg_Manager::Get_Instance()->Insert_Png(
-		L"../Resource/NPC/Traders/Trader0_Idle.png", L"TRADER0_IDLE");
-	CImg_Manager::Get_Instance()->Insert_Png(
-		L"../Resource/NPC/Traders/Trader0_Talk.png", L"TRADER0_TALK");
-	CImg_Manager::Get_Instance()->Insert_Png(
-		L"../Resource/NPC/Traders/Trader1_Idle.png", L"TRADER1_IDLE");
-	CImg_Manager::Get_Instance()->Insert_Png(
-		L"../Resource/NPC/Traders/Trader1_Talk.png", L"TRADER1_TALK");
-
-	CNPC_Shop* pNpcShop0 = new CNPC_Shop;
-	pNpcShop0->Set_ShopType(SHOP_TRADER_0);
-	pNpcShop0->Set_WorldPos(15.f,15.f);
-	pNpcShop0->Initialize();
-	CObject_Manager::Get_Instance()->Add_Object(OBJ_NPC, pNpcShop0);
-
-
-}

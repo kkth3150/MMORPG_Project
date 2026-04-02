@@ -29,8 +29,8 @@ public:
     virtual void Render(ID2D1RenderTarget* pRT) override;
     virtual void Release()                      override;
 
-    virtual void On_Click()    override;
-    virtual void On_Interact() override;
+    virtual void On_Click()                     override;
+    virtual void On_Interact()                  override;
 
 public:
     void Set_ShopType(SHOP_TYPE eType) { m_eShopType = eType; }

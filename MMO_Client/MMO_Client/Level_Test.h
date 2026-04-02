@@ -13,12 +13,13 @@ public:
 	virtual int Update(float dt)						override;
 	virtual void Late_Update(float dt)					override;
 	virtual void Render(ID2D1RenderTarget* pRT)			override;
+	void Render_Loading(ID2D1RenderTarget* pRT);
 	virtual void Release(void)							override;
 
 private:
 
 	void Ready_Player();
-	void Ready_NPC();
+
 
 };
 

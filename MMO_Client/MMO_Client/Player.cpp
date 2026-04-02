@@ -3,6 +3,7 @@
 #include "Img_Manager.h"
 #include "Input_Manager.h"
 #include "Camera.h"
+#include "Map_Manager.h"
 
 CPlayer::CPlayer()
 {
@@ -212,15 +213,33 @@ void CPlayer::Key_Input(float dt)
 	if (CInput_Manager::Get_Instance()->Key_Down(VK_LBUTTON))
 	{
 		POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+
+		float fWorldX, fWorldZ;
 		CCamera::Get_Instance()->ScreenToIsoWorld(
 			tMouse.x, tMouse.y,
-			m_fDestWorldX, m_fDestWorldZ);
+			fWorldX, fWorldZ);
 
-		m_tClickEffect.fWorldX = m_fDestWorldX;
-		m_tClickEffect.fWorldZ = m_fDestWorldZ;
+		int iTileX = (int)floorf(fWorldX);
+		int iTileZ = (int)floorf(fWorldZ);
+
+		if (!CMap_Manager::Get_Instance()->Is_Movable(iTileX, iTileZ))
+		{
+			return;
+		}
+
+		m_fDestWorldX = fWorldX;
+		m_fDestWorldZ = fWorldZ;
+
+		m_tClickEffect.fWorldX = fWorldX;
+		m_tClickEffect.fWorldZ = fWorldZ;
 		m_tClickEffect.fScale = 1.f;
 		m_tClickEffect.bActive = true;
-		m_tClickEffect.color = D2D1::ColorF(0.f, 1.f, 0.f, 1.f); // R G B A
+		m_tClickEffect.color = D2D1::ColorF(0.f, 1.f, 0.f, 1.f);
+
+		m_bMoving = true;
+
+		if (m_eCurState != PLAYER_WALK)
+			Motion_Change(PLAYER_WALK);
 
 #ifdef GAME_DEBUG
 		m_iDebugTileX = (int)floorf(m_fDestWorldX);
@@ -228,11 +247,6 @@ void CPlayer::Key_Input(float dt)
 		m_fDebugLocalX = m_fDestWorldX - (float)m_iDebugTileX;
 		m_fDebugLocalZ = m_fDestWorldZ - (float)m_iDebugTileZ;
 #endif
-
-		m_bMoving = true;
-
-		if (m_eCurState != PLAYER_WALK)
-			Motion_Change(PLAYER_WALK);
 	}
 
 	if (m_bMoving)

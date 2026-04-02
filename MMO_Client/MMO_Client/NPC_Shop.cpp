@@ -16,12 +16,12 @@ void CNPC_Shop::Initialize()
 
     m_eType = NPC_SHOP;
     m_eShopState = SHOP_IDLE;
-
+    m_fScale = 1.3f;
     // 트레이더 타입에 따라 스프라이트 크기 설정
     switch (m_eShopType)
     {
     case SHOP_TRADER_0:
-        Set_NpcName(L"상인 0");
+        Set_NpcName(L"상인");
         m_tIsoInfo.fCX = 107.f;
         m_tIsoInfo.fCY = 71.f;
         m_tIsoInfo.fHeight = 20.f;
@@ -38,7 +38,12 @@ void CNPC_Shop::Initialize()
     // 플레이어 범위 체크용 콜리더
     Set_Collider(1.5f, 1.5f);
     // 마우스 클릭용 직교 박스
-    Set_MouseCollider(0.f, 0.f, m_tIsoInfo.fCX, m_tIsoInfo.fCY);
+    Set_MouseCollider(
+        0.f,
+        0.f,
+        m_tIsoInfo.fCX,
+        m_tIsoInfo.fCY
+    );
     // IDLE 상태 기본 프레임
     Motion_Change(SHOP_IDLE);
 }
@@ -53,8 +58,20 @@ void CNPC_Shop::Motion_Change(SHOP_STATE eState)
     case SHOP_TRADER_0:
         switch (eState)
         {
-        case SHOP_IDLE: Set_Frame(5, 120); break;  // 6ea → 0~5
-        case SHOP_TALK: Set_Frame(8, 100); break;  // 9ea → 0~8
+            case SHOP_IDLE:
+            {
+                Set_Frame(5, 120);
+
+                m_bLoopAnim = true;
+            }
+                break;  // 6ea → 0~5
+            case SHOP_TALK:
+            {
+                Set_Frame(8, 100);  // 9ea → 0~8
+                m_bLoopAnim = false;
+                
+            }
+            break;
         }
         break;
 
@@ -91,6 +108,13 @@ const TCHAR* CNPC_Shop::Get_TalkKey() const
 int CNPC_Shop::Update(float dt)
 {
     __super::Update(dt);
+    if (m_eShopState == SHOP_TALK && !m_bLoopAnim)
+    {
+        if (m_tFrame.iFrameStart == m_tFrame.iFrameEnd)
+        {
+            Motion_Change(SHOP_IDLE);
+        }
+    }
     return OBJ_NOEVENT;
 }
 
@@ -133,6 +157,9 @@ void CNPC_Shop::On_Click()
 
     // 추후: CUI_Manager::Get_Instance()->Open_Shop(m_eShopType);
 }
+
+
+
 
 void CNPC_Shop::On_Interact()
 {
