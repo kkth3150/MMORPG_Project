@@ -6,6 +6,9 @@
 #include <vector>
 #include <cmath>
 
+#include <thread>
+#include <chrono>
+
 #include <windows.h>
 #include <TCHAR.h>
 #include <timeapi.h>

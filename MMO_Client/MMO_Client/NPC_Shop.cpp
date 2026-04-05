@@ -35,16 +35,14 @@ void CNPC_Shop::Initialize()
         break;
     }
 
-    // 플레이어 범위 체크용 콜리더
     Set_Collider(1.5f, 1.5f);
-    // 마우스 클릭용 직교 박스
     Set_MouseCollider(
         0.f,
         0.f,
         m_tIsoInfo.fCX,
         m_tIsoInfo.fCY
     );
-    // IDLE 상태 기본 프레임
+
     Motion_Change(SHOP_IDLE);
 }
 
@@ -61,7 +59,6 @@ void CNPC_Shop::Motion_Change(SHOP_STATE eState)
             case SHOP_IDLE:
             {
                 Set_Frame(5, 120);
-
                 m_bLoopAnim = true;
             }
                 break;  // 6ea → 0~5

@@ -106,6 +106,7 @@ protected:
 	float		m_fSpeed;
 	float		m_fAngle;
 	int			m_iHp;
+	int			m_iMaxHp;
 	int			m_iAttack;
 	float		m_fSpeed_Y;
 

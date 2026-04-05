@@ -16,6 +16,59 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
+
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_B.png", L"PLAYER_IDLE_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_LB.png", L"PLAYER_IDLE_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_L.png", L"PLAYER_IDLE_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_LT.png", L"PLAYER_IDLE_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_T.png", L"PLAYER_IDLE_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_RT.png", L"PLAYER_IDLE_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_R.png", L"PLAYER_IDLE_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/idle/idle_RB.png", L"PLAYER_IDLE_RB");
+
+#pragma endregion PLAYER IDLE
+
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_B.png", L"PLAYER_WALK_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_LB.png", L"PLAYER_WALK_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_L.png", L"PLAYER_WALK_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_LT.png", L"PLAYER_WALK_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_T.png", L"PLAYER_WALK_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_RT.png", L"PLAYER_WALK_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_R.png", L"PLAYER_WALK_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_RB.png", L"PLAYER_WALK_RB");
+
+#pragma endregion PLAYER WALK
+
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_B.png", L"PLAYER_WALK_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_LB.png", L"PLAYER_WALK_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_L.png", L"PLAYER_WALK_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_LT.png", L"PLAYER_WALK_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_T.png", L"PLAYER_WALK_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_RT.png", L"PLAYER_WALK_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_R.png", L"PLAYER_WALK_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/walk/walk_RB.png", L"PLAYER_WALK_RB");
+
+#pragma endregion PLAYER WALK
+
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_B.png", L"PLAYER_ATTACK_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_LB.png", L"PLAYER_ATTACK_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_L.png", L"PLAYER_ATTACK_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_LT.png", L"PLAYER_ATTACK_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_T.png", L"PLAYER_ATTACK_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_RT.png", L"PLAYER_ATTACK_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_R.png", L"PLAYER_ATTACK_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/attack/attack_RB.png", L"PLAYER_ATTACK_RB");
+
+#pragma endregion PLAYER ATTACK
+
 	Motion_Change(PLAYER_IDLE);
 	Direction_Change(DIR_B);
 	Set_Collider(0.2f, 0.2f);
@@ -49,6 +102,7 @@ void CPlayer::Render(ID2D1RenderTarget* pRT)
 	case PLAYER_DEAD:   RenderDEAD(pRT);   break;
 	default: break;
 	}
+
 	Render_ClickEffect(pRT);
 #ifdef GAME_DEBUG
 	Debug_Render(pRT);
@@ -187,6 +241,10 @@ void CPlayer::Motion_Change(PLAYER_STATE eState)
 		break;
 
 	case PLAYER_ATTACK:
+		m_tIsoInfo.fCX = 160.f;
+		m_tIsoInfo.fCY = 128.f;
+		m_tIsoInfo.fHeight = 30.f;
+		Set_Frame(15, 30);
 		break;
 
 	case PLAYER_HIT:

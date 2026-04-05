@@ -131,7 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Monster_Orc.cpp" />
     <ClCompile Include="NPC_Shop.cpp" />
     <ClCompile Include="Img_Manager.cpp" />
     <ClCompile Include="Level_Test.cpp" />
@@ -139,6 +142,7 @@
     <ClCompile Include="MyPng.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="Network_Manager.cpp" />
@@ -168,7 +172,10 @@
     <ClCompile Include="Zone_Town.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Monster_Orc.h" />
     <ClInclude Include="NPC_Shop.h" />
     <ClInclude Include="Img_Manager.h" />
     <ClInclude Include="Level_Test.h" />
@@ -176,6 +183,7 @@
     <ClInclude Include="MyPng.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Portal.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="Network_Manager.h" />
