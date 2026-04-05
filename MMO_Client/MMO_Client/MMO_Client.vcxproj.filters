@@ -91,6 +91,18 @@
     <ClCompile Include="Zone_Town.cpp">
       <Filter>08.Map_Manager\Zone\08_01.Zone_Town</Filter>
     </ClCompile>
+    <ClCompile Include="ActiveObject.cpp">
+      <Filter>05.Object_Manager\Objects\05_03.ActiveObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>05.Object_Manager\Objects\05_03.ActiveObjects\01.Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>05.Object_Manager\Objects\05_02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster_Orc.cpp">
+      <Filter>05.Object_Manager\Objects\05_02.Monster\01.Orc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -189,6 +201,18 @@
     <Filter Include="08.Map_Manager\Zone\08_01.Zone_Town">
       <UniqueIdentifier>{904867dc-4992-46ef-874e-ff941efd6d88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_02.Monster">
+      <UniqueIdentifier>{07ddca62-e5d5-48a7-ade0-969fda6a6e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_03.ActiveObjects">
+      <UniqueIdentifier>{886f5563-ad92-4164-9c0f-061c006912d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_03.ActiveObjects\01.Portal">
+      <UniqueIdentifier>{1d1ce3dc-dba5-4e70-ad43-20a0aa8ac550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\Objects\05_02.Monster\01.Orc">
+      <UniqueIdentifier>{ed52a3f0-9b22-47fe-bb22-f998856c6103}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainApp.h">
@@ -280,6 +304,18 @@
     </ClInclude>
     <ClInclude Include="Zone_Town.h">
       <Filter>08.Map_Manager\Zone\08_01.Zone_Town</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveObject.h">
+      <Filter>05.Object_Manager\Objects\05_03.ActiveObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>05.Object_Manager\Objects\05_03.ActiveObjects\01.Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>05.Object_Manager\Objects\05_02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster_Orc.h">
+      <Filter>05.Object_Manager\Objects\05_02.Monster\01.Orc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

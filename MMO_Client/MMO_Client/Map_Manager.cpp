@@ -21,6 +21,9 @@ void CMap_Manager::Update()
     std::lock_guard<std::mutex> lock(m_ZoneMutex);
 
     ZONE_ID ePrevID = Get_CurZoneID();
+    if (m_pCurZone)
+        m_pCurZone->Clear_Objects();
+
     m_pCurZone = m_pPendingZone;
     m_pPendingZone = nullptr;
 
@@ -79,14 +82,19 @@ void CMap_Manager::Change_Zone_Async(ZONE_ID eID)
 
     std::thread([this, eID]()
         {
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
             m_fLoadProgress.store(0.2f);
+
             Load_Zone(eID);
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
             m_fLoadProgress.store(0.9f);
             {
                 std::lock_guard<std::mutex> lock(m_ZoneMutex);
                 m_pPendingZone = m_vecZone[eID];
             }
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
             m_fLoadProgress.store(1.f);
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));
             m_bLoading.store(false);
         }).detach();
 }

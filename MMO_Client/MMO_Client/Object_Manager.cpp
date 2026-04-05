@@ -45,6 +45,10 @@ int CObject_Manager::Update(float dt)
 		m_ObjectList[OBJ_PLAYER],
 		m_ObjectList[OBJ_NPC]
 	);
+	CCollision_Manager::Get_Instance()->Collision_RectEx(
+		m_ObjectList[OBJ_PLAYER],
+		m_ObjectList[OBJ_PORTAL]
+	);
 	return OBJ_NOEVENT;
 }
 

@@ -4,6 +4,8 @@
 #include "Img_Manager.h"
 #include "Object_Manager.h"
 #include "NPC_Shop.h"
+#include "Portal.h"
+#include "Monster_Orc.h"
 
 void CZone_Test::Build()
 {
@@ -25,21 +27,21 @@ void CZone_Test::Build()
     static const int BLOCK_MAP[30][20] =
     {
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
-        { 0,1,1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,1,1,0 },
-        { 0,1,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,1,0 },
-        { 0,0,0,0,0,1,1,0,0,0, 0,0,0,1,1,0,0,0,0,0 },
-        { 0,0,0,0,0,1,1,0,0,0, 0,0,0,1,1,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
-        { 0,0,0,1,1,1,0,0,0,0, 0,0,0,0,1,1,1,0,0,0 },
-        { 0,0,0,1,0,0,0,0,0,0, 0,0,0,0,0,0,1,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
-        { 0,0,0,0,0,0,0,0,1,1, 1,1,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
-        { 0,1,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,1,0 },
-        { 0,1,1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,1,1,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,1,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
+        { 0,1,1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,1,1,0,0,0,0, 0,0,0,0,1,1,0,0,0,0 },
         { 0,0,0,0,1,1,0,0,0,0, 0,0,0,0,1,1,0,0,0,0 },
@@ -84,11 +86,22 @@ void CZone_Test::Spawn_Objects()
     pImg->Insert_Png(L"../Resource/NPC/Traders/Trader0_Idle.png", L"TRADER0_IDLE");
     pImg->Insert_Png(L"../Resource/NPC/Traders/Trader0_Talk.png", L"TRADER0_TALK");
 
-    // NPC 생성 → Object_Manager 등록
+
     CNPC_Shop* pNPC = new CNPC_Shop;
-    pNPC->Set_WorldPos(10.f, 10.f);
+    pNPC->Set_WorldPos(15.f, 10.f);
     pNPC->Initialize();
     CObject_Manager::Get_Instance()->Add_Object(OBJ_NPC, pNPC);
+
+    CPortal* pPortal = new CPortal;
+    pPortal->Set_WorldPos(10.f, 10.f);
+    pPortal->Set_TargetZone(ZONE_TOWN, 10.f, 28.f);  // 마을 남쪽 스폰
+    pPortal->Initialize();
+    CObject_Manager::Get_Instance()->Add_Object(OBJ_PORTAL, pPortal);
+
+    CMonster_Orc* pMonster_Orc = new CMonster_Orc;
+    pMonster_Orc->Set_WorldPos(7.f, 7.f);
+    pMonster_Orc->Initialize();
+    CObject_Manager::Get_Instance()->Add_Object(OBJ_MONSTER, pMonster_Orc);
 }
 
 void CZone_Test::Clear_Objects()
