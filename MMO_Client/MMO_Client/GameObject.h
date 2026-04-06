@@ -43,7 +43,13 @@ public:
 	ISO_INFO    Get_IsoInfo() { return m_tIsoInfo; }
 	bool		Get_Dead() { return m_bDead; }
 	int			Get_HP() { return m_iHp; };
-	void		Set_Hp(int iAtk) { m_iHp -= iAtk; };
+	void		Add_Hp(int iHp) {
+		m_iHp += iHp;
+		if (m_iHp > m_iMaxHp) {
+			m_iHp = m_iMaxHp;
+		}
+	};
+	void		Set_Hp(int iHp) { m_iHp = iHp; };
 	int			Get_Atk() { return m_iAttack; }
 
 	void Set_Collider(float fRadiusX, float fRadiusZ,

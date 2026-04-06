@@ -25,7 +25,7 @@ void CMonster_Orc::Initialize()
 
     Set_Collider(0.6f, 0.6f);
     Set_MonsterName(L"±è»óÈ¿");
-    Set_MouseCollider(0.f,0.f, m_tIsoInfo.fCX, m_tIsoInfo.fCY);
+    Set_MouseCollider(0.f, 0.f, m_tIsoInfo.fCX, m_tIsoInfo.fCY);
     Motion_Change(MON_IDLE);
 }
 
@@ -132,39 +132,39 @@ void CMonster_Orc::Motion_Change(MONSTER_STATE eState)
     switch (eState)
     {
     case MON_IDLE: {
-        Set_Frame(7, 200); 
-        m_bLoopAnim = true;  
+        Set_Frame(7, 200);
+        m_bLoopAnim = true;
         m_tIsoInfo.fCX = 133.f;
         m_tIsoInfo.fCY = 130.f;
         m_tIsoInfo.fHeight = 30.f;
     }
-        break;
+                 break;
     case MON_WALK:
     {
-        Set_Frame(7, 120); 
-        m_bLoopAnim = true;  
+        Set_Frame(7, 120);
+        m_bLoopAnim = true;
         m_tIsoInfo.fCX = 157.f;
         m_tIsoInfo.fCY = 141.f;
         m_tIsoInfo.fHeight = 30.f;
     }
     break;
     case MON_ATTACK_0: {
-        Set_Frame(14, 100); 
+        Set_Frame(14, 100);
         m_tIsoInfo.fCX = 151.f;
         m_tIsoInfo.fCY = 146.f;
         m_tIsoInfo.fHeight = 30.f;
-        m_bLoopAnim = false; 
+        m_bLoopAnim = false;
     }
-        break;
+                     break;
     case MON_ATTACK_1:
     {
-        Set_Frame(14, 100); 
+        Set_Frame(14, 100);
         m_tIsoInfo.fCX = 220.f;
         m_tIsoInfo.fCY = 216.f;
         m_tIsoInfo.fHeight = 30.f;
         m_bLoopAnim = false;
     }
-        break;
+    break;
     case MON_HIT: {
 
         Set_Frame(6, 80);
@@ -173,16 +173,16 @@ void CMonster_Orc::Motion_Change(MONSTER_STATE eState)
         m_tIsoInfo.fHeight = 30.f;
         m_bLoopAnim = false;
     }
-        break;
+                break;
     case MON_DEAD: {
-        Set_Frame(22, 150); 
+        Set_Frame(22, 150);
         m_tIsoInfo.fCX = 325.f;
         m_tIsoInfo.fCY = 206.f;
         m_tIsoInfo.fHeight = 30.f;
-        m_bLoopAnim = false; 
+        m_bLoopAnim = false;
     }
 
-        break;
+                 break;
     default:
         break;
     }
@@ -287,4 +287,3 @@ void CMonster_Orc::Debug_DrawMouseCollider(ID2D1RenderTarget* pRT) {
     pBrush->Release();
 }
 #endif 
-

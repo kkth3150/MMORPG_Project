@@ -133,6 +133,10 @@
   <ItemGroup>
     <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ItemData_Potion.cpp" />
+    <ClCompile Include="ItemData_Scroll.cpp" />
+    <ClCompile Include="ItemData_UseItem.cpp" />
+    <ClCompile Include="ItemData.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster_Orc.cpp" />
     <ClCompile Include="NPC_Shop.cpp" />
@@ -174,6 +178,11 @@
   <ItemGroup>
     <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ItemData_Potion.h" />
+    <ClInclude Include="ItemData_Scroll.h" />
+    <ClInclude Include="ItemData_UseItem.h" />
+    <ClInclude Include="ItemData.h" />
+    <ClInclude Include="Item_define.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster_Orc.h" />
     <ClInclude Include="NPC_Shop.h" />
