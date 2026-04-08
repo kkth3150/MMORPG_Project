@@ -11,7 +11,7 @@ public:
 	void		Add_UI(UI_ID eID, CUI* pUI);
 	int			Update(float dt);
 	void		Late_Update(float dt);
-	void		Render(HDC hDC);
+	void		Render(ID2D1RenderTarget* pRT);
 	void		Release(void);
 
 public:

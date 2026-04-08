@@ -8,14 +8,14 @@ public:
 	virtual ~CUI();
 
 public:
-	virtual void Initialize()				PURE;
-	virtual int	 Update(float dt)			PURE;
-	virtual void Late_Update(float dt)		PURE;
-	virtual void Render(HDC hDC)			PURE;
-	virtual void Release(void)				PURE;
+	virtual void Initialize()							PURE;
+	virtual int	 Update(float dt)						PURE;
+	virtual void Late_Update(float dt)					PURE;
+	virtual void Render(ID2D1RenderTarget* pRT)			PURE;
+	virtual void Release(void)							PURE;
 
 public:
-	virtual void Process_Event()			PURE;
+	virtual void Process_Event()						PURE;
 
 	void Set_Pos(float _fX, float _fY)
 	{

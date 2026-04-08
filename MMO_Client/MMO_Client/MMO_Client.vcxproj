@@ -157,6 +157,7 @@
     <ClCompile Include="Collision_Manager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UI_Inventory.cpp" />
     <ClCompile Include="UI_Manager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level_Choice.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Inventory.h" />
     <ClInclude Include="UI_Manager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level_Choice.h" />
