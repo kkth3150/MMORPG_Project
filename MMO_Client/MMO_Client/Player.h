@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "Inventory.h"
+#include "Equipment.h"
 
 #define PLAYER_FOOT_OFFSET_Y 0.5f
 
@@ -51,6 +53,23 @@ private:
     float        m_fDestWorldX = 0.f;
     float        m_fDestWorldZ = 0.f;
     bool         m_bMoving = false;
+
+public:
+    // 아이템 관련
+    void        Use_Item(int iSlot);
+    void        Equip_Item(int iSlot);
+    void        UnEquip_Item(EQUIP_SLOT eSlot);
+
+    CInventory* Get_Inventory() const { return m_pInventory; }
+    CEquipment* Get_Equipment() const { return m_pEquipment; }
+
+    int         Get_TotalAtk() const { return m_iAttack + m_pEquipment->Get_TotalAtk(); }
+    int         Get_TotalDef() const { return m_iDef + m_pEquipment->Get_TotalDef(); }
+
+private:
+
+    CInventory* m_pInventory = nullptr;
+    CEquipment* m_pEquipment = nullptr;
 
 #ifdef GAME_DEBUG
 private:

@@ -4,6 +4,9 @@
 #include "Input_Manager.h"
 #include "Camera.h"
 #include "Map_Manager.h"
+#include "ItemData_Potion.h"
+#include "ItemData_Equipment.h"
+
 
 CPlayer::CPlayer()
 {
@@ -69,6 +72,15 @@ void CPlayer::Initialize()
 
 #pragma endregion PLAYER ATTACK
 
+	m_pInventory = new CInventory;
+	m_pEquipment = new CEquipment;
+	m_iHp = 100;
+	m_iMaxHp = 100;
+	m_iMp = 100;
+	m_iMaxMp = 100;
+	m_iAttack = 10;
+	m_iDef = 5;
+
 	Motion_Change(PLAYER_IDLE);
 	Direction_Change(DIR_B);
 	Set_Collider(0.2f, 0.2f);
@@ -111,6 +123,8 @@ void CPlayer::Render(ID2D1RenderTarget* pRT)
 
 void CPlayer::Release(void)
 {
+	if (m_pInventory) { delete m_pInventory; m_pInventory = nullptr; }
+	if (m_pEquipment) { delete m_pEquipment; m_pEquipment = nullptr; }
 }
 
 
@@ -264,8 +278,6 @@ void CPlayer::Direction_Change(DIRECTION eDir)
 	m_tFrame.iFrameStart = 0;
 }
 
-// ===================== 입력/이동 =====================
-
 void CPlayer::Key_Input(float dt)
 {
 	if (CInput_Manager::Get_Instance()->Key_Down(VK_LBUTTON))
@@ -309,7 +321,41 @@ void CPlayer::Key_Input(float dt)
 
 	if (m_bMoving)
 		Move_To_Dest(dt);  // dt 전달
+
+	if (CInput_Manager::Get_Instance()->Key_Down('I'))
+	{
+		CItemData_Potion* pPotion = new CItemData_Potion;
+		pPotion->Set_PotionType(POTION_HP);
+		m_pInventory->Add_Item(pPotion);
+	}
+
+	// O : 한손검 인벤토리에 추가
+	if (CInput_Manager::Get_Instance()->Key_Down('O'))
+	{
+		CItemData_Equipment* pEquip = new CItemData_Equipment;
+		pEquip->Set_EquipType(EQUIP_SWORD);
+		m_pInventory->Add_Item(pEquip);
+	}
+
+	// U : 0번 슬롯 아이템 사용
+	if (CInput_Manager::Get_Instance()->Key_Down('U'))
+	{
+		Use_Item(0);
+	}
+
+	// P : 0번 슬롯 장비 장착
+	if (CInput_Manager::Get_Instance()->Key_Down('P'))
+	{
+		Equip_Item(0);
+	}
+
+	// L : 무기 슬롯 해제
+	if (CInput_Manager::Get_Instance()->Key_Down('L'))
+	{
+		UnEquip_Item(SLOT_WEAPON);
+	}
 }
+
 void CPlayer::Move_To_Dest(float dt)
 {
 	float fDX = m_fDestWorldX - m_tIsoInfo.fWorldX;
@@ -357,7 +403,6 @@ void CPlayer::Decide_Direction(float fNX, float fNZ)
 	if (eNewDir != m_eDir)
 		Direction_Change(eNewDir);
 }
-
 void CPlayer::Update_ClickEffect(float dt)
 {
 	if (!m_tClickEffect.bActive) return;
@@ -370,8 +415,49 @@ void CPlayer::Update_ClickEffect(float dt)
 	}
 }
 
+void CPlayer::Use_Item(int iSlot)
+{
+	CItemData* pItem = m_pInventory->Get_Item(iSlot);
+	if (!pItem || pItem->Get_Type() != ITEM_USE) return;
 
+	CItemData_UseItem* pUse = dynamic_cast<CItemData_UseItem*>(pItem);
+	pUse->Use_Item(this);   // 효과 적용
 
+	// 수량 감소 or 슬롯 제거
+	if (m_pInventory->Get_StackCount(iSlot) > 1)
+	{
+		m_pInventory->Decrease_Stack(iSlot);
+	}
+	else
+	{
+		CItemData* pRemoved = m_pInventory->Remove_Item(iSlot);
+		delete pRemoved;
+	}
+}
+
+void CPlayer::Equip_Item(int iSlot)
+{
+	CItemData* pItem = m_pInventory->Get_Item(iSlot);
+	if (!pItem || pItem->Get_Type() != ITEM_EQUIPMENT) return;
+
+	CItemData_Equipment* pEquip = dynamic_cast<CItemData_Equipment*>(pItem);
+	EQUIP_SLOT eSlot = pEquip->Get_EquipSlot();
+
+	// 인벤토리에서 소유권 꺼냄
+	m_pInventory->Remove_Item(iSlot);
+
+	// 기존 아이템 있으면 인벤토리로 반환
+	CItemData_Equipment* pPrev = m_pEquipment->Equip(eSlot, pEquip);
+	if (pPrev)
+		m_pInventory->Add_Item(pPrev);
+}
+
+void CPlayer::UnEquip_Item(EQUIP_SLOT eSlot)
+{
+	CItemData_Equipment* pItem = m_pEquipment->UnEquip(eSlot);
+	if (pItem)
+		m_pInventory->Add_Item(pItem);
+}
 
 #ifdef GAME_DEBUG
 void CPlayer::Debug_Render(ID2D1RenderTarget* pRT)
@@ -466,6 +552,53 @@ void CPlayer::Debug_DrawText(ID2D1RenderTarget* pRT)
 		pFont, D2D1::RectF(10.f, 10.f, 800.f, 30.f), pBrush);
 	pRT->DrawText(szPlayer, wcslen(szPlayer),
 		pFont, D2D1::RectF(10.f, 35.f, 800.f, 55.f), pBrush);
+
+	TCHAR szInven[256];
+	swprintf_s(szInven, 256,
+		L"HP:%d/%d  MP:%d/%d  Gold:%d  ATK:%d  DEF:%d",
+		m_iHp, m_iMaxHp,
+		m_iMp, m_iMaxMp,
+		m_pInventory->Get_Gold(),
+		Get_TotalAtk(),
+		Get_TotalDef());
+
+	// 인벤토리 슬롯 0~4 상태
+	TCHAR szSlot[256] = L"슬롯: ";
+	for (int i = 0; i < 5; ++i)
+	{
+		CItemData* pItem = m_pInventory->Get_Item(i);
+		if (pItem)
+		{
+			TCHAR szTemp[64];
+			swprintf_s(szTemp, 64, L"[%d:%s x%d] ",
+				i, pItem->Get_Name(),
+				m_pInventory->Get_StackCount(i));
+			lstrcat(szSlot, szTemp);
+		}
+		else
+		{
+			TCHAR szTemp[16];
+			swprintf_s(szTemp, 16, L"[%d:빈슬롯] ", i);
+			lstrcat(szSlot, szTemp);
+		}
+	}
+
+	// 장착 상태
+	TCHAR szEquip[128];
+	CItemData_Equipment* pWeapon = m_pEquipment->Get_Equipped(SLOT_WEAPON);
+	CItemData_Equipment* pArmor = m_pEquipment->Get_Equipped(SLOT_ARMOR);
+	swprintf_s(szEquip, 128, L"무기:%s  갑옷:%s",
+		pWeapon ? pWeapon->Get_Name() : L"없음",
+		pArmor ? pArmor->Get_Name() : L"없음");
+
+
+
+	pRT->DrawText(szInven, wcslen(szInven),
+		pFont, D2D1::RectF(10.f, 60.f, 800.f, 80.f), pBrush);
+	pRT->DrawText(szSlot, wcslen(szSlot),
+		pFont, D2D1::RectF(10.f, 85.f, 1000.f, 105.f), pBrush);
+	pRT->DrawText(szEquip, wcslen(szEquip),
+		pFont, D2D1::RectF(10.f, 110.f, 800.f, 130.f), pBrush);
 
 	pBrush->Release();
 }

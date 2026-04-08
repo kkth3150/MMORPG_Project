@@ -1,0 +1,41 @@
+#pragma once
+#include "Item_Define.h"
+
+
+
+class CItemData;
+
+class CInventory
+{
+public:
+    CInventory() = default;
+    ~CInventory();
+
+public:
+    // ¾ÆÀÌÅÛ
+    bool            Add_Item(CItemData* pItem);         // ºó ½½·Ô or ½ºÅÃ¿¡ Ãß°¡
+    CItemData*      Remove_Item(int iSlot);             // ½½·Ô¿¡¼­ ²¨³¿ (¼ÒÀ¯±Ç ¹ÝÈ¯)
+    CItemData*      Get_Item(int iSlot) const;          // ½½·Ô ÂüÁ¶
+    bool            Is_Empty(int iSlot) const;
+    int             Get_SlotCount() const { return INVEN_SIZE; }
+    int             Get_StackCount(int iSlot) const { return m_iStackCount[iSlot]; }
+    void            Decrease_Stack(int iSlot)
+    {
+        if (m_iStackCount[iSlot] > 0)
+            --m_iStackCount[iSlot];
+    }
+
+    // °ñµå
+    void            Add_Gold(int iAmount);
+    bool            Spend_Gold(int iAmount);            // µ· ºÎÁ·ÇÏ¸é false
+    int             Get_Gold() const { return m_iGold; }
+
+private:
+    int             Find_SameItem(CItemData* pItem);    // ½ºÅÃ °¡´ÉÇÑ ½½·Ô Å½»ö
+    int             Find_EmptySlot();                   // ºó ½½·Ô Å½»ö
+
+private:
+    CItemData* m_aSlot[INVEN_SIZE] = {};
+    int             m_iStackCount[INVEN_SIZE] = {};     // ½½·Ôº° ¼ö·®
+    int             m_iGold = 0;
+};

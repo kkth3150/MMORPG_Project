@@ -243,7 +243,7 @@ void CNPC_Shop::Debug_DrawText(ID2D1RenderTarget* pRT)
 
     pRT->DrawText(szBuf, wcslen(szBuf),
         CImg_Manager::Get_Instance()->Get_DebugFont(),
-        D2D1::RectF(10.f, 60.f, 800.f, 80.f),
+        D2D1::RectF(800.f, 60.f, 1200.f, 80.f),
         pBrush);
 
     pBrush->Release();
