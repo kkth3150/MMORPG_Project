@@ -2,6 +2,11 @@
 #include "define.h"
 #include <TCHAR.h>
 
+#define INVEN_LEFT      0
+#define ITEM_NOEXIST    -1
+#define INVEN_FULL      -1
+#define INVEN_SIZE      20
+
 enum ITEM_TYPE
 {
     ITEM_USE,
@@ -53,4 +58,8 @@ struct EQUIP_DATA
     int             iAtkBonus;
     int             iDefBonus;
     EQUIP_SLOT      eSlot;
+    float           fInvenCX;
+    float           fInvenCY;
+    float           fEquipCX;
+    float           fEquipCY;
 };

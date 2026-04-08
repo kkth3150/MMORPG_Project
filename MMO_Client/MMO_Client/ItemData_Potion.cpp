@@ -3,6 +3,13 @@
 #include "Player.h"
 #include "Object_Manager.h"
 
+static const POTION_DATA s_PotionTable[POTION_END] =
+{
+    { L"HP 포션",  L"ICON_POTION_HP",  50  },   // POTION_HP
+    { L"MP 포션",  L"ICON_POTION_MP",  30  },   // POTION_MP
+};
+
+
 void CItemData_Potion::Set_PotionType(POTION_TYPE eType)
 {
     m_ePotionType = eType;
@@ -14,19 +21,19 @@ void CItemData_Potion::Set_PotionType(POTION_TYPE eType)
     m_eType = ITEM_USE;
 }
 
-void CItemData_Potion::Use_Item()
+void CItemData_Potion::Use_Item(CPlayer* pPlayer)
 {
-
-    CPlayer* pPlayer = dynamic_cast<CPlayer*>(CObject_Manager::Get_Instance()->Get_Player());
-
     switch (m_ePotionType)
     {
     case POTION_HP:
-        pPlayer->Add_Hp(10);
+        pPlayer->Add_Hp(m_iAmount);
         break;
     case POTION_MP:
         break;
     default:
         break;
     }
+    
 }
+
+

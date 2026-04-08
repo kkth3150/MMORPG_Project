@@ -50,7 +50,21 @@ public:
 		}
 	};
 	void		Set_Hp(int iHp) { m_iHp = iHp; };
+
+	int			Get_MP() { return m_iMp; };
+	void		Add_Mp(int iMp) {
+		m_iMp += iMp;
+
+		if (m_iMp > m_iMaxMp) {
+			m_iMp = m_iMaxMp;
+		}
+	};
+	void		Set_Mp(int iMp) { m_iMp = iMp; };
+
 	int			Get_Atk() { return m_iAttack; }
+
+	void		Set_Def(int iDef) { m_iDef = iDef; };
+	int			Get_Def() { return m_iDef; };
 
 	void Set_Collider(float fRadiusX, float fRadiusZ,
 		float fOffsetX = 0.f, float fOffsetZ = 0.f)
@@ -113,7 +127,10 @@ protected:
 	float		m_fAngle;
 	int			m_iHp;
 	int			m_iMaxHp;
+	int         m_iMp;
+	int         m_iMaxMp;
 	int			m_iAttack;
+	int			m_iDef;
 	float		m_fSpeed_Y;
 
 	bool		m_bDeadMotion;

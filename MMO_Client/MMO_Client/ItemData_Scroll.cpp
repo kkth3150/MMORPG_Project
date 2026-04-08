@@ -17,7 +17,7 @@ void CItemData_Scroll::Set_ScrollType(SCROLL_TYPE eType)
     m_eType = ITEM_USE;
 }
 
-void CItemData_Scroll::Use_Item()
+void CItemData_Scroll::Use_Item(CPlayer* pPlayer)
 {
     switch (m_eScrollType)
     {

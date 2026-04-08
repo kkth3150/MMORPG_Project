@@ -133,6 +133,9 @@
   <ItemGroup>
     <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Equipment.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="ItemData_Equipment.cpp" />
     <ClCompile Include="ItemData_Potion.cpp" />
     <ClCompile Include="ItemData_Scroll.cpp" />
     <ClCompile Include="ItemData_UseItem.cpp" />
@@ -178,6 +181,9 @@
   <ItemGroup>
     <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Equipment.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="ItemData_Equipment.h" />
     <ClInclude Include="ItemData_Potion.h" />
     <ClInclude Include="ItemData_Scroll.h" />
     <ClInclude Include="ItemData_UseItem.h" />
