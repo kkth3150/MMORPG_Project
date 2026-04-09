@@ -76,7 +76,8 @@ int CInventory::Find_SameItem(CItemData* pItem)
     {
         if (!m_aSlot[i]) continue;
         if (m_aSlot[i]->Get_Type() == pItem->Get_Type() &&
-            lstrcmp(m_aSlot[i]->Get_Name(), pItem->Get_Name()) == 0)
+            lstrcmp(m_aSlot[i]->Get_Name(), pItem->Get_Name()) == 0 &&
+            m_iStackCount[i] < STACK_FULL)
             return i;
     }
     return ITEM_NOEXIST;

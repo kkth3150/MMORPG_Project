@@ -61,13 +61,13 @@ void CUI_Manager::Late_Update(float dt)
 
 }
 
-void CUI_Manager::Render(HDC hDC)
+void CUI_Manager::Render(ID2D1RenderTarget* pRT)
 {
 	for (size_t i = 0; i < UI_END; ++i)
 	{
 		for (auto& iter : m_UIList[i])
 		{
-			iter->Render(hDC);
+			iter->Render(pRT);
 		}
 	}
 }

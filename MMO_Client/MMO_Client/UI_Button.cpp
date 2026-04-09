@@ -67,7 +67,7 @@ void CUI_Button::Late_Update(float dt)
 {
 }
 
-void CUI_Button::Render(HDC hDC)
+void CUI_Button::Render(ID2D1RenderTarget* pRT)
 {
 	//HDC	hMemDC = CImg_Manager::Get_Instance()->Find_Bmp(m_pFrameKey);
 

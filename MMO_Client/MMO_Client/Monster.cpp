@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "Camera.h"
 #include "Img_Manager.h"
+#include "Input_Manager.h"
 
 void CMonster::Initialize()
 {
@@ -18,6 +19,7 @@ int CMonster::Update(float dt)
     if (m_bDead) return OBJ_DEAD;
     __super::Update_Rect();
     __super::Move_Frame();
+    Update_Cursor();
     return OBJ_NOEVENT;
 }
 
@@ -30,9 +32,6 @@ void CMonster::Render(ID2D1RenderTarget* pRT)
 
 void CMonster::Release() {}
 
-
-// 서버 위치로 선형 보간
-// 서버 패킷이 띄엄띄엄 와도 부드럽게 이동
 void CMonster::Update_Lerp(float dt)
 {
     float fDX = m_fServerX - m_tIsoInfo.fWorldX;
@@ -105,4 +104,13 @@ void CMonster::Render_NameTag(ID2D1RenderTarget* pRT)
             (float)tScreen.x + 40.f, fNameY + 20.f),
         pBrush);
     pBrush->Release();
+}
+
+void CMonster::Update_Cursor()
+{
+    if (!CInput_Manager::Get_Instance()->Is_GameMode()) return;
+
+    POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+    if (Is_MouseCollide(tMouse))
+        CInput_Manager::Get_Instance()->Set_CursorMode(m_eHoverCursor);
 }

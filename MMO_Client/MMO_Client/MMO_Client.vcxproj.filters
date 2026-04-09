@@ -124,6 +124,12 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>05.Object_Manager\GameObjects\05_04.Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="UI_Inventory.cpp">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemData_Etc.cpp">
+      <Filter>05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -261,6 +267,15 @@
     <Filter Include="05.Object_Manager\GameObjects\05_05.Equipment">
       <UniqueIdentifier>{80fb584e-5e4a-4ec4-8518-ae7d4bad4f9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.UI_Manager\UIs\PlayerUI">
+      <UniqueIdentifier>{546d6671-04c9-4520-a0ef-374068257215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.UI_Manager\UIs\PlayerUI\UI_Inventory">
+      <UniqueIdentifier>{ff412bd4-f8ff-4a62-aa96-3a8a8675a6b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc">
+      <UniqueIdentifier>{ed31cb61-5e68-4f18-8472-feb97bbb9855}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainApp.h">
@@ -365,9 +380,6 @@
     <ClInclude Include="Monster_Orc.h">
       <Filter>05.Object_Manager\GameObjects\05_02.Monster\01.Orc</Filter>
     </ClInclude>
-    <ClInclude Include="Item_define.h">
-      <Filter>05.Object_Manager\GameObjects\05_06.Item</Filter>
-    </ClInclude>
     <ClInclude Include="ItemData.h">
       <Filter>05.Object_Manager\GameObjects\05_06.Item\ItemData</Filter>
     </ClInclude>
@@ -389,8 +401,21 @@
     <ClInclude Include="Inventory.h">
       <Filter>05.Object_Manager\GameObjects\05_04.Inventory</Filter>
     </ClInclude>
+    <ClInclude Include="Item_define.h">
+      <Filter>05.Object_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Inventory.h">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="ItemData_Etc.h">
+      <Filter>05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ResourceLink.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MMO_Client.rc" />
   </ItemGroup>
 </Project>

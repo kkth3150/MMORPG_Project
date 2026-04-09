@@ -136,6 +136,7 @@
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="ItemData_Equipment.cpp" />
+    <ClCompile Include="ItemData_Etc.cpp" />
     <ClCompile Include="ItemData_Potion.cpp" />
     <ClCompile Include="ItemData_Scroll.cpp" />
     <ClCompile Include="ItemData_UseItem.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Collision_Manager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="UI_Inventory.cpp" />
     <ClCompile Include="UI_Manager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level_Choice.cpp" />
@@ -184,6 +186,7 @@
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="ItemData_Equipment.h" />
+    <ClInclude Include="ItemData_Etc.h" />
     <ClInclude Include="ItemData_Potion.h" />
     <ClInclude Include="ItemData_Scroll.h" />
     <ClInclude Include="ItemData_UseItem.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="Network_Manager.h" />
@@ -206,6 +210,7 @@
     <ClInclude Include="Collision_Manager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="UI_Inventory.h" />
     <ClInclude Include="UI_Manager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level_Choice.h" />
@@ -224,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ResourceLink.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MMO_Client.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

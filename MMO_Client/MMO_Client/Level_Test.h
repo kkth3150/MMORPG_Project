@@ -19,6 +19,7 @@ public:
 private:
 
 	void Ready_Player();
+	void Ready_Item_Resource();
 
 
 };

@@ -1,14 +1,7 @@
 #pragma once
 #include "ItemData.h"
 
-enum EQUIPMENT_TYPE
-{
-    EQUIP_SWORD,
-    EQUIP_BOW,
-    EQUIP_LEATHER_ARMOR,
-    EQUIP_PLATE_ARMOR,
-    EQUIP_TYPE_END
-};
+
 
 class CItemData_Equipment : public CItemData
 {

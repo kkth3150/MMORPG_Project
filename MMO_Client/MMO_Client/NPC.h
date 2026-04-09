@@ -35,6 +35,8 @@ public:
     virtual void On_Collision(CGameObject* pOther) override;
     virtual void On_CollisionEnd() override;
 
+    void Update_Cursor();
+
 public:
     // 공통 기능 - 하위에서 그대로 사용
     void         Set_NpcName(const TCHAR* pName) { lstrcpy(m_szName, pName); }
