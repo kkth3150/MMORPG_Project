@@ -1,8 +1,6 @@
 #pragma once
 #include "Item_Define.h"
 
-
-
 class CItemData;
 
 class CInventory
@@ -30,7 +28,7 @@ public:
     bool            Spend_Gold(int iAmount);            // µ· ºÎÁ·ÇÏ¸é false
     int             Get_Gold() const { return m_iGold; }
 
-private:
+public:
     int             Find_SameItem(CItemData* pItem);    // ½ºÅÃ °¡´ÉÇÑ ½½·Ô Å½»ö
     int             Find_EmptySlot();                   // ºó ½½·Ô Å½»ö
 

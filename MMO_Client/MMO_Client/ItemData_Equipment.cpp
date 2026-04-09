@@ -3,13 +3,52 @@
 
 static const EQUIP_DATA s_EquipTable[EQUIP_TYPE_END] =
 {
-    // 이름               아이콘 이미지              iAtk  iDef  eSlot
-    { L"한손검",        L"ICON_EQUIP_SWORD",      10,   0,  SLOT_WEAPON },
-    { L"활",            L"ICON_EQUIP_BOW",          8,   0,  SLOT_WEAPON },
-    { L"가죽 갑옷",     L"ICON_EQUIP_LEATHER",      0,   5,  SLOT_ARMOR  },
-    { L"판금 갑옷",     L"ICON_EQUIP_PLATE",         0,  15,  SLOT_ARMOR  },
-};
+    // 이름           아이콘키        iAtk  iDef  eSlot
+    { L"검_0",      L"Sword_0",      12,   0,  SLOT_WEAPON },
+    { L"검_1",      L"Sword_1",      15,   0,  SLOT_WEAPON },
+    { L"검_2",      L"Sword_2",      18,   0,  SLOT_WEAPON },
+    { L"검_3",      L"Sword_3",      22,   0,  SLOT_WEAPON },
+    { L"검_4",      L"Sword_4",      27,   0,  SLOT_WEAPON },
+    { L"검_5",      L"Sword_5",      33,   0,  SLOT_WEAPON },
+    { L"검_6",      L"Sword_6",      40,   0,  SLOT_WEAPON },
 
+    { L"갑옷_0",    L"Armor_0",       0,   5,  SLOT_ARMOR  },
+    { L"갑옷_1",    L"Armor_1",       0,   8,  SLOT_ARMOR  },
+    { L"갑옷_2",    L"Armor_2",       0,  11,  SLOT_ARMOR  },
+    { L"갑옷_3",    L"Armor_3",       0,  14,  SLOT_ARMOR  },
+    { L"갑옷_4",    L"Armor_4",       0,  18,  SLOT_ARMOR  },
+    { L"갑옷_5",    L"Armor_5",       0,  23,  SLOT_ARMOR  },
+    { L"갑옷_6",    L"Armor_6",       0,  28,  SLOT_ARMOR  },
+    { L"갑옷_7",    L"Armor_7",       0,  34,  SLOT_ARMOR  },
+
+    { L"투구_0",    L"Helmet_0",      0,   3,  SLOT_HELMET },
+    { L"투구_1",    L"Helmet_1",      0,   5,  SLOT_HELMET },
+    { L"투구_2",    L"Helmet_2",      0,   7,  SLOT_HELMET },
+    { L"투구_3",    L"Helmet_3",      0,  10,  SLOT_HELMET },
+    { L"투구_4",    L"Helmet_4",      0,  13,  SLOT_HELMET },
+    { L"투구_5",    L"Helmet_5",      0,  17,  SLOT_HELMET },
+    { L"투구_6",    L"Helmet_6",      0,  22,  SLOT_HELMET },
+
+    { L"방패_0",    L"shield_0",      0,   4,  SLOT_SHIELD },
+    { L"방패_1",    L"shield_1",      0,   7,  SLOT_SHIELD },
+    { L"방패_2",    L"shield_2",      0,  10,  SLOT_SHIELD },
+    { L"방패_3",    L"shield_3",      0,  14,  SLOT_SHIELD },
+    { L"방패_4",    L"shield_4",      0,  19,  SLOT_SHIELD },
+    { L"방패_5",    L"shield_5",      0,  25,  SLOT_SHIELD },
+    { L"방패_6",    L"shield_6",      0,  32,  SLOT_SHIELD },
+
+    { L"반지_0",    L"Ring_0",        2,   2,  SLOT_RING   },
+    { L"반지_1",    L"Ring_1",        4,   4,  SLOT_RING   },
+    { L"반지_2",    L"Ring_2",        6,   6,  SLOT_RING   },
+    { L"반지_3",    L"Ring_3",        9,   9,  SLOT_RING   },
+    { L"반지_4",    L"Ring_4",       13,  13,  SLOT_RING   },
+
+    { L"목걸이_0",  L"Pendant_0",     3,   0,  SLOT_PENDANT },
+    { L"목걸이_1",  L"Pendant_1",     5,   0,  SLOT_PENDANT },
+    { L"목걸이_2",  L"Pendant_2",     8,   0,  SLOT_PENDANT },
+    { L"목걸이_3",  L"Pendant_3",     12,  0,  SLOT_PENDANT },
+    { L"목걸이_4",  L"Pendant_4",     17,  0,  SLOT_PENDANT },
+};
 void CItemData_Equipment::Set_EquipType(EQUIPMENT_TYPE eType)
 {
     m_eEquipType = eType;

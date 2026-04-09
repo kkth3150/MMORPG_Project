@@ -6,7 +6,7 @@
 #include "Map_Manager.h"
 #include "ItemData_Potion.h"
 #include "ItemData_Equipment.h"
-
+#include "ItemData_Etc.h" 
 
 CPlayer::CPlayer()
 {
@@ -280,22 +280,28 @@ void CPlayer::Direction_Change(DIRECTION eDir)
 
 void CPlayer::Key_Input(float dt)
 {
-	if (CInput_Manager::Get_Instance()->Key_Down(VK_LBUTTON))
+	if (!CInput_Manager::Get_Instance()->Is_GameMode()) return;
+
+	CInput_Manager* pInput = CInput_Manager::Get_Instance();
+
+	// ===== 매 프레임 마우스 위치로 타일 체크 =====
+	POINT tMouse = pInput->Get_MousePos();
+	float fWorldX, fWorldZ;
+	CCamera::Get_Instance()->ScreenToIsoWorld(tMouse.x, tMouse.y, fWorldX, fWorldZ);
+
+	int iTileX = (int)floorf(fWorldX);
+	int iTileZ = (int)floorf(fWorldZ);
+
+	bool bMovable = CMap_Manager::Get_Instance()->Is_Movable(iTileX, iTileZ);
+
+	// 이동 불가 타일이면 미리 커서 변경
+	if (!bMovable)
+		pInput->Set_CursorMode(CURSOR_NON_ATTACK);
+
+	// ===== 클릭 처리 =====
+	if (pInput->Key_Down(VK_LBUTTON))
 	{
-		POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
-
-		float fWorldX, fWorldZ;
-		CCamera::Get_Instance()->ScreenToIsoWorld(
-			tMouse.x, tMouse.y,
-			fWorldX, fWorldZ);
-
-		int iTileX = (int)floorf(fWorldX);
-		int iTileZ = (int)floorf(fWorldZ);
-
-		if (!CMap_Manager::Get_Instance()->Is_Movable(iTileX, iTileZ))
-		{
-			return;
-		}
+		if (!bMovable) return;  // 이동 불가면 클릭 무시
 
 		m_fDestWorldX = fWorldX;
 		m_fDestWorldZ = fWorldZ;
@@ -320,40 +326,76 @@ void CPlayer::Key_Input(float dt)
 	}
 
 	if (m_bMoving)
-		Move_To_Dest(dt);  // dt 전달
+		Move_To_Dest(dt);
 
-	if (CInput_Manager::Get_Instance()->Key_Down('I'))
+	if (pInput->Key_Down('1'))
 	{
-		CItemData_Potion* pPotion = new CItemData_Potion;
-		pPotion->Set_PotionType(POTION_HP);
-		m_pInventory->Add_Item(pPotion);
+		CItemData_Potion* p = new CItemData_Potion;
+		p->Set_PotionType(POTION_HP_M);
+		m_pInventory->Add_Item(p);
+	}
+	// 2 : HP 포션 대형 추가
+	if (pInput->Key_Down('2'))
+	{
+		CItemData_Potion* p = new CItemData_Potion;
+		p->Set_PotionType(POTION_HP_L);
+		m_pInventory->Add_Item(p);
+	}
+	// 3 : MP 포션 중형 추가
+	if (pInput->Key_Down('3'))
+	{
+		CItemData_Potion* p = new CItemData_Potion;
+		p->Set_PotionType(POTION_MP_M);
+		m_pInventory->Add_Item(p);
+	}
+	// 4 : 검 랜덤 추가
+	if (pInput->Key_Down('4'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_SWORD_0 + rand() % 7));
+		m_pInventory->Add_Item(p);
+	}
+	// 5 : 갑옷 랜덤 추가
+	if (pInput->Key_Down('5'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_ARMOR_0 + rand() % 8));
+		m_pInventory->Add_Item(p);
+	}
+	// 6 : 투구 랜덤 추가
+	if (pInput->Key_Down('6'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_HELMET_0 + rand() % 7));
+		m_pInventory->Add_Item(p);
+	}
+	// 7 : 방패 랜덤 추가
+	if (pInput->Key_Down('7'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_SHIELD_0 + rand() % 7));
+		m_pInventory->Add_Item(p);
+	}
+	// 8 : 반지 랜덤 추가
+	if (pInput->Key_Down('8'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_RING_0 + rand() % 5));
+		m_pInventory->Add_Item(p);
+	}
+	// 9 : 목걸이 랜덤 추가
+	if (pInput->Key_Down('9'))
+	{
+		CItemData_Equipment* p = new CItemData_Equipment;
+		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_PENDANT_0 + rand() % 5));
+		m_pInventory->Add_Item(p);
+	}
+	// 0 : 골드 100 추가
+	if (pInput->Key_Down('0'))
+	{
+		m_pInventory->Add_Gold(100);
 	}
 
-	// O : 한손검 인벤토리에 추가
-	if (CInput_Manager::Get_Instance()->Key_Down('O'))
-	{
-		CItemData_Equipment* pEquip = new CItemData_Equipment;
-		pEquip->Set_EquipType(EQUIP_SWORD);
-		m_pInventory->Add_Item(pEquip);
-	}
-
-	// U : 0번 슬롯 아이템 사용
-	if (CInput_Manager::Get_Instance()->Key_Down('U'))
-	{
-		Use_Item(0);
-	}
-
-	// P : 0번 슬롯 장비 장착
-	if (CInput_Manager::Get_Instance()->Key_Down('P'))
-	{
-		Equip_Item(0);
-	}
-
-	// L : 무기 슬롯 해제
-	if (CInput_Manager::Get_Instance()->Key_Down('L'))
-	{
-		UnEquip_Item(SLOT_WEAPON);
-	}
 }
 
 void CPlayer::Move_To_Dest(float dt)
@@ -454,9 +496,15 @@ void CPlayer::Equip_Item(int iSlot)
 
 void CPlayer::UnEquip_Item(EQUIP_SLOT eSlot)
 {
-	CItemData_Equipment* pItem = m_pEquipment->UnEquip(eSlot);
-	if (pItem)
-		m_pInventory->Add_Item(pItem);
+	CItemData_Equipment* pItem = m_pEquipment->Get_Equipped(eSlot);
+	if (!pItem) return;
+
+	// 인벤토리 빈 슬롯 있는지 먼저 확인
+	if (m_pInventory->Find_EmptySlot() == INVEN_FULL) return;  // 꽉 차있으면 해제 불가
+
+	// 해제 후 인벤토리로
+	pItem = m_pEquipment->UnEquip(eSlot);
+	m_pInventory->Add_Item(pItem);
 }
 
 #ifdef GAME_DEBUG

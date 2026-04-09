@@ -14,19 +14,17 @@ int CActiveObject::Update(float dt)
 {
     if (m_bInteractable)
     {
-        POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
-        if (Is_MouseCollide(tMouse))
+        if (CInput_Manager::Get_Instance()->Is_GameMode())  // Ãß°¡
         {
-            CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_TALK);
-            if (CInput_Manager::Get_Instance()->Mouse_Down_Snap(MBUTTON_L))
-                On_Click();
-        }
-        else
-        {
-            CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_NORMAL);
+            POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+            if (Is_MouseCollide(tMouse))
+            {
+                CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_DOOR);
+                if (CInput_Manager::Get_Instance()->Mouse_Down_Snap(MBUTTON_L))
+                    On_Click();
+            }
         }
     }
-
     __super::Update_Rect();
     __super::Move_Frame();
     Update_MouseRect();

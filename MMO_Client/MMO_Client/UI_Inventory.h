@@ -8,6 +8,8 @@ class CPlayer;
 class CItemData;
 class CItemData_Equipment;
 
+
+
 class CUI_Inventory : public CUI
 {
 public:
@@ -34,6 +36,8 @@ private:
     // 렌더
     void    Render_Background(ID2D1RenderTarget* pRT);
     void    Render_InvenSlots(ID2D1RenderTarget* pRT);
+    void    Render_BackPanel(ID2D1RenderTarget* pRT);
+    void    Render_Shadow(ID2D1RenderTarget* pRT);
     void    Render_EquipSlots(ID2D1RenderTarget* pRT);
     void    Render_Gold(ID2D1RenderTarget* pRT);
     void    Render_Item(ID2D1RenderTarget* pRT, CItemData* pItem,
@@ -51,16 +55,21 @@ private:
     CPlayer* m_pPlayer = nullptr;
     CInventory* m_pInven = nullptr;
     CEquipment* m_pEquip = nullptr;
-
     bool        m_bVisible = false;
 
+private:
+    void    Render_Tooltip(ID2D1RenderTarget* pRT);
+    int     m_iHoverInvenSlot = -1;
+    int     m_iHoverEquipSlot = -1;  // EQUIP_SLOT 대신 int로
+
     // 레이아웃 상수
-    static constexpr float PANEL_W = 200.f;
-    static constexpr float PANEL_H = 420.f;
-    static constexpr float INVEN_OFF_X = 10.f;
-    static constexpr float INVEN_OFF_Y = 190.f;  // 장비창 아래
-    static constexpr float EQUIP_OFF_X = 10.f;
-    static constexpr float EQUIP_OFF_Y = 10.f;
+    static constexpr float PANEL_W = 320.f * INVEN_RATE;
+    static constexpr float PANEL_H = 352.f * INVEN_RATE;
+    static constexpr float INVEN_OFF_X = 18.f * INVEN_RATE;
+    static constexpr float INVEN_OFF_Y = 222.5f * INVEN_RATE;  // 장비창 아래
     static constexpr int   INVEN_COLS = 10;
-    static constexpr float SLOT_GAP = 2.f;
+    static constexpr float SLOT_GAP = 1.5f;
+#ifdef GAME_DEBUG
+    void Debug_Render(ID2D1RenderTarget* pRT);
+#endif
 };

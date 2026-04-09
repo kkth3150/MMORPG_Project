@@ -31,7 +31,7 @@ void CMonster_Orc::Initialize()
 
 int CMonster_Orc::Update(float dt)
 {
-    CInput_Manager* pInput = CInput_Manager::Get_Instance();
+    /*CInput_Manager* pInput = CInput_Manager::Get_Instance();
 
 
     if (pInput->Key_Down(VK_RBUTTON))
@@ -46,7 +46,7 @@ int CMonster_Orc::Update(float dt)
         m_fDestWorldX = fWorldX;
         m_fDestWorldZ = fWorldZ;
         m_bMoving = true;
-    }
+    }*/
 
 
     if (m_bMoving)
@@ -54,8 +54,7 @@ int CMonster_Orc::Update(float dt)
         Move_To_Dest(dt);
     }
 
-    __super::Update_Rect();
-    __super::Move_Frame();
+    __super::Update(dt);
 
     Update_MouseCollider();
 

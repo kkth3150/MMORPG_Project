@@ -51,6 +51,7 @@ protected:
     void    Render_HpBar(ID2D1RenderTarget* pRT);
     void    Render_NameTag(ID2D1RenderTarget* pRT);
     void    Update_Lerp(float dt);
+    void    Update_Cursor();
 #ifdef GAME_DEBUG
     void Debug_Render(ID2D1RenderTarget* pRT);
     void Debug_DrawCollider(ID2D1RenderTarget* pRT);
@@ -60,8 +61,10 @@ protected:
 protected:
     MONSTER_STATE   m_eState = MON_IDLE;
     TCHAR           m_szName[64] = {};
+    CURSOR_MODE     m_eHoverCursor = CURSOR_ATTACK;  // 몬스터 기본 커서
     // 서버 목표 위치 (보간용)
     float           m_fServerX = 0.f;
     float           m_fServerZ = 0.f;
     float           m_fLerpSpeed = 10.f;
+
 };

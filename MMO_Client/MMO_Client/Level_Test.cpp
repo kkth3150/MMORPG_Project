@@ -7,6 +7,8 @@
 #include "Map_Manager.h"
 #include "Camera.h"
 #include "Input_Manager.h"
+#include "UI_Manager.h"
+#include "UI_Inventory.h"
 
 CLevel_Test::CLevel_Test()
 {
@@ -35,18 +37,19 @@ int CLevel_Test::Update(float dt)
 	CMap_Manager::Get_Instance()->Update();
 	CCamera::Get_Instance()->Update(dt);
 	CObject_Manager::Get_Instance()->Update(dt);
+	CUI_Manager::Get_Instance()->Update(dt);
+
 	return OBJ_NOEVENT;
 }
 
 void CLevel_Test::Late_Update(float dt)
 {
 	CObject_Manager::Get_Instance()->Late_Update(dt);
+	CUI_Manager::Get_Instance()->Late_Update(dt);
 }
 
 void CLevel_Test::Render(ID2D1RenderTarget* pRT)
 {
-
-
 
 	if (CMap_Manager::Get_Instance()->Is_Loading())
 	{
@@ -65,6 +68,7 @@ void CLevel_Test::Render(ID2D1RenderTarget* pRT)
 
 	CMap_Manager::Get_Instance()->Render(pRT);
 	CObject_Manager::Get_Instance()->Render(pRT);
+	CUI_Manager::Get_Instance()->Render(pRT);
 	CInput_Manager::Get_Instance()->Render_Cursor(pRT);
 
 }
@@ -104,6 +108,11 @@ void CLevel_Test::Ready_Player()
 
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYER, pPlayer);
 	CCamera::Get_Instance()->Set_Target(pPlayer);
+
+	CUI_Inventory* pInvenUI = new CUI_Inventory;
+	pInvenUI->Set_References(pPlayer, pPlayer->Get_Inventory(), pPlayer->Get_Equipment());
+	pInvenUI->Initialize();
+	CUI_Manager::Get_Instance()->Add_UI(UI_INVENTORY, pInvenUI);
 }
 
 void CLevel_Test::Ready_Item_Resource()

@@ -136,6 +136,7 @@
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="ItemData_Equipment.cpp" />
+    <ClCompile Include="ItemData_Etc.cpp" />
     <ClCompile Include="ItemData_Potion.cpp" />
     <ClCompile Include="ItemData_Scroll.cpp" />
     <ClCompile Include="ItemData_UseItem.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="ItemData_Equipment.h" />
+    <ClInclude Include="ItemData_Etc.h" />
     <ClInclude Include="ItemData_Potion.h" />
     <ClInclude Include="ItemData_Scroll.h" />
     <ClInclude Include="ItemData_UseItem.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="Network_Manager.h" />
@@ -226,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ResourceLink.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MMO_Client.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

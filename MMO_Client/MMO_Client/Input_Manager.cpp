@@ -111,11 +111,10 @@ bool CInput_Manager::Mouse_Up(MOUSE_BUTTON _eButton)
 
 void CInput_Manager::Update()
 {
-    // 매 프레임 마우스 커서 위치 갱신
     GetCursorPos(&m_tMousePos);
     ScreenToClient(g_hWnd, &m_tMousePos);
+    m_eCursorMode = CURSOR_NORMAL;
 
-    //마우스 Down 스냅샷 갱신
     int vkList[MBUTTON_END] = { VK_LBUTTON, VK_RBUTTON, VK_MBUTTON };
     for (int i = 0; i < MBUTTON_END; ++i)
     {

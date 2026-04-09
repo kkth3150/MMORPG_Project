@@ -6,13 +6,15 @@
 #define ITEM_NOEXIST    -1
 #define INVEN_FULL      -1
 #define INVEN_SIZE      40
-#define INVEN_SLOT_SIZE  28.f
-
+#define INVEN_RATE       1.3f
+#define INVEN_SLOT_SIZE  28.f * INVEN_RATE
+#define STACK_FULL      99
 
 enum ITEM_TYPE
 {
     ITEM_USE,
     ITEM_EQUIPMENT,
+    ITEM_ETC,
     ITEM_END
 };
 
@@ -39,36 +41,61 @@ enum EQUIP_SLOT
     SLOT_WEAPON,
     SLOT_ARMOR,
     SLOT_SHIELD,
-    SLOT_HELMAT,
+    SLOT_HELMET,
     SLOT_PENDANT,
     SLOT_RING,
     SLOT_END
 };
 
 
+
 struct EQUIP_SLOT_INFO
 {
-    float fX;       // 장비창 내 위치
+    float fX;
     float fY;
-    float fW;       // 렌더 사이즈
+    float fW;  
     float fH;
 };
 
-
-// 장비창 슬롯 정보 테이블
-static const EQUIP_SLOT_INFO s_EquipSlotInfo[SLOT_END] =
+enum EQUIPMENT_TYPE
 {
-    // fX    fY     fW    fH
-    {  14.f,  84.f, 28.f, 84.f },   // SLOT_WEAPON  - 무기    28x84
-    {  70.f, 28.f, 56.f, 84.f },    // SLOT_ARMOR   - 방어구  56x84
-    {  10.f, 10.f,56.f,84.f },      //SLOT_SHIELD   - 쉴드    56x84
-    {2.f,2.f,56.f,56.f},            //SLOT_HELMAT   - 헬멧    56X56
-    {2.f,2.f,INVEN_SLOT_SIZE,INVEN_SLOT_SIZE},            //SLOT_PENDANT - INVEN_SLOT_SIZE
-    {2.f,2.f,INVEN_SLOT_SIZE,INVEN_SLOT_SIZE}             //SLOT_RING   - INVEN_SLOT_SIZE
+    // Sword
+    EQUIP_SWORD_0, EQUIP_SWORD_1, EQUIP_SWORD_2,
+    EQUIP_SWORD_3, EQUIP_SWORD_4, EQUIP_SWORD_5, EQUIP_SWORD_6,
+    // Armor
+    EQUIP_ARMOR_0, EQUIP_ARMOR_1, EQUIP_ARMOR_2, EQUIP_ARMOR_3,
+    EQUIP_ARMOR_4, EQUIP_ARMOR_5, EQUIP_ARMOR_6, EQUIP_ARMOR_7,
+    // Helmet
+    EQUIP_HELMET_0, EQUIP_HELMET_1, EQUIP_HELMET_2, EQUIP_HELMET_3,
+    EQUIP_HELMET_4, EQUIP_HELMET_5, EQUIP_HELMET_6,
+    // Shield
+    EQUIP_SHIELD_0, EQUIP_SHIELD_1, EQUIP_SHIELD_2, EQUIP_SHIELD_3,
+    EQUIP_SHIELD_4, EQUIP_SHIELD_5, EQUIP_SHIELD_6,
+    // Ring
+    EQUIP_RING_0, EQUIP_RING_1, EQUIP_RING_2, EQUIP_RING_3, EQUIP_RING_4,
+    // Pendant
+    EQUIP_PENDANT_0, EQUIP_PENDANT_1, EQUIP_PENDANT_2,
+    EQUIP_PENDANT_3, EQUIP_PENDANT_4,
 
-
-    // 필요시 헬멧, 방패 추가
+    EQUIP_TYPE_END
 };
+
+enum ETC_TYPE
+{
+    ETC_BLOODSTONE,
+    ETC_BLUEGEM,
+    ETC_PRIZMGEM,
+    ETC_REDGEM,
+    ETC_BRAIN,
+    ETC_CLAW,
+    ETC_EAR_0,
+    ETC_EAR_1,
+    ETC_EAR_2,
+    ETC_TOOTH,
+    ETC_END
+};
+
+
 
 // 포션 종류별 데이터 테이블
 struct POTION_DATA
@@ -97,4 +124,10 @@ struct EQUIP_DATA
     float           fInvenCY;
     float           fEquipCX;
     float           fEquipCY;
+};
+
+struct ETC_DATA
+{
+    const TCHAR* szName;
+    const TCHAR* szIconKey;
 };

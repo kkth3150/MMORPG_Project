@@ -17,16 +17,17 @@ int CNPC::Update(float dt)
 {
     if (m_bInteractable)
     {
-         POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
-         if (Is_MouseCollide(tMouse)) {
-             CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_TALK);
-            if (CInput_Manager::Get_Instance()->Mouse_Down_Snap(MBUTTON_L))
-                On_Click();
-           
-         }
-         else {
-             CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_NORMAL);
-         }
+        if (CInput_Manager::Get_Instance()->Is_GameMode())
+        {
+            Update_Cursor();
+
+            POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+            if (Is_MouseCollide(tMouse))
+            {
+                if (CInput_Manager::Get_Instance()->Mouse_Down_Snap(MBUTTON_L))
+                    On_Click();
+            }
+        }
     }
 
 
@@ -172,6 +173,15 @@ void CNPC::On_Collision(CGameObject* pOther)
 void CNPC::On_CollisionEnd()
 {
     m_bInteractable = false;
+}
+
+void CNPC::Update_Cursor()
+{
+    POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
+
+    if (Is_MouseCollide(tMouse))
+        CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_QUESTION);
+    // NORMAL은 Input_Manager::Update()에서 매 프레임 초기화하므로 else 불필요
 }
 
 #ifdef GAME_DEBUG
