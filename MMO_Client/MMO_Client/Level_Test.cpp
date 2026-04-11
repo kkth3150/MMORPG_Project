@@ -9,6 +9,8 @@
 #include "Input_Manager.h"
 #include "UI_Manager.h"
 #include "UI_Inventory.h"
+#include "UI_QuickSlot.h"
+#include "UI_HUD.h"
 
 CLevel_Test::CLevel_Test()
 {
@@ -109,10 +111,22 @@ void CLevel_Test::Ready_Player()
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYER, pPlayer);
 	CCamera::Get_Instance()->Set_Target(pPlayer);
 
+
+	CUI_HUD* pHUD = new CUI_HUD;
+	pHUD->Set_Player(pPlayer);
+	pHUD->Initialize();
+	CUI_Manager::Get_Instance()->Add_UI(UI_HUD, pHUD);
+
+
 	CUI_Inventory* pInvenUI = new CUI_Inventory;
 	pInvenUI->Set_References(pPlayer, pPlayer->Get_Inventory(), pPlayer->Get_Equipment());
 	pInvenUI->Initialize();
 	CUI_Manager::Get_Instance()->Add_UI(UI_INVENTORY, pInvenUI);
+
+	CUI_QuickSlot* pQuick = new CUI_QuickSlot;
+	pQuick->Set_Player(pPlayer);
+	pQuick->Initialize();
+	CUI_Manager::Get_Instance()->Add_UI(UI_QUICKSLOT, pQuick);
 }
 
 void CLevel_Test::Ready_Item_Resource()

@@ -3,6 +3,8 @@
 #include "Inventory.h"
 #include "Equipment.h"
 
+class CItemData_UseItem;
+
 #define PLAYER_FOOT_OFFSET_Y 0.5f
 
 enum PLAYER_STATE {
@@ -30,6 +32,7 @@ public:
     virtual void Render(ID2D1RenderTarget* pRT) override; // HDC → RT
     virtual void Release(void)       override;
 
+
 private:
     // 전부 HDC → ID2D1RenderTarget*
     void Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap);
@@ -47,6 +50,7 @@ private:
     void Decide_Direction(float fNX, float fNZ);
     void Update_ClickEffect(float dt);
 
+
 private:
     PLAYER_STATE m_eCurState;
     CLICK_EFFECT m_tClickEffect = {};
@@ -54,12 +58,14 @@ private:
     float        m_fDestWorldZ = 0.f;
     bool         m_bMoving = false;
 
+
+
 public:
     // 아이템 관련
     void        Use_Item(int iSlot);
     void        Equip_Item(int iSlot);
     void        UnEquip_Item(EQUIP_SLOT eSlot);
-
+    void        Use_QuickSlot(int iSlot, CItemData_UseItem* pItem);
     CInventory* Get_Inventory() const { return m_pInventory; }
     CEquipment* Get_Equipment() const { return m_pEquipment; }
 

@@ -42,7 +42,9 @@ public:
 	const RECT* Get_Rect() { return &m_tRect; }
 	ISO_INFO    Get_IsoInfo() { return m_tIsoInfo; }
 	bool		Get_Dead() { return m_bDead; }
-	int			Get_HP() { return m_iHp; };
+	
+	int			Get_HP() { return m_iHp; }
+	int			Get_MaxHP() { return m_iMaxHp; }
 	void		Add_Hp(int iHp) {
 		m_iHp += iHp;
 		if (m_iHp > m_iMaxHp) {
@@ -52,6 +54,7 @@ public:
 	void		Set_Hp(int iHp) { m_iHp = iHp; };
 
 	int			Get_MP() { return m_iMp; };
+	int			Get_MaxMP() { return m_iMaxMp; }
 	void		Add_Mp(int iMp) {
 		m_iMp += iMp;
 
@@ -60,6 +63,17 @@ public:
 		}
 	};
 	void		Set_Mp(int iMp) { m_iMp = iMp; };
+
+	void		Add_Exp(int iExp) {
+		m_iCurExp += iExp;
+		while (m_iCurExp >= m_iMaxExp)
+		{
+			m_iCurExp -= m_iMaxExp;
+		}
+	};
+	int			Get_Exp() { return m_iCurExp; }
+	int			Get_MaxExp() { return m_iMaxExp; }
+
 
 	int			Get_Atk() { return m_iAttack; }
 
@@ -125,6 +139,8 @@ protected:
 	float       m_fScale =1.f;
 	float		m_fSpeed;
 	float		m_fAngle;
+	int			m_iCurExp;
+	int			m_iMaxExp;
 	int			m_iHp;
 	int			m_iMaxHp;
 	int         m_iMp;
