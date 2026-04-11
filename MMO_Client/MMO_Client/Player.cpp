@@ -10,6 +10,8 @@
 
 CPlayer::CPlayer()
 {
+	m_iMaxExp = 100.f;
+	m_iCurExp = m_iMaxExp;
 }
 
 CPlayer::~CPlayer()
@@ -328,28 +330,28 @@ void CPlayer::Key_Input(float dt)
 	if (m_bMoving)
 		Move_To_Dest(dt);
 
-	if (pInput->Key_Down('1'))
+	if (pInput->Key_Down('A'))
 	{
 		CItemData_Potion* p = new CItemData_Potion;
 		p->Set_PotionType(POTION_HP_M);
 		m_pInventory->Add_Item(p);
 	}
 	// 2 : HP 포션 대형 추가
-	if (pInput->Key_Down('2'))
+	if (pInput->Key_Down('S'))
 	{
 		CItemData_Potion* p = new CItemData_Potion;
 		p->Set_PotionType(POTION_HP_L);
 		m_pInventory->Add_Item(p);
 	}
 	// 3 : MP 포션 중형 추가
-	if (pInput->Key_Down('3'))
+	if (pInput->Key_Down('D'))
 	{
 		CItemData_Potion* p = new CItemData_Potion;
 		p->Set_PotionType(POTION_MP_M);
 		m_pInventory->Add_Item(p);
 	}
 	// 4 : 검 랜덤 추가
-	if (pInput->Key_Down('4'))
+	if (pInput->Key_Down('F'))
 	{
 		CItemData_Equipment* p = new CItemData_Equipment;
 		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_SWORD_0 + rand() % 7));
@@ -474,6 +476,19 @@ void CPlayer::Use_Item(int iSlot)
 	{
 		CItemData* pRemoved = m_pInventory->Remove_Item(iSlot);
 		delete pRemoved;
+	}
+}
+
+void CPlayer::Use_QuickSlot(int iSlot, CItemData_UseItem* pItem)
+{
+
+	for (int i = 0; i < INVEN_SIZE; ++i)
+	{
+		if (m_pInventory->Get_Item(i) == pItem)
+		{
+			Use_Item(i);
+			return;
+		}
 	}
 }
 

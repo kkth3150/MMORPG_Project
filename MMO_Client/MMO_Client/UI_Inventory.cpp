@@ -48,8 +48,22 @@ int CUI_Inventory::Update(float dt)
     CInput_Manager::Get_Instance()->Set_CursorMode(CURSOR_UI);
     POINT tMouse = CInput_Manager::Get_Instance()->Get_MousePos();
 
+
+    if (CInput_Manager::Get_Instance()->Mouse_Down(MBUTTON_L))
+    {
+        int iSlot = Get_InvenSlotAt(tMouse);
+        if (iSlot != -1)
+        {
+            CItemData* pItem = m_pInven->Get_Item(iSlot);
+            if (pItem && pItem->Get_Type() == ITEM_USE)
+                CInput_Manager::Get_Instance()->Start_Drag(pItem, iSlot);
+        }
+    }
+
     m_iHoverInvenSlot = Get_InvenSlotAt(tMouse);
     m_iHoverEquipSlot = (int)Get_EquipSlotAt(tMouse);
+
+
 
     if (CInput_Manager::Get_Instance()->Key_Down(VK_RBUTTON))
     {

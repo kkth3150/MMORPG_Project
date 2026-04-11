@@ -67,46 +67,18 @@ bool CInput_Manager::Mouse_Pressing(MOUSE_BUTTON _eButton)
 
 bool CInput_Manager::Mouse_Down(MOUSE_BUTTON _eButton)
 {
-    int vk = (_eButton == MBUTTON_L) ? VK_LBUTTON :
-        (_eButton == MBUTTON_R) ? VK_RBUTTON : VK_MBUTTON;
-
-    if (GetAsyncKeyState(vk) & 0x8000)
-    {
-        if (!m_bMouseState[_eButton])
-        {
-            m_bMouseState[_eButton] = true;
-            return true;
-        }
-    }
-    else
-    {
-        m_bMouseState[_eButton] = false;
-    }
-
-    return false;
+    return m_bMouseDown[(int)_eButton];
 }
 
 bool CInput_Manager::Mouse_Up(MOUSE_BUTTON _eButton)
 {
-    int vk = (_eButton ==MBUTTON_L) ? VK_LBUTTON :
-        (_eButton == MBUTTON_R) ? VK_RBUTTON : VK_MBUTTON;
-
-    if (!(GetAsyncKeyState(vk) & 0x8000))
-    {
-        if (m_bMouseState[_eButton])
-        {
-            m_bMouseState[_eButton] = false;
-            return true;
-        }
-    }
-    else
-    {
-        m_bMouseState[_eButton] = true;
-    }
-
-    return false;
+    return m_bMouseUp[(int)_eButton];
 }
 
+bool CInput_Manager::Mouse_Down_Snap(MOUSE_BUTTON _eButton)
+{
+    return m_bMouseDown[(int)_eButton];
+}
 
 
 void CInput_Manager::Update()
@@ -114,12 +86,13 @@ void CInput_Manager::Update()
     GetCursorPos(&m_tMousePos);
     ScreenToClient(g_hWnd, &m_tMousePos);
     m_eCursorMode = CURSOR_NORMAL;
-
     int vkList[MBUTTON_END] = { VK_LBUTTON, VK_RBUTTON, VK_MBUTTON };
     for (int i = 0; i < MBUTTON_END; ++i)
     {
         bool bPressed = (GetAsyncKeyState(vkList[i]) & 0x8000) != 0;
-        m_bMouseDown[i] = bPressed && !m_bMouseState[i];
+
+        m_bMouseDown[i] = bPressed && !m_bMouseState[i];   // 이번 프레임 새로 눌림
+        m_bMouseUp[i] = !bPressed && m_bMouseState[i];   // 이번 프레임 새로 뗌
         m_bMouseState[i] = bPressed;
     }
 }

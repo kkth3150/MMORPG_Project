@@ -130,6 +130,12 @@
     <ClCompile Include="ItemData_Etc.cpp">
       <Filter>05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc</Filter>
     </ClCompile>
+    <ClCompile Include="UI_QuickSlot.cpp">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_QuickSlot</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_HUD.cpp">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -276,6 +282,15 @@
     <Filter Include="05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc">
       <UniqueIdentifier>{ed31cb61-5e68-4f18-8472-feb97bbb9855}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.UI_Manager\UIs\PlayerUI\UI_QuickSlot">
+      <UniqueIdentifier>{5ee5e65c-67d7-4f16-b35e-80861e401d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.UI_Manager\UIs\PlayerUI\UI_HUD">
+      <UniqueIdentifier>{08715161-0a53-4d00-a095-e3ba7a5b6dde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.UI_Manager\UIs\PlayerUI\UI_Status">
+      <UniqueIdentifier>{0af1a43b-6eae-45e7-a6c4-6fc2c83deb4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainApp.h">
@@ -410,6 +425,12 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="ItemData_Etc.h">
       <Filter>05.Object_Manager\GameObjects\05_06.Item\ItemData\ItemData_Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_QuickSlot.h">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_QuickSlot</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_HUD.h">
+      <Filter>06.UI_Manager\UIs\PlayerUI\UI_HUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
