@@ -2,16 +2,28 @@
 #include "Session.h"
 #include "Packet_Handler.h"
 #include "Session_Manager.h"
+#include "Player_Manager.h"
 #include "Protocol.h"
 #include <iostream>
 #include <cstring>
 
 CSession::CSession() {
+
+}
+CSession::~CSession() {}
+
+void CSession::Initialize()
+{
     m_recvEvent.m_owner = this;
     m_sendEvent.m_owner = this;
     m_acceptEvent.m_owner = this;
+    m_prevRemain = 0;
+    m_connected = false;
+
+    // 버퍼 초기화
+    ZeroMemory(m_recvBuf, sizeof(m_recvBuf));
+    ZeroMemory(m_sendBuf, sizeof(m_sendBuf));
 }
-CSession::~CSession() {}
 
 void CSession::RegisterRecv()
 {
@@ -90,7 +102,7 @@ void CSession::Disconnect()
 
     closesocket(m_socket);
     m_socket = INVALID_SOCKET;
-
+    CPlayer_Manager::Get_Instance()->Remove(m_id);
     CSession_Manager::Get_Instance()->Release(m_id);  
 
     

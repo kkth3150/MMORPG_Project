@@ -29,8 +29,8 @@ void CPacket_Handler::Handle_CS_LOGIN(std::shared_ptr<CSession> pSession,
     if (nSize < static_cast<int32_t>(sizeof(CS_LOGIN_PACKET))) return;
     CS_LOGIN_PACKET* pPkt = reinterpret_cast<CS_LOGIN_PACKET*>(pBuffer);
 
-    std::cout << "[LOGIN] ID=" << pPkt->id
-        << " SessionID=" << pSession->GetID() << std::endl;
+    //std::cout << "[LOGIN] ID=" << pPkt->id
+    //    << " SessionID=" << pSession->GetID() << std::endl;
 
     PlayerRef pPlayer = CPlayer_Manager::Get_Instance()->Create(pSession->GetID());
     if (!pPlayer) { Send_SC_LOGIN_FAIL(pSession, 0); return; }
@@ -63,7 +63,7 @@ void CPacket_Handler::Handle_CS_MOVE_DEST(std::shared_ptr<CSession> pSession,
     if (!pZone) return;
 
     pZone->OnMoveDest(pPlayer, pPkt->fDestX, pPkt->fDestZ, pPkt->moveTime);
-    std::cout << "플레이어 이동 좌표" << pPkt->fDestX << "," << pPkt->fDestZ << std::endl;
+    //std::cout << "플레이어 이동 좌표" << pPkt->fDestX << "," << pPkt->fDestZ << std::endl;
 }
 
 // ================================================================

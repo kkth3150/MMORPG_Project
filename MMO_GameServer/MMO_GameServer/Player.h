@@ -12,7 +12,7 @@ public:
     char     m_szName[20] = {};
 
     // ---- 현재 위치 ----
-    // CS_MOVE_POS로 업데이트되는 마지막 확인 위치
+    // CS_MOVE_로 업데이트되는 마지막 확인 위치
     float    m_fCurX = 0.f;
     float    m_fCurZ = 0.f;
 

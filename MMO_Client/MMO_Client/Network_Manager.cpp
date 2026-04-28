@@ -4,6 +4,7 @@
 //#include "Other_Player.h"     // 다른 플레이어 렌더 객체
 #include "Player.h"           // 내 플레이어
 #include <iostream>
+#include "Level_Manager.h"
 
 CNetwork_Manager* CNetwork_Manager::m_pInstance = nullptr;
 
@@ -204,7 +205,7 @@ void CNetwork_Manager::Handle_SC_LOGIN_OK(uint8_t* pBuffer, int32_t nSize)
     std::cout << "[Network] 로그인 성공. PlayerID=" << m_nMyPlayerID << std::endl;
 
     // TODO: 로그인 성공 UI 처리
-    // CLevel_Manager::Get_Instance()->Level_Change(LEVEL_GAME);
+    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
 }
 
 void CNetwork_Manager::Handle_SC_LOGIN_FAIL(uint8_t* pBuffer, int32_t nSize)
@@ -219,8 +220,8 @@ void CNetwork_Manager::Handle_SC_ENTER_GAME(uint8_t* pBuffer, int32_t nSize)
 {
     SC_ENTER_GAME_PACKET* pPkt = reinterpret_cast<SC_ENTER_GAME_PACKET*>(pBuffer);
 
-    std::cout << "[Network] 게임 진입. X=" << pPkt->fCurX
-        << " Z=" << pPkt->fCurZ << std::endl;
+    //std::cout << "[Network] 게임 진입. X=" << pPkt->fCurX
+    //    << " Z=" << pPkt->fCurZ << std::endl;
 
     // 내 캐릭터 초기 위치 세팅
     // CPlayer가 싱글톤이거나 Object_Manager에서 찾아서 세팅
