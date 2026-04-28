@@ -136,6 +136,9 @@
     <ClCompile Include="UI_HUD.cpp">
       <Filter>06.UI_Manager\UIs\PlayerUI\UI_HUD</Filter>
     </ClCompile>
+    <ClCompile Include="UI_LoginBox.cpp">
+      <Filter>06.UI_Manager\UIs\UI_LoginBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -291,6 +294,9 @@
     <Filter Include="06.UI_Manager\UIs\PlayerUI\UI_Status">
       <UniqueIdentifier>{0af1a43b-6eae-45e7-a6c4-6fc2c83deb4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.UI_Manager\UIs\UI_LoginBox">
+      <UniqueIdentifier>{c454f104-48d2-482f-a63f-194f7c063848}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainApp.h">
@@ -431,6 +437,12 @@
     </ClInclude>
     <ClInclude Include="UI_HUD.h">
       <Filter>06.UI_Manager\UIs\PlayerUI\UI_HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_LoginBox.h">
+      <Filter>06.UI_Manager\UIs\UI_LoginBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>11.Network_Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,23 @@
 #pragma once
 
+#define WIN32_LEAN_AND_MEAN
+#include <WinSock2.h>
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
+
+#include <cstdint>
+#include <string>
+#include <queue>
+#include <mutex>
+#include <thread>
+#include <functional>
+#include <atomic>
+
 #include <algorithm>
 #include <list>
 #include <map>
 #include <vector>
 #include <cmath>
-
-#include <thread>
 #include <chrono>
 
 #include <windows.h>

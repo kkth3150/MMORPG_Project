@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "UI_Manager.h"
 #include "Img_Manager.h"
+#include "UI_LoginBox.h"
 
 CUI_Manager* CUI_Manager::m_pInstance = nullptr;
 
@@ -68,6 +69,19 @@ void CUI_Manager::Render(ID2D1RenderTarget* pRT)
 		for (auto& iter : m_UIList[i])
 		{
 			iter->Render(pRT);
+		}
+	}
+}
+
+void CUI_Manager::On_Char(wchar_t ch)
+{
+	for (auto* pUI : m_UIList[UI_BOX])
+	{
+		auto* pLoginBox = dynamic_cast<CUI_LoginBox*>(pUI);
+		if (pLoginBox)
+		{
+			pLoginBox->On_Char(ch);
+			break;
 		}
 	}
 }

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.MainServer">
+      <UniqueIdentifier>{5b2323ec-1d8c-4bdc-95c6-9760fa76cbb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Etc">
+      <UniqueIdentifier>{7a3e88a8-a187-4454-88dc-58a54c9e45cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Etc\Define">
+      <UniqueIdentifier>{1139b941-42a9-46a3-b642-3885a9c2e5e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Etc\Pch">
+      <UniqueIdentifier>{6dde859c-1f4d-4b35-bb13-3cb356b7d36a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network_Level">
+      <UniqueIdentifier>{495dfb9d-9eda-4b5b-b3d5-f97185e22f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network_Level\02.Session_Manager">
+      <UniqueIdentifier>{f10824b0-cde9-4a20-99bd-ce9960a35775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network_Level\02.Session_Manager\Session">
+      <UniqueIdentifier>{1e1f3b9e-088b-4e13-ae42-8cbc6daa82c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network_Level\01.IOCP_Server">
+      <UniqueIdentifier>{5d9b6529-c43f-4688-b46d-ef2aeea7f7e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level">
+      <UniqueIdentifier>{888b35d2-1404-49cd-aa5a-64f2d7212419}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level\01.Packet_Handler%28Protocol%29">
+      <UniqueIdentifier>{878153ad-4223-4511-aa93-bddfd133b5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level\01.Packet_Handler%28Protocol%29\Protocol">
+      <UniqueIdentifier>{9300827e-da4c-492a-ab12-ef23a0ae413b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level\02.Player_Manager">
+      <UniqueIdentifier>{f99269bf-904b-4bfa-b28d-26fbed0a4f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level\02.Player_Manager\Player">
+      <UniqueIdentifier>{a67922a7-a8f2-4f3e-aa4e-1235ac4dc045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents_Level\03.Zone_Manager">
+      <UniqueIdentifier>{68ee327a-c140-4393-8d3c-d68c53e52c2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainServer.cpp">
+      <Filter>00.MainServer</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99.Etc\Pch</Filter>
+    </ClCompile>
+    <ClCompile Include="IOCP_Server.cpp">
+      <Filter>Network_Level\01.IOCP_Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Session_Manager.cpp">
+      <Filter>Network_Level\02.Session_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>Network_Level\02.Session_Manager\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Packet_Handler.cpp">
+      <Filter>Contents_Level\01.Packet_Handler%28Protocol%29</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Manager.cpp">
+      <Filter>Contents_Level\02.Player_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Contents_Level\02.Player_Manager\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>Contents_Level\03.Zone_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone_Manager.cpp">
+      <Filter>Contents_Level\03.Zone_Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>99.Etc\Pch</Filter>
+    </ClInclude>
+    <ClInclude Include="IOCP_Server.h">
+      <Filter>Network_Level\01.IOCP_Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Session_Manager.h">
+      <Filter>Network_Level\02.Session_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Network_Level\02.Session_Manager\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet_Handler.h">
+      <Filter>Contents_Level\01.Packet_Handler%28Protocol%29</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>Contents_Level\01.Packet_Handler%28Protocol%29\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_Manager.h">
+      <Filter>Contents_Level\02.Player_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Contents_Level\02.Player_Manager\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>Contents_Level\03.Zone_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone_Manager.h">
+      <Filter>Contents_Level\03.Zone_Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

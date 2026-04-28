@@ -6,9 +6,13 @@
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 HWND g_hWnd;
 HINSTANCE hInst;
+CMainApp* g_pMainApp = nullptr;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLine, int nCmdShow)
 {
+	AllocConsole();
+	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
+	freopen_s((FILE**)stderr, "CONOUT$", "w", stderr);
 
 	CoInitialize(nullptr);//D2D Com초기화
 
@@ -51,6 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	UpdateWindow(g_hWnd);
 
 	CMainApp MainApp;
+	g_pMainApp = &MainApp;
 	CTimer_Manager::Get_Instance()->Initialize();
 	MainApp.Initialize();
 
@@ -102,6 +107,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	switch (iMsg)
 	{
 	case WM_CREATE:
+		break;
+	case WM_CHAR:                              // ← 추가
+		if (g_pMainApp)
+			g_pMainApp->On_Char((wchar_t)wParam);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
