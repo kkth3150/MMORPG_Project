@@ -1,0 +1,4 @@
+#include "pch.h"
+#include "Player.h"
+
+CPlayer::CPlayer() {}

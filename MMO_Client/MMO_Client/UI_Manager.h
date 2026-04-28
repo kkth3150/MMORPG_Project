@@ -32,6 +32,7 @@ public:
 	};
 
 	void		DeleteID(OBJ_ID eID);
+	void On_Char(wchar_t ch);
 
 private:
 

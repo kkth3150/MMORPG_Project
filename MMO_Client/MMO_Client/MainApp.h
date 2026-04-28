@@ -14,6 +14,7 @@ public:
 	void Render(void);
 	void Release(void);
 
+	void On_Char(wchar_t ch);
 private:
 
 	ID2D1Factory* m_pFactory = nullptr;

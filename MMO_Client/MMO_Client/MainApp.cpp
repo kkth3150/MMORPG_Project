@@ -3,6 +3,8 @@
 #include "Img_Manager.h"
 #include "Level_Manager.h"
 #include "Input_Manager.h"
+#include "UI_Manager.h"
+#include "Network_Manager.h"
 
 CMainApp::CMainApp()
 {
@@ -17,10 +19,6 @@ CMainApp::~CMainApp()
 
 void CMainApp::Initialize(void)
 {
-
-    //m_hDC = GetDC(g_hWnd);
-   /* CImg_Manager::Get_Instance()->Insert_Bmp(L"../Resource/BackBuffer/BackBuffer.bmp", L"BackBuffer");
-    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);*/
     D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &m_pFactory);
 
     //2. 렌더타겟 생성 (BackBuffer 역할을 D2D가 대체)
@@ -51,18 +49,19 @@ void CMainApp::Initialize(void)
         16.f, L"ko-KR",
         &m_pTextFormat
     );
+    CNetwork_Manager::Get_Instance()->Connect(L"127.0.0.1", 7777);
 
     //5. Img_Manager에 RenderTarget 전달 후 이미지 로드
     CImg_Manager::Get_Instance()->Set_RenderTarget(m_pRenderTarget);
     CImg_Manager::Get_Instance()->Create_DebugFont(m_pDWriteFactory);
-
     //6. 레벨 초기화 (그대로)
     CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
+    CNetwork_Manager::Get_Instance()->SendLogin("asd", "asd");
 }
 
 void CMainApp::Update(float dt)
 {
-
+    CNetwork_Manager::Get_Instance()->Dispatch();
     m_fTimeAcc += dt;
     m_iFrameCount++;
     CInput_Manager::Get_Instance()->Update();
@@ -112,4 +111,11 @@ void CMainApp::Release(void)
     if (m_pDWriteFactory) { m_pDWriteFactory->Release();  m_pDWriteFactory = nullptr; }
     if (m_pRenderTarget) { m_pRenderTarget->Release();   m_pRenderTarget = nullptr; }
     if (m_pFactory) { m_pFactory->Release();        m_pFactory = nullptr; }
+
+    CNetwork_Manager::Destroy_Instance();
+}
+
+void CMainApp::On_Char(wchar_t ch)
+{
+    CUI_Manager::Get_Instance()->On_Char(ch);
 }

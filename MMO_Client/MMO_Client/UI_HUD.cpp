@@ -15,12 +15,12 @@ void CUI_HUD::Initialize()
         L"../Resource/UI/Exp_Bar.png", L"HUD_EXP");
 
     // 좌측 하단 고정
-    Set_Pos(PANEL_W * 0.5f + 10.f, WINCY - PANEL_H * 0.5f - 10.f);
+    Set_Pos(PANEL_W * 0.5f, WINCY - PANEL_H * 0.5f);
     Set_Size(PANEL_W, PANEL_H);
     Update_Rect();
 }
 
-int CUI_HUD::Update(float dt) { return OBJ_NOEVENT; }
+int CUI_HUD::Update(float dt) { return UI_NOEVENT; }
 void CUI_HUD::Late_Update(float dt) {}
 void CUI_HUD::Release() {}
 

@@ -7,6 +7,7 @@
 #include "ItemData_Potion.h"
 #include "ItemData_Equipment.h"
 #include "ItemData_Etc.h" 
+#include "Network_Manager.h"
 
 CPlayer::CPlayer()
 {
@@ -305,6 +306,9 @@ void CPlayer::Key_Input(float dt)
 	{
 		if (!bMovable) return;  // 이동 불가면 클릭 무시
 
+
+		
+
 		m_fDestWorldX = fWorldX;
 		m_fDestWorldZ = fWorldZ;
 
@@ -315,6 +319,7 @@ void CPlayer::Key_Input(float dt)
 		m_tClickEffect.color = D2D1::ColorF(0.f, 1.f, 0.f, 1.f);
 
 		m_bMoving = true;
+		CNetwork_Manager::Get_Instance()->SendMoveDest(fWorldX, fWorldZ,1.f);
 
 		if (m_eCurState != PLAYER_WALK)
 			Motion_Change(PLAYER_WALK);
@@ -330,78 +335,12 @@ void CPlayer::Key_Input(float dt)
 	if (m_bMoving)
 		Move_To_Dest(dt);
 
-	if (pInput->Key_Down('A'))
-	{
-		CItemData_Potion* p = new CItemData_Potion;
-		p->Set_PotionType(POTION_HP_M);
-		m_pInventory->Add_Item(p);
-	}
-	// 2 : HP 포션 대형 추가
-	if (pInput->Key_Down('S'))
-	{
-		CItemData_Potion* p = new CItemData_Potion;
-		p->Set_PotionType(POTION_HP_L);
-		m_pInventory->Add_Item(p);
-	}
-	// 3 : MP 포션 중형 추가
-	if (pInput->Key_Down('D'))
-	{
-		CItemData_Potion* p = new CItemData_Potion;
-		p->Set_PotionType(POTION_MP_M);
-		m_pInventory->Add_Item(p);
-	}
-	// 4 : 검 랜덤 추가
-	if (pInput->Key_Down('F'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_SWORD_0 + rand() % 7));
-		m_pInventory->Add_Item(p);
-	}
-	// 5 : 갑옷 랜덤 추가
-	if (pInput->Key_Down('5'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_ARMOR_0 + rand() % 8));
-		m_pInventory->Add_Item(p);
-	}
-	// 6 : 투구 랜덤 추가
-	if (pInput->Key_Down('6'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_HELMET_0 + rand() % 7));
-		m_pInventory->Add_Item(p);
-	}
-	// 7 : 방패 랜덤 추가
-	if (pInput->Key_Down('7'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_SHIELD_0 + rand() % 7));
-		m_pInventory->Add_Item(p);
-	}
-	// 8 : 반지 랜덤 추가
-	if (pInput->Key_Down('8'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_RING_0 + rand() % 5));
-		m_pInventory->Add_Item(p);
-	}
-	// 9 : 목걸이 랜덤 추가
-	if (pInput->Key_Down('9'))
-	{
-		CItemData_Equipment* p = new CItemData_Equipment;
-		p->Set_EquipType((EQUIPMENT_TYPE)(EQUIP_PENDANT_0 + rand() % 5));
-		m_pInventory->Add_Item(p);
-	}
-	// 0 : 골드 100 추가
-	if (pInput->Key_Down('0'))
-	{
-		m_pInventory->Add_Gold(100);
-	}
-
 }
 
 void CPlayer::Move_To_Dest(float dt)
 {
+
+
 	float fDX = m_fDestWorldX - m_tIsoInfo.fWorldX;
 	float fDZ = m_fDestWorldZ - m_tIsoInfo.fWorldZ;
 	float fDist = sqrtf(fDX * fDX + fDZ * fDZ);
