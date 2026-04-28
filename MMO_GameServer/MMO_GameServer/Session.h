@@ -54,6 +54,7 @@ public:
     ~CSession();
 
     // ---- 외부에서 호출 ----
+    void        Initialize();
     void        SetSocket(SOCKET socket) { m_socket = socket; }
     SOCKET      GetSocket() { return m_socket; }
     void        SetID(int32_t id) { m_id = id; }
@@ -67,8 +68,8 @@ public:
     void        OnRecvComplete(int32_t nNumOfBytes);
     void        OnSendComplete();
     uint8_t*    GetAcceptBuf() { return m_acceptEvent.m_acceptBuf; }
-    CIOEvent* GetAcceptEvent() { return &m_acceptEvent; }
-    void      SetConnected(bool b) { m_connected = b; }
+    CIOEvent*   GetAcceptEvent() { return &m_acceptEvent; }
+    void        SetConnected(bool b) { m_connected = b; }
 private:
     void        ProcessRecvData(int32_t nNewBytes);
     void        HandlePacket(uint8_t* pData, int32_t nSize);

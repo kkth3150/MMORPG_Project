@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "IOCP_Server.h"
 #include "Session_Manager.h"
+#include "Player_Manager.h"
 #include "Protocol.h"
 #include <iostream>
 #include <cstring>
@@ -48,16 +49,21 @@ bool CIOCP_Server::Start(uint16_t nPort)
 
     int32_t nThreadCount = static_cast<int32_t>(
         std::thread::hardware_concurrency());
+    m_debugThread = std::thread(&CIOCP_Server::DebugConsoleThread, this);
+    m_debugThread.detach();
+
     for (int32_t i = 0; i < nThreadCount; ++i)
         m_workerThreads.emplace_back(&CIOCP_Server::WorkerThread, this);
 
-    std::cout << "[CIOCPServer] 시작. 포트=" << nPort
-        << " Worker스레드=" << nThreadCount << std::endl;
+    //std::cout << "[CIOCPServer] 시작. 포트=" << nPort
+    //    << " Worker스레드=" << nThreadCount << std::endl;
     return true;
 }
 
 void CIOCP_Server::Run()
 {
+
+
     for (auto& t : m_workerThreads)
         t.join();
 }
@@ -111,7 +117,7 @@ bool CIOCP_Server::InitSocket(uint16_t nPort)
         return false;
     }
 
-    std::cout << "[CIOCPServer] 리슨 소켓 준비 완료" << std::endl;
+    //std::cout << "[CIOCPServer] 리슨 소켓 준비 완료" << std::endl;
     return true;
 }
 
@@ -164,10 +170,11 @@ void CIOCP_Server::StartAccept()
 // ================================================================
 void CIOCP_Server::ReRegisterAccept(SessionRef pSession)
 {
-    std::cout << "[ReRegisterAccept] SessionID=" << pSession->GetID()
-        << " Socket=" << pSession->GetSocket() << std::endl;
+    //std::cout << "[ReRegisterAccept] SessionID=" << pSession->GetID()
+    //    << " Socket=" << pSession->GetSocket() << std::endl;
 
     pSession->GetAcceptEvent()->Reset();
+    pSession->Initialize();
 
     DWORD dwBytesReceived = 0;
     int nAddrSize = sizeof(SOCKADDR_IN);
@@ -192,7 +199,7 @@ void CIOCP_Server::ReRegisterAccept(SessionRef pSession)
     }
     else
     {
-        std::cout << "[ReRegisterAccept] AcceptEx 성공 즉시완료" << std::endl;
+        //std::cout << "[ReRegisterAccept] AcceptEx 성공 즉시완료" << std::endl;
     }
 }
 
@@ -217,10 +224,10 @@ void CIOCP_Server::WorkerThread()
         if (pIOEvent == nullptr) continue;
 
         // 로그 추가
-        std::cout << "[GQCS] bResult=" << bResult
-            << " bytes=" << dwNumOfBytes
-            << " key=" << ulKey
-            << " type=" << (int)pIOEvent->m_type << std::endl;
+        //std::cout << "[GQCS] bResult=" << bResult
+        //    << " bytes=" << dwNumOfBytes
+        //    << " key=" << ulKey
+        //    << " type=" << (int)pIOEvent->m_type << std::endl;
 
         CSession* rawSession = pIOEvent->m_owner;
         if (!rawSession) continue;
@@ -272,17 +279,17 @@ void CIOCP_Server::WorkerThread()
 // ================================================================
 void CIOCP_Server::ProcessAccept(SessionRef pSession)
 {
-    std::cout << "[ProcessAccept] SessionID=" << pSession->GetID()
-        << " Socket=" << pSession->GetSocket()
-        << " ListenSocket=" << m_listenSocket << std::endl;
+    //std::cout << "[ProcessAccept] SessionID=" << pSession->GetID()
+    //    << " Socket=" << pSession->GetSocket()
+    //    << " ListenSocket=" << m_listenSocket << std::endl;
 
     int nResult = setsockopt(pSession->GetSocket(),
         SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT,
         reinterpret_cast<const char*>(&m_listenSocket),
         sizeof(m_listenSocket));
 
-    std::cout << "[ProcessAccept] setsockopt 결과=" << nResult
-        << " err=" << WSAGetLastError() << std::endl;
+    //std::cout << "[ProcessAccept] setsockopt 결과=" << nResult
+    //    << " err=" << WSAGetLastError() << std::endl;
     // AcceptEx 필수 후처리 실패하면 소켓 연결이 안 된 상태
 
     pSession->SetConnected(true);
@@ -290,7 +297,7 @@ void CIOCP_Server::ProcessAccept(SessionRef pSession)
 
     // 새 슬롯 보충
     int32_t nNewID = CSession_Manager::Get_Instance()->Assign();
-    std::cout << "[ProcessAccept] 새 슬롯 nNewID=" << nNewID << std::endl;
+    //std::cout << "[ProcessAccept] 새 슬롯 nNewID=" << nNewID << std::endl;
     if (nNewID != -1)
     {
         SessionRef pNewSession = CSession_Manager::Get_Instance()->Get_Session(nNewID);
@@ -315,4 +322,70 @@ void CIOCP_Server::ProcessRecv(SessionRef pSession, int32_t nNumOfBytes)
 void CIOCP_Server::ProcessSend(SessionRef pSession)
 {
     pSession->OnSendComplete();
+}
+
+void CIOCP_Server::DebugConsoleThread()
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // 커서 깜빡임 제거
+    CONSOLE_CURSOR_INFO cursorInfo = { 1, FALSE };
+    SetConsoleCursorInfo(hConsole, &cursorInfo);
+
+    while (true)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+        COORD pos = { 0, 0 };
+        SetConsoleCursorPosition(hConsole, pos);
+
+        auto* pSM = CSession_Manager::Get_Instance();
+        auto* pPM = CPlayer_Manager::Get_Instance();
+
+        int nConnected = 0;
+        int nWaiting = (int)m_acceptSessions.size();
+
+        std::cout << "=== MMO Server Debug =====================\n";
+        std::cout << "포트: 7777  워커: " << m_workerThreads.size() << "\n";
+        std::cout << "------------------------------------------\n";
+
+        // Accept 대기 슬롯 한줄 출력
+        std::cout << "[Accept 대기] ";
+        for (auto& pSession : m_acceptSessions)
+        {
+            if (pSession && !pSession->IsConnected())
+                std::cout << pSession->GetID() << " ";
+        }
+        std::cout << "          \n";  // 이전 내용 덮어쓰기용 공백
+
+        // 접속 중인 플레이어
+        std::cout << "------------------------------------------\n";
+        std::cout << "[접속 중 플레이어]\n";
+
+        for (int i = 0; i < MAX_SESSION; ++i)
+        {
+            SessionRef pSession = pSM->Get_Session(i);
+            if (!pSession || !pSession->IsConnected()) continue;
+
+            PlayerRef pPlayer = pPM->Get_Player(i);
+            std::string name = pPlayer ? pPlayer->m_szName : "?";
+
+            std::cout << "  ID=" << std::setw(3) << i
+                << "  name=" << std::setw(12) << std::left << name
+                << "  pos=(" << std::fixed << std::setprecision(1)
+                << (pPlayer ? pPlayer->m_fCurX : 0.f) << ", "
+                << (pPlayer ? pPlayer->m_fCurZ : 0.f) << ")   \n";
+            nConnected++;
+        }
+
+        // 빈 줄로 이전 내용 덮어쓰기
+        for (int i = nConnected; i < 5; ++i)
+            std::cout << "                                          \n";
+
+        std::cout << "------------------------------------------\n";
+        std::cout << "접속: " << nConnected
+            << "  대기: " << nWaiting
+            << "  총 슬롯: " << (nConnected + nWaiting) << "   \n";
+        std::cout << "==========================================\n";
+    }
 }

@@ -55,7 +55,7 @@ void CMainApp::Initialize(void)
     CImg_Manager::Get_Instance()->Set_RenderTarget(m_pRenderTarget);
     CImg_Manager::Get_Instance()->Create_DebugFont(m_pDWriteFactory);
     //6. 레벨 초기화 (그대로)
-    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
+    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_LOGIN);
     CNetwork_Manager::Get_Instance()->SendLogin("asd", "asd");
 }
 

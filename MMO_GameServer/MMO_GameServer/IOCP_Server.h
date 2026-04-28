@@ -1,5 +1,6 @@
 #pragma once
 #include "Session.h"
+#include <iomanip>   // setw, setprecision
 #include <vector>
 
 class CIOCP_Server
@@ -34,4 +35,7 @@ private:
     static constexpr int32_t ACCEPT_POOL_SIZE = 10;
     std::vector<SessionRef>  m_acceptSessions;
     std::vector<std::thread> m_workerThreads;
+
+    void DebugConsoleThread();
+    std::thread m_debugThread;
 };
