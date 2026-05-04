@@ -18,6 +18,7 @@ public:
 		if (!List_Empty(OBJ_PLAYER))
 			return m_ObjectList[OBJ_PLAYER].front();
 	}
+	CGameObject* Find_OtherPlayer(int32_t nPlayerID);
 
 	std::list<CGameObject*>* Get_List(OBJ_ID eID) {
 		if (!List_Empty(eID))

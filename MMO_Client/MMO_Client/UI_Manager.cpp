@@ -96,7 +96,7 @@ void CUI_Manager::Release(void)
 	}
 }
 
-void CUI_Manager::DeleteID(OBJ_ID eID)
+void CUI_Manager::DeleteID(UI_ID eID)
 {
 	for (auto& iter : m_UIList[eID])
 		Safe_Delete(iter);

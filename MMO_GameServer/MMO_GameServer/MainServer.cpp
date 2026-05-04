@@ -12,7 +12,7 @@ int main()
     // 워커 스레드 뜨기 전에 미리 생성
     // 멀티스레드 경합 없이 안전하게 초기화
     CSession_Manager::Get_Instance();
-
+    //시작
     CIOCP_Server server;
     if (!server.Start(7777))
     {

@@ -40,7 +40,7 @@ void CPacket_Handler::Handle_CS_LOGIN(std::shared_ptr<CSession> pSession,
     CZone* pZone = CZone_Manager::Get_Instance()->GetZone(ZONE_TEST);
     if (!pZone) { Send_SC_LOGIN_FAIL(pSession, 0); return; }
 
-    pZone->EnterZone(pPlayer, 5.f, 5.f);
+    pZone->EnterZone(pPlayer, 10.f, 10.f);
 
     Send_SC_LOGIN_OK(pSession, pPlayer->m_nPlayerID);
     Send_SC_ENTER_GAME(pSession);
@@ -63,7 +63,6 @@ void CPacket_Handler::Handle_CS_MOVE_DEST(std::shared_ptr<CSession> pSession,
     if (!pZone) return;
 
     pZone->OnMoveDest(pPlayer, pPkt->fDestX, pPkt->fDestZ, pPkt->moveTime);
-    //std::cout << "플레이어 이동 좌표" << pPkt->fDestX << "," << pPkt->fDestZ << std::endl;
 }
 
 // ================================================================

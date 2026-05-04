@@ -75,6 +75,32 @@ void CPlayer::Initialize()
 
 #pragma endregion PLAYER ATTACK
 
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_B.png", L"PLAYER_HIT_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_LB.png", L"PLAYER_HIT_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_L.png", L"PLAYER_HIT_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_LT.png", L"PLAYER_HIT_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_T.png", L"PLAYER_HIT_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_RT.png", L"PLAYER_HIT_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_R.png", L"PLAYER_HIT_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/hit/hit_RB.png", L"PLAYER_HIT_RB");
+
+#pragma endregion PLAYER HIT
+
+#pragma region Sprites :
+
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_B.png", L"PLAYER_DEAD_B");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_LB.png", L"PLAYER_DEAD_LB");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_L.png", L"PLAYER_DEAD_L");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_LT.png", L"PLAYER_DEAD_LT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_T.png", L"PLAYER_DEAD_T");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_RT.png", L"PLAYER_DEAD_RT");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_R.png", L"PLAYER_DEAD_R");
+	CImg_Manager::Get_Instance()->Insert_Png(L"../Resource/Character/Player/dead/dead_RB.png", L"PLAYER_DEAD_RB");
+
+#pragma endregion PLAYER DEAD
+
 	m_pInventory = new CInventory;
 	m_pEquipment = new CEquipment;
 	m_iHp = 100;
@@ -129,7 +155,6 @@ void CPlayer::Release(void)
 	if (m_pInventory) { delete m_pInventory; m_pInventory = nullptr; }
 	if (m_pEquipment) { delete m_pEquipment; m_pEquipment = nullptr; }
 }
-
 
 void CPlayer::Render_Sprite(ID2D1RenderTarget* pRT, ID2D1Bitmap* pBitmap)
 {
@@ -204,10 +229,59 @@ void CPlayer::RenderWALK(ID2D1RenderTarget* pRT)
 	Render_Sprite(pRT, pBitmap);
 }
 
-void CPlayer::RenderATTACK(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
-void CPlayer::RenderHIT(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
-void CPlayer::RenderDEAD(ID2D1RenderTarget* pRT) { /* 추후 구현 */ }
+void CPlayer::RenderATTACK(ID2D1RenderTarget* pRT) { 
+	ID2D1Bitmap* pBitmap = nullptr;
+	switch (m_eDir)
+	{
+	case DIR_B:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_B");  break;
+	case DIR_LB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_LB"); break;
+	case DIR_L:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_L");  break;
+	case DIR_LT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_LT"); break;
+	case DIR_T:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_T");  break;
+	case DIR_RT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_RT"); break;
+	case DIR_R:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_R");  break;
+	case DIR_RB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_ATTACK_RB"); break;
+	default: break;
+	}
+	Render_Sprite(pRT, pBitmap);
+}
 
+void CPlayer::RenderHIT(ID2D1RenderTarget* pRT) { 
+
+	ID2D1Bitmap* pBitmap = nullptr;
+	switch (m_eDir)
+	{
+	case DIR_B:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_B");  break;
+	case DIR_LB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_LB"); break;
+	case DIR_L:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_L");  break;
+	case DIR_LT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_LT"); break;
+	case DIR_T:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_T");  break;
+	case DIR_RT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_RT"); break;
+	case DIR_R:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_R");  break;
+	case DIR_RB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_HIT_RB"); break;
+	default: break;
+	}
+	Render_Sprite(pRT, pBitmap);
+
+}
+
+void CPlayer::RenderDEAD(ID2D1RenderTarget* pRT) { 
+
+	ID2D1Bitmap* pBitmap = nullptr;
+	switch (m_eDir)
+	{
+	case DIR_B:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_B");  break;
+	case DIR_LB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_LB"); break;
+	case DIR_L:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_L");  break;
+	case DIR_LT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_LT"); break;
+	case DIR_T:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_T");  break;
+	case DIR_RT: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_RT"); break;
+	case DIR_R:  pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_R");  break;
+	case DIR_RB: pBitmap = CImg_Manager::Get_Instance()->Find_Png(L"PLAYER_DEAD_RB"); break;
+	default: break;
+	}
+	Render_Sprite(pRT, pBitmap);
+}
 
 void CPlayer::Render_ClickEffect(ID2D1RenderTarget* pRT)
 {
@@ -261,13 +335,24 @@ void CPlayer::Motion_Change(PLAYER_STATE eState)
 		m_tIsoInfo.fCX = 160.f;
 		m_tIsoInfo.fCY = 128.f;
 		m_tIsoInfo.fHeight = 30.f;
+		m_bLoopAnim = false;
 		Set_Frame(15, 30);
 		break;
 
 	case PLAYER_HIT:
+		m_tIsoInfo.fCX = 160.f;
+		m_tIsoInfo.fCY = 128.f;
+		m_tIsoInfo.fHeight = 30.f;
+		m_bLoopAnim = false;
+		Set_Frame(3, 30);
 		break;
 
 	case PLAYER_DEAD:
+		m_tIsoInfo.fCX = 160.f;
+		m_tIsoInfo.fCY = 160.f;
+		m_tIsoInfo.fHeight = 30.f;
+		m_bLoopAnim = false;
+		Set_Frame(23, 70);
 		break;
 
 	default:
@@ -306,9 +391,6 @@ void CPlayer::Key_Input(float dt)
 	{
 		if (!bMovable) return;  // 이동 불가면 클릭 무시
 
-
-		
-
 		m_fDestWorldX = fWorldX;
 		m_fDestWorldZ = fWorldZ;
 
@@ -319,7 +401,7 @@ void CPlayer::Key_Input(float dt)
 		m_tClickEffect.color = D2D1::ColorF(0.f, 1.f, 0.f, 1.f);
 
 		m_bMoving = true;
-		CNetwork_Manager::Get_Instance()->SendMoveDest(fWorldX, fWorldZ,1.f);
+		CNetwork_Manager::Get_Instance()->SendMoveDest(fWorldX, fWorldZ, static_cast<uint32_t>(GetTickCount64()));
 
 		if (m_eCurState != PLAYER_WALK)
 			Motion_Change(PLAYER_WALK);
@@ -335,6 +417,22 @@ void CPlayer::Key_Input(float dt)
 	if (m_bMoving)
 		Move_To_Dest(dt);
 
+	if (!m_bMoving) {
+		if (pInput->Key_Down('A')) {
+			Motion_Change(PLAYER_ATTACK);
+		}
+		if (pInput->Key_Down('S')) {
+			Motion_Change(PLAYER_HIT);
+		}
+		if (pInput->Key_Down('D')) {
+			Motion_Change(PLAYER_DEAD);
+		}
+
+		if (pInput->Key_Down('F')) {
+			Motion_Change(PLAYER_IDLE);
+		}
+	}
+
 }
 
 void CPlayer::Move_To_Dest(float dt)
@@ -345,7 +443,7 @@ void CPlayer::Move_To_Dest(float dt)
 	float fDZ = m_fDestWorldZ - m_tIsoInfo.fWorldZ;
 	float fDist = sqrtf(fDX * fDX + fDZ * fDZ);
 
-	float fFrameSpeed = m_fSpeed * dt;  // dt 적용
+	float fFrameSpeed = m_fSpeed * dt;
 
 	if (fDist <= fFrameSpeed)
 	{
@@ -353,6 +451,10 @@ void CPlayer::Move_To_Dest(float dt)
 		m_tIsoInfo.fWorldZ = m_fDestWorldZ;
 		m_bMoving = false;
 		Motion_Change(PLAYER_IDLE);
+
+		CNetwork_Manager::Get_Instance()->SendMovePos(
+			m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ,
+			static_cast<uint32_t>(GetTickCount64()));
 		return;
 	}
 
@@ -362,6 +464,19 @@ void CPlayer::Move_To_Dest(float dt)
 	m_tIsoInfo.fWorldZ += fNZ * fFrameSpeed;
 
 	Decide_Direction(fNX, fNZ);
+
+	int32_t nCurTileX = static_cast<int32_t>(floorf(m_tIsoInfo.fWorldX));
+	int32_t nCurTileZ = static_cast<int32_t>(floorf(m_tIsoInfo.fWorldZ));
+
+	if (nCurTileX != m_nLastTileX || nCurTileZ != m_nLastTileZ)
+	{
+		m_nLastTileX = nCurTileX;
+		m_nLastTileZ = nCurTileZ;
+
+		CNetwork_Manager::Get_Instance()->SendMovePos(
+			m_tIsoInfo.fWorldX, m_tIsoInfo.fWorldZ,
+			static_cast<uint32_t>(GetTickCount64()));
+	}
 }
 void CPlayer::Decide_Direction(float fNX, float fNZ)
 {
@@ -453,10 +568,8 @@ void CPlayer::UnEquip_Item(EQUIP_SLOT eSlot)
 	CItemData_Equipment* pItem = m_pEquipment->Get_Equipped(eSlot);
 	if (!pItem) return;
 
-	// 인벤토리 빈 슬롯 있는지 먼저 확인
 	if (m_pInventory->Find_EmptySlot() == INVEN_FULL) return;  // 꽉 차있으면 해제 불가
 
-	// 해제 후 인벤토리로
 	pItem = m_pEquipment->UnEquip(eSlot);
 	m_pInventory->Add_Item(pItem);
 }

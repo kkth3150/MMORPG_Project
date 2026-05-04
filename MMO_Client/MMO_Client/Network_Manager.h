@@ -98,7 +98,6 @@ private:
 
     SOCKET               m_socket = INVALID_SOCKET;
     std::atomic<bool>    m_bConnected = false;
-    uint32_t             m_nMyPlayerID = 0;
 
     // 수신 스레드
     std::thread          m_recvThread;
@@ -111,4 +110,16 @@ private:
     static constexpr int32_t RECV_BUF_SIZE = 4096;
     uint8_t  m_recvBuf[RECV_BUF_SIZE] = {};
     int32_t  m_nPrevRemain = 0;
+
+public:
+    bool  IsSpawnReady() const { return m_bSpawnReady; }
+    float GetSpawnX()    const { return m_fSpawnX; }
+    float GetSpawnZ()    const { return m_fSpawnZ; }
+    void  ClearSpawn()     { m_bSpawnReady = false; }
+
+private:
+    uint32_t             m_nMyPlayerID = 0;
+    bool  m_bSpawnReady = false;
+    float m_fSpawnX = 0.f;
+    float m_fSpawnZ = 0.f;
 };

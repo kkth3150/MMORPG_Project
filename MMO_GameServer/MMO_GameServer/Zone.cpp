@@ -206,9 +206,8 @@ void CZone::OnMoveDest(PlayerRef pPlayer,
 void CZone::OnMovePos(PlayerRef pPlayer,
     float fCurX, float fCurZ, uint32_t nMoveTime)
 {
-    // ---- 속도 검증 ----
-    // 서버가 계산한 현재 위치와 클라이언트가 보낸 위치를 비교
-    // 허용 오차 이상이면 핵 의심 → 서버 계산 위치로 보정
+    // 속도 검증
+
     float fServerX, fServerZ;
     pPlayer->GetCurrentPos(nMoveTime, fServerX, fServerZ);
 
@@ -216,11 +215,12 @@ void CZone::OnMovePos(PlayerRef pPlayer,
     float fDiffZ = fCurZ - fServerZ;
     float fDiff = sqrtf(fDiffX * fDiffX + fDiffZ * fDiffZ);
 
-    constexpr float MAX_TOLERANCE = 1.5f;  // 허용 오차 (타일 단위)
+    //오차범위
+    constexpr float MAX_TOLERANCE = 2.f; 
 
     if (fDiff > MAX_TOLERANCE)
     {
-        // 오차 초과 → 서버 계산 위치로 강제 보정
+        //오차 초과
         std::cout << "[경고] 위치 오차 초과. PlayerID="
             << pPlayer->m_nPlayerID
             << " 오차=" << fDiff << std::endl;
@@ -377,9 +377,10 @@ void CZone::Send_AddPlayer(PlayerRef pTo, PlayerRef pTarget)
     pkt.playerID = pTarget->m_nPlayerID;
     pkt.fCurX = pTarget->m_fCurX;
     pkt.fCurZ = pTarget->m_fCurZ;
-    pkt.fDestX = pTarget->m_fDestX;  // 이동 중이면 목적지도 전달
-    pkt.fDestZ = pTarget->m_fDestZ;  // 클라이언트가 보간 시작
+    pkt.fDestX = pTarget->m_fDestX;
+    pkt.fDestZ = pTarget->m_fDestZ;
     pkt.fSpeed = pTarget->m_fSpeed;
+    pkt.state = static_cast<uint8_t>(pTarget->m_eState);
     strncpy_s(pkt.name, pTarget->m_szName, sizeof(pkt.name) - 1);
     pSession->Send(&pkt, sizeof(pkt));
 }

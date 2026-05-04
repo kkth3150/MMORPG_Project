@@ -7,9 +7,7 @@ class CItemData_UseItem;
 
 #define PLAYER_FOOT_OFFSET_Y 0.5f
 
-enum PLAYER_STATE {
-    PLAYER_IDLE, PLAYER_WALK, PLAYER_HIT, PLAYER_ATTACK, PLAYER_DEAD, PLAYER_END
-};
+
 
 struct CLICK_EFFECT
 {
@@ -57,8 +55,9 @@ private:
     float        m_fDestWorldX = 0.f;
     float        m_fDestWorldZ = 0.f;
     bool         m_bMoving = false;
-
-
+    
+    int32_t m_nLastTileX;
+    int32_t m_nLastTileZ;
 
 public:
     // 아이템 관련

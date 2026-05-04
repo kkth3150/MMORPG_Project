@@ -149,6 +149,7 @@
     <ClCompile Include="Map_Manager.cpp" />
     <ClCompile Include="MyPng.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Other_Player.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Map_Manager.h" />
     <ClInclude Include="MyPng.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="Other_Player.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Protocol.h" />

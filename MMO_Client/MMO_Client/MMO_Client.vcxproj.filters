@@ -139,6 +139,9 @@
     <ClCompile Include="UI_LoginBox.cpp">
       <Filter>06.UI_Manager\UIs\UI_LoginBox</Filter>
     </ClCompile>
+    <ClCompile Include="Other_Player.cpp">
+      <Filter>05.Object_Manager\GameObjects\05_00.Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="01.MainApp">
@@ -443,6 +446,9 @@
     </ClInclude>
     <ClInclude Include="Protocol.h">
       <Filter>11.Network_Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Other_Player.h">
+      <Filter>05.Object_Manager\GameObjects\05_00.Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
