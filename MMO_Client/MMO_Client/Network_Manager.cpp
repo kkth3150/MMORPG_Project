@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Network_Manager.h"
 #include "Object_Manager.h"   // 다른 플레이어 오브젝트 관리
-//#include "Other_Player.h"     // 다른 플레이어 렌더 객체
+#include "Other_Player.h"     // 다른 플레이어 렌더 객체
 #include "Player.h"           // 내 플레이어
 #include <iostream>
 #include "Level_Manager.h"
@@ -204,8 +204,6 @@ void CNetwork_Manager::Handle_SC_LOGIN_OK(uint8_t* pBuffer, int32_t nSize)
     m_nMyPlayerID = pPkt->playerID;
     std::cout << "[Network] 로그인 성공. PlayerID=" << m_nMyPlayerID << std::endl;
 
-    // TODO: 로그인 성공 UI 처리
-    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
 }
 
 void CNetwork_Manager::Handle_SC_LOGIN_FAIL(uint8_t* pBuffer, int32_t nSize)
@@ -218,61 +216,84 @@ void CNetwork_Manager::Handle_SC_LOGIN_FAIL(uint8_t* pBuffer, int32_t nSize)
 
 void CNetwork_Manager::Handle_SC_ENTER_GAME(uint8_t* pBuffer, int32_t nSize)
 {
-    SC_ENTER_GAME_PACKET* pPkt = reinterpret_cast<SC_ENTER_GAME_PACKET*>(pBuffer);
+    SC_ENTER_GAME_PACKET* pPkt =
+        reinterpret_cast<SC_ENTER_GAME_PACKET*>(pBuffer);
 
-    //std::cout << "[Network] 게임 진입. X=" << pPkt->fCurX
-    //    << " Z=" << pPkt->fCurZ << std::endl;
+    m_fSpawnX = pPkt->fCurX;
+    m_fSpawnZ = pPkt->fCurZ;
+    m_bSpawnReady = true;
 
-    // 내 캐릭터 초기 위치 세팅
-    // CPlayer가 싱글톤이거나 Object_Manager에서 찾아서 세팅
-    // TODO: 내 플레이어 스폰 처리
+    CLevel_Manager::Get_Instance()->Level_Change(LEVEL_TEST);
 }
 
 void CNetwork_Manager::Handle_SC_ADD_PLAYER(uint8_t* pBuffer, int32_t nSize)
 {
-    SC_ADD_PLAYER_PACKET* pPkt = reinterpret_cast<SC_ADD_PLAYER_PACKET*>(pBuffer);
+    SC_ADD_PLAYER_PACKET* pPkt =
+        reinterpret_cast<SC_ADD_PLAYER_PACKET*>(pBuffer);
 
-    // 내 캐릭터면 무시
     if (pPkt->playerID == m_nMyPlayerID) return;
 
-    std::cout << "[Network] 플레이어 추가. ID=" << pPkt->playerID << std::endl;
+    CGameObject* pExist =
+        CObject_Manager::Get_Instance()->Find_OtherPlayer(pPkt->playerID);
+    if (pExist) return;
 
-    // COther_Player 생성 → Object_Manager에 추가
-    // TODO: COther_Player 생성 후 초기위치 + 목적지 세팅
-    // COther_Player* pOther = new COther_Player;
-    // pOther->SetPlayerID(pPkt->playerID);
-    // pOther->SetPos(pPkt->fCurX, pPkt->fCurZ);
-    // pOther->SetDest(pPkt->fDestX, pPkt->fDestZ);
-    // pOther->SetSpeed(pPkt->fSpeed);
-    // CObject_Manager::Get_Instance()->Add_Object(OBJ_OTHER_PLAYER, pOther);
+    COther_Player* pOther = new COther_Player;
+    pOther->Initialize(pPkt->playerID, pPkt->name,
+        pPkt->fCurX, pPkt->fCurZ);
+
+    if (pPkt->state == PLAYER_DEAD)
+    {
+        pOther->SetDeadState();
+    }
+    else
+    {
+        if (pPkt->fDestX != pPkt->fCurX || pPkt->fDestZ != pPkt->fCurZ)
+        {
+            pOther->OnMoveDestPacket(
+                pPkt->fCurX, pPkt->fCurZ,
+                pPkt->fDestX, pPkt->fDestZ,
+                pPkt->fSpeed, 0);
+        }
+    }
+
+    CObject_Manager::Get_Instance()->Add_Object(OBJ_OTHER_PLAYER, pOther);
+
+    std::cout << "[Network] 플레이어 추가. ID=" << pPkt->playerID
+        << " name=" << pPkt->name
+        << " state=" << (int)pPkt->state << std::endl;
 }
 
 void CNetwork_Manager::Handle_SC_REMOVE_PLAYER(uint8_t* pBuffer, int32_t nSize)
 {
-    SC_REMOVE_PLAYER_PACKET* pPkt = reinterpret_cast<SC_REMOVE_PLAYER_PACKET*>(pBuffer);
+    SC_REMOVE_PLAYER_PACKET* pPkt =
+        reinterpret_cast<SC_REMOVE_PLAYER_PACKET*>(pBuffer);
+
+    CGameObject* pObj =
+        CObject_Manager::Get_Instance()->Find_OtherPlayer(pPkt->playerID);
+    if (!pObj) return;
+
+    // Set_Dead() → Object_Manager Update에서 자동 제거
+    pObj->Set_Dead();
 
     std::cout << "[Network] 플레이어 제거. ID=" << pPkt->playerID << std::endl;
-
-    // TODO: Object_Manager에서 해당 ID의 COther_Player 제거
-    // CObject_Manager::Get_Instance()->Remove_OtherPlayer(pPkt->playerID);
 }
 
 void CNetwork_Manager::Handle_SC_MOVE_PLAYER(uint8_t* pBuffer, int32_t nSize)
 {
-    SC_MOVE_PLAYER_PACKET* pPkt = reinterpret_cast<SC_MOVE_PLAYER_PACKET*>(pBuffer);
+    SC_MOVE_PLAYER_PACKET* pPkt =
+        reinterpret_cast<SC_MOVE_PLAYER_PACKET*>(pBuffer);
 
-    if (pPkt->playerID == m_nMyPlayerID)
-    {
-        // 내 캐릭터 위치 보정 (서버 검증 결과)
-        // TODO: 내 플레이어 위치 보정
-        return;
-    }
+    if (pPkt->playerID == m_nMyPlayerID) return;
 
-    // 다른 플레이어 Dead Reckoning 갱신
-    // TODO: Object_Manager에서 해당 ID의 COther_Player 찾아서
-    //       현재위치 보정 + 목적지 갱신
-    // COther_Player* pOther = Find(pPkt->playerID);
-    // if (pOther) pOther->OnRecv_MovePlayer(pPkt);
+    CGameObject* pObj =
+        CObject_Manager::Get_Instance()->Find_OtherPlayer(pPkt->playerID);
+    if (!pObj) return;
+
+    COther_Player* pOther = static_cast<COther_Player*>(pObj);
+    pOther->OnMoveDestPacket(
+        pPkt->fCurX, pPkt->fCurZ,
+        pPkt->fDestX, pPkt->fDestZ,
+        pPkt->fSpeed, pPkt->moveTime);
 }
 
 // ================================================================

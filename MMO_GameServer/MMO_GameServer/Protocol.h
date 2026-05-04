@@ -83,9 +83,10 @@ struct SC_ADD_PLAYER_PACKET
     uint32_t     playerID;
     float        fCurX;
     float        fCurZ;
-    float        fDestX;   // 이동 중이면 목적지도 포함
-    float        fDestZ;   // (시야에 새로 들어온 플레이어가 이동중일 수 있음)
+    float        fDestX;
+    float        fDestZ;
     float        fSpeed;
+    uint8_t      state;
     char         name[20];
 };
 

@@ -24,7 +24,7 @@ inline bool Is_MovableTile(TILE_TYPE eType)
     return eType == TILE_GRASS;
 }
 
-constexpr int32_t VIEW_RANGE = 10;
+constexpr int32_t VIEW_RANGE = 3;
 
 class CZone
 {

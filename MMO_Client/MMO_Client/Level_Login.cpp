@@ -51,5 +51,5 @@ void CLevel_Login::Render(ID2D1RenderTarget* pRT)
 
 void CLevel_Login::Release(void)
 {
-
+	CUI_Manager::Get_Instance()->DeleteID(UI_BOX);
 }

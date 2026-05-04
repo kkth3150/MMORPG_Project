@@ -2,6 +2,7 @@
 #include "Level_Test.h"
 #include "Img_Manager.h"
 #include "Object_Manager.h"
+#include "Network_Manager.h"
 #include "Player.h"
 #include "NPC_Shop.h"
 #include "Map_Manager.h"
@@ -11,6 +12,7 @@
 #include "UI_Inventory.h"
 #include "UI_QuickSlot.h"
 #include "UI_HUD.h"
+
 
 CLevel_Test::CLevel_Test()
 {
@@ -103,9 +105,18 @@ void CLevel_Test::Release(void)
 
 void CLevel_Test::Ready_Player()
 {
+	float fX = 5.f, fZ = 5.f;  // ±âº»°ª
+
+	CNetwork_Manager* pNet = CNetwork_Manager::Get_Instance();
+	if (pNet->IsSpawnReady())
+	{
+		fX = pNet->GetSpawnX();
+		fZ = pNet->GetSpawnZ();
+		pNet->ClearSpawn();
+	}
 
 	CPlayer* pPlayer = new CPlayer;
-	pPlayer->Set_WorldPos(15.f, 15.f);
+	pPlayer->Set_WorldPos(fX, fZ);
 	pPlayer->Initialize();
 
 	CObject_Manager::Get_Instance()->Add_Object(OBJ_PLAYER, pPlayer);

@@ -2,7 +2,7 @@
 #include "Object_Manager.h"
 #include "Camera.h"
 #include "Collision_Manager.h"
-
+#include "Other_Player.h"
 CObject_Manager* CObject_Manager::m_pInstance = nullptr;
 
 CObject_Manager::CObject_Manager()
@@ -97,6 +97,17 @@ void CObject_Manager::Render(ID2D1RenderTarget* pRT)
 			pObj->Render(pRT);
 		}
 	}
+}
+
+CGameObject* CObject_Manager::Find_OtherPlayer(int32_t nPlayerID)
+{
+	for (auto& pObj : m_ObjectList[OBJ_OTHER_PLAYER])
+	{
+		COther_Player* pOther = static_cast<COther_Player*>(pObj);
+		if (pOther->GetPlayerID() == nPlayerID)
+			return pObj;
+	}
+	return nullptr;
 }
 
 void CObject_Manager::Release(void)

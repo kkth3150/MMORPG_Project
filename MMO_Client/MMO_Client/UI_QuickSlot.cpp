@@ -129,7 +129,8 @@ void CUI_QuickSlot::Render_Slots(ID2D1RenderTarget* pRT)
                 pFont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_TRAILING);  // 우측 정렬
                 pRT->DrawText(szCount, lstrlen(szCount),
                     pFont,
-                    D2D1::RectF(fX-30.f, fY + SLOT_SIZE - 25.f,
+                    D2D1::RectF(fX-30.f, fY + SLOT_SIZE - 2
+                        ,
                         fX + SLOT_SIZE - 10.f,   // 오른쪽 여백 2px
                         fY + SLOT_SIZE - 15.f),
                     pBrush);

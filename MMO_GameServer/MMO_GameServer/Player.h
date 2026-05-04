@@ -1,5 +1,9 @@
 #pragma once
 
+enum PLAYER_STATE {
+    PLAYER_IDLE, PLAYER_WALK, PLAYER_HIT, PLAYER_ATTACK, PLAYER_DEAD, PLAYER_END
+};
+
 class CPlayer
 {
 public:
@@ -23,10 +27,10 @@ public:
     float    m_fMoveStartZ = 0.f;
     uint32_t m_nMoveStartTime = 0; // 이동 시작 시간 (ms)
     bool     m_bMoving = false;
-
+    PLAYER_STATE m_eState = PLAYER_IDLE;
     // ---- 속도 ----
     // 클라이언트 m_fSpeed와 반드시 동일해야 함
-    float    m_fSpeed = 5.f;
+    float    m_fSpeed = 1.f;
 
     // ---- 타일 좌표 (시야 계산용) ----
     int32_t  m_nTileX = 0;

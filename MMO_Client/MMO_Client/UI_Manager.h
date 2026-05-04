@@ -16,12 +16,12 @@ public:
 
 public:
 
-	std::list<CUI*>* Get_List(OBJ_ID eID) {
+	std::list<CUI*>* Get_List(UI_ID eID) {
 		if (!List_Empty(eID))
 			return &m_UIList[eID];
 	}
 
-	bool List_Empty(OBJ_ID eID) {
+	bool List_Empty(UI_ID eID) {
 		if (m_UIList[eID].empty() == true) {
 			return true;
 		}
@@ -31,8 +31,8 @@ public:
 
 	};
 
-	void		DeleteID(OBJ_ID eID);
-	void On_Char(wchar_t ch);
+	void		DeleteID(UI_ID eID);
+	void		On_Char(wchar_t ch);
 
 private:
 
